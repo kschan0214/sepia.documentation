@@ -1,20 +1,16 @@
-.. Sepia documentation master file, created by
-   sphinx-quickstart on Sat May 25 19:13:21 2019.
+.. SEPIA documentation master file, created by
+   sphinx-quickstart on Sat May 25 22:48:00 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-SEPIA Documentation
-=====================
-Here you can find all the documentation related to SEPIA.
-
-Guide
-=====
+Welcome to SEPIA's documentation!
+=================================
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
-   license
-   help
+
 
 Indices and tables
 ==================

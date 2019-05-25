@@ -26,7 +26,7 @@ author = 'Kwok-Shing Chan'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '0.7.1'
+release = '0.7'
 
 
 # -- General configuration ---------------------------------------------------
@@ -64,7 +64,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -157,9 +157,3 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
-import os
-on_rtd = os.environ.get('READTHEDOCS') == 'True'
-if on_rtd:
-    html_theme = 'default'
-else:
-    html_theme = 'nature'
