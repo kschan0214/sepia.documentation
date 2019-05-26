@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Exercise 2" href="Exercise2.html" />
     <link rel="prev" title="(f)MRI Toolkits 2019" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -23,6 +24,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Exercise2.html" title="Exercise 2"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="(f)MRI Toolkits 2019"
              accesskey="P">previous</a> |</li>
@@ -37,32 +41,34 @@
           <div class="body" role="main">
             
   <div class="section" id="exercise-1">
-<h1>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h1>
+<span id="fmritoolkit2019-exercise1"></span><h1>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Understanding the data required for QSM</li>
-<li>Gain experience to correct the phase data</li>
+<li>Understanding why we need to correct the phase data before mapping the magnetic susceotibility</li>
 </ul>
 </div>
 <div class="section" id="understanding-multi-echo-gre-data">
 <h2>Understanding multi-echo GRE data<a class="headerlink" href="#understanding-multi-echo-gre-data" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned in the introduction, water protons resonate in different frequencies because of the tissue magnetic susceptibility. The frequency difference in brain tissues can be detected as the difference in phase accumulation over time (see Eq.1). Therefore, the phase measurement of the MRI signal allows us to map the magnetic susceptibility of brain tissues.</p>
 <div class="math">
-<p><img src="../../_images/math/1c1026b14021eb4b8d60eb10f688057d173461e7.png" alt="phase = angular frequency * time [1]"/></p>
+<p><img src="../../_images/math/f6fccaae2bde38091d234d812b1dbe8c6c9c6fa3.png" alt="phase = frequency \times time [1]"/></p>
 </div><p>To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. Now, please go to the exercise directory which is located in ~/qsm_tutorial/. You can use the following command in the terminal:</p>
 <p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/qsm_tutorial/</span></code></p>
 <p>To view the content of the directory using the command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ls</span></code></p>
 <p>You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory. The two NIfTI images correspond to the magnitude (mag) and the phase MR signal (phase). Both of them are 4D data, with the first 3 dimensions containing spatial information (i.e the brain) and echo time (i.e. the time we sampled data) in the 4th dimension. The JSON files contain important information such as the echo time and magnetic field strength, which allow us to compute the magnetic susceptibility with the correct unit.</p>
-<p>Let’s take a look of the magnitude images. You can do that by calling the image viewer FSLeyes with:</p>
+<p>Let’s take a look of the magnitude images. You can do that by calling the image viewer FSLeyes in the terminal:</p>
 <p><code class="docutils literal notranslate"><span class="pre">fsleyes</span> <span class="pre">mag.nii.gz</span></code></p>
-<p>Once you opened the magnitude images in the viewer, click the movie button to see how the brain images change over time. You can also press <code class="docutils literal notranslate"><span class="pre">ctr+3</span></code> to see the plot of signal evolution at different brain tissues. Select a few data points in the brain, how do you describe the signal curve?</p>
-<p>[Click here to check if you follow the instruction]()</p>
+<p>Once you opened the magnitude images in the viewer, click the movie button to see how the brain images change over time.</p>
+<img alt="../../_images/movie_button.png" src="../../_images/movie_button.png" />
+<p>You can also press <code class="docutils literal notranslate"><span class="pre">ctr+3</span></code> to see the plot of signal evolution at different brain tissues. Select a few data points in the brain, how do you describe the signal curve?</p>
+<p><cite>Check you progress here</cite></p>
 <p>You should observe the signal is decaying over time in general, which results from water protons losing phase coherence over time. It can be due to field inhomogeneity/diffusion/imperfect shimming etc. Magnitude images can be very useful to improve the quality of a QSM map because they share similar contrasts. But right now let’s have a look of the phase images. You can close the viewer and use the following command in the terminal:</p>
 <p><code class="docutils literal notranslate"><span class="pre">fsleyes</span> <span class="pre">phase.nii.gz</span></code></p>
 <p>The phase images look very different compared to the magnitude images and with the current display windowing it is hard to see any contrast of brain tissues. Adjust the windowing to [-3,1], you should be able to identify some brain structures. You might wonder why the tissue contrasts are somehow ‘hidden’ in the data. Before answering this question, let’s focus on how the phase developed over time which is the main objective of this exercise. Change the window back to [-3,3] and click the movie button again to see the phase development over time. Based on Eq.1, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase images become brighter/dimmer in the later echoes. What do you see in the later echo images?</p>
-<p>[Click here to check if you follow the instruction]()</p>
+<p><cite>Check you progress here</cite></p>
 <p>It seems that in some regions they follow the description in Eq.1 but it is certainly not the case in some regions. Let press <code class="docutils literal notranslate"><span class="pre">ctr+3</span></code> again to see the phase curve in different positions of the brain. Can you identify the cause of the problem?</p>
 <ol class="upperalpha simple">
 <li>Somebody screwed up the acquisition</li>
@@ -71,26 +77,29 @@
 <li>Fast switching gradient introduced extra phase</li>
 </ol>
 <p>[Answer]()</p>
-<p>In order to correctly estimate the frequency shift using Eq.1, this phase problem has to be addressed otherwise we will compute wrong magnetic susceptibility in those affected regions. To unwrap the phase and map to the correct values, Sepia provides several algorithms to do the job.</p>
+<p>In order to correctly estimate the frequency shift using Eq.1, this phase problem has to be addressed otherwise we will compute wrong magnetic susceptibility in those affected regions. To unwrap the phase and map to the correct values, SEPIA provides several algorithms to do the job.</p>
 </div>
 <div class="section" id="sepia">
 <h2>SEPIA<a class="headerlink" href="#sepia" title="Permalink to this headline">¶</a></h2>
 <p>SEPIA is a pipeline tool to process phase images in Matlab. To use SEPIA, please open a Matlab application in the cluster by typing:</p>
 <p><code class="docutils literal notranslate"><span class="pre">matlab2016b</span></code>,</p>
 <p>click OK, leave the runtime as default and specify the memory requirement as 10 (GB).</p>
-<p>Once you have the Matlab opened, first go to the tutorial directory and add the Sepia home directory to the Matlab Path. You can simply do this by typing the following command in the Matlab’s command’s window:</p>
+<a class="reference internal image-reference" href="../../_images/matlab_job.png"><img alt="../../_images/matlab_job.png" class="align-center" src="../../_images/matlab_job.png" style="width: 389.3px; height: 218.45px;" /></a>
+<p>Once you have the Matlab opened, first go to the tutorial directory and add the SEPIA home directory to the Matlab Path. You can simply do this by typing the following command in the Matlab’s command’s window:</p>
 <p><code class="docutils literal notranslate"><span class="pre">addpath('~/qsm_tutorial/sepia/');</span></code></p>
 <p>The copy of SEPIA that you have in the tutorial directory already included all the external toolboxes required by SEPIA. If you want to know how to setup SEPIA from the start after today tutorial, you can refer to the other wiki pages to see how it can be done.</p>
 <p>Now, enter <code class="docutils literal notranslate"><span class="pre">sepia</span></code> in the command window. A graphical user interface should be popped up momentarily. The first tab in SEPIA provides a one-stop application to process the raw phase data to a QSM map. Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach.</p>
+<a class="reference internal image-reference" href="../../_images/sepia_layout.png"><img alt="../../_images/sepia_layout.png" class="align-center" src="../../_images/sepia_layout.png" style="width: 698.5999999999999px; height: 508.9px;" /></a>
 <p>The first thing you need to do before using the Sepia’s pipeline is to create a header file that contains all essential information for the rest of the processing. To do this select the <strong>Utility</strong> tab and then select <strong>Get header info</strong> in the drop-down menu. This function provides several ways to extract the header information from different types of files. With all the NifTI images and JSON files stored in the same place, we can use ‘Op 2’ routine. Click ‘Open’ next to ‘Op 2’ and select ~/qsm_tutorial as the input. The output of the header file will be stored in the same directory as your input by default. Click <strong>Save header</strong> to save the file. When you see the message ‘’ in the command window, the file is saved.</p>
-<p>Go the <strong>Phase unwrapping</strong> tab and you will see two panels under the tad: the <strong>I/O</strong> is for data input and output and the <strong>Total field recovery and phase unwrapping</strong> is for true phase accumulation estimation.</p>
+<p>Go the <strong>Phase unwrapping</strong> tab and you will see two panels under the tab: the <strong>I/O</strong> is for data input and output and the <strong>Total field recovery and phase unwrapping</strong> is for true phase accumulation estimation.</p>
+<a class="reference internal image-reference" href="../../_images/phase_unwrap_tab.png"><img alt="../../_images/phase_unwrap_tab.png" class="align-center" src="../../_images/phase_unwrap_tab.png" style="width: 700.6999999999999px; height: 239.39999999999998px;" /></a>
 <p>In the <strong>I/O</strong> panel, select the ~/qsm_tutorial/ in the <strong>Input directory</strong> and check the <strong>FSL brain extraction</strong>. Having an accurate brain mask is important to produce a high-quality QSM map.</p>
 <p>In the <strong>Total field recovery and phase unwrapping</strong> panel, keep the <strong>Echo phase combination</strong> method as ‘Optimum weights’ and change the <strong>Phase unwrapping</strong> method to ‘Laplacian STI Suite’. Then click the <strong>Start</strong> button.</p>
-<p>You should now see some messages are displayed in the command window. Once it finishes, you will see the message <code class="docutils literal notranslate"><span class="pre">`Done`</span></code>. Now we can check the output results. Use FSLeyes to open the <em>Sepia_unwrapped-phase.nii.gz</em> in the output directory and see the phase development over time again. Can you see all the zipper lines are gone and the changes of phase behave as predict by Eq.1?</p>
+<p>You should now see some messages are displayed in the command window. Once it finishes, you will see the message <code class="docutils literal notranslate"><span class="pre">Done</span></code>. Now we can check the output results. Use FSLeyes to open the <em>Sepia_unwrapped-phase.nii.gz</em> in the output directory and see the phase development over time again. Can you see all the zipper lines are gone and the changes of phase behave as predict by Eq.1?</p>
 <p>Open the <em>Sepia_total-field.nii.gz</em> file in the output directory. This is the result we needed in the next exercise. This map is the average phase accumulation between two successive echoes. With this image, we have the phase accumulation and we also know the exact time to develop this phase. We can then compute the frequency shift by rewriting Eq.1:</p>
 <div class="math">
-<p><img src="../../_images/math/0eefa00c41aadcede3c46827df807f8564297ce4.png" alt="frequency = phase / time [2]"/></p>
-</div><p>[Proceed to Exercise 2](<a class="reference external" href="https://github.com/kschan0214/sepia/wiki/(f)MRI-Toolkit-2019-Exercise-2">https://github.com/kschan0214/sepia/wiki/(f)MRI-Toolkit-2019-Exercise-2</a>)</p>
+<p><img src="../../_images/math/ab1675196ef337523a62691c637fd83d3f841a10.png" alt="frequency = phase \div time [2]"/></p>
+</div><p>Proceed to <a class="reference internal" href="Exercise2.html#fmritoolkit2019-exercise2"><span class="std std-ref">Exercise 2</span></a>.</p>
 </div>
 </div>
 
@@ -113,6 +122,9 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">(f)MRI Toolkits 2019</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Exercise2.html"
+                        title="next chapter">Exercise 2</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -142,6 +154,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="Exercise2.html" title="Exercise 2"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="(f)MRI Toolkits 2019"
              >previous</a> |</li>

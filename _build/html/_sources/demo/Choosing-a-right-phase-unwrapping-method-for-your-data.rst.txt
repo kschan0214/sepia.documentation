@@ -23,7 +23,7 @@ Under a linear model assumption the phase of each voxel over time can be express
 
 .. math::
 
-   phase = angular frequency * time [1]
+   phase = angular frequency \times time [1]
 
 However, this phase value is constrained in the interval of [-pi,pi) in the MRI phase data. Any value that is outside of this interval will be wrapped back to this interval (see red arrows). For QSM processing, it is important to unwrap the phase such that the true frequency shift inside the voxel can be computed using the above equation.
 

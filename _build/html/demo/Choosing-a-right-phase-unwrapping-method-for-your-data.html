@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="(f)MRI Toolkits 2019" href="../tutorial/fMRItoolkits2019/index.html" />
     <link rel="prev" title="SEPIA (One-stop QSM processing)" href="../gui/Sepia-One-stop-QSM-processing.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -23,6 +24,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../tutorial/fMRItoolkits2019/index.html" title="(f)MRI Toolkits 2019"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../gui/Sepia-One-stop-QSM-processing.html" title="SEPIA (One-stop QSM processing)"
              accesskey="P">previous</a> |</li>
@@ -51,7 +55,7 @@ FSL’s BET was used to extract the brain mask to improve the processing result.
 <img alt="../_images/wrap-phase_e-1.png" src="../_images/wrap-phase_e-1.png" />
 <p>Under a linear model assumption the phase of each voxel over time can be expressed by the following equation:</p>
 <div class="math">
-<p><img src="../_images/math/1c1026b14021eb4b8d60eb10f688057d173461e7.png" alt="phase = angular frequency * time [1]"/></p>
+<p><img src="../_images/math/048256d2db0ca820f7bf8df27d06ad61cfe996f8.png" alt="phase = angular frequency \times time [1]"/></p>
 </div><p>However, this phase value is constrained in the interval of [-pi,pi) in the MRI phase data. Any value that is outside of this interval will be wrapped back to this interval (see red arrows). For QSM processing, it is important to unwrap the phase such that the true frequency shift inside the voxel can be computed using the above equation.</p>
 <p>To unwrap the phase images, there are two main methods being used: (1) <strong>region growing</strong> and (2) <strong>Laplacian operator</strong>. In SEPIA, you can use the following commands to access the methods:</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% region growing</span>
@@ -153,6 +157,9 @@ FSL’s BET was used to extract the brain mask to improve the processing result.
   <h4>Previous topic</h4>
   <p class="topless"><a href="../gui/Sepia-One-stop-QSM-processing.html"
                         title="previous chapter">SEPIA (One-stop QSM processing)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tutorial/fMRItoolkits2019/index.html"
+                        title="next chapter">(f)MRI Toolkits 2019</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -182,6 +189,9 @@ FSL’s BET was used to extract the brain mask to improve the processing result.
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="../tutorial/fMRItoolkits2019/index.html" title="(f)MRI Toolkits 2019"
+             >next</a> |</li>
         <li class="right" >
           <a href="../gui/Sepia-One-stop-QSM-processing.html" title="SEPIA (One-stop QSM processing)"
              >previous</a> |</li>

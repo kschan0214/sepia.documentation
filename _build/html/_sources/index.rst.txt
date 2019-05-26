@@ -41,6 +41,9 @@ Table of Contents
    :name: sec-gui
 
    gui/Sepia-One-stop-QSM-processing
+   gui/Phase-unwrapping-standalone
+   gui/Background-field-removal-standalone
+   gui/QSM-standalone
 
 .. toctree::
    :maxdepth: 1
@@ -55,6 +58,14 @@ Table of Contents
    :name: sec-tutorial
 
    tutorial/fMRItoolkits2019/index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Acknowledgements and References
+   :name: sec-acknowledge
+
+   pages/Acknowledgements
+   pages/References
 
 
 
