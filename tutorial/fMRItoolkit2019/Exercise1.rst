@@ -76,6 +76,7 @@ A. Somebody screwed up the acquisition
 B. The subject moved during the scan  
 C. The phase is bounded to certain values  
 D. Fast switching gradient introduced extra phase  
+E. I don't know. I'm here to learn some fMRI analysis so just show me the answer
 
 [Answer]()
 
@@ -107,7 +108,7 @@ Now, enter ``sepia`` in the command window. A graphical user interface (GUI) sho
 Create SEPIA header
 ^^^^^^^^^^^^^^^^^^^
 
-The first thing you need to do before using the SEPIA's pipeline is to create a header file that contains all essential information required for the rest of the processing. To do this, select the **Utility** tab and then select **Get header info** in the drop-down menu. This function provides several ways to extract the header information from different types of files. With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine. Click **Open** next to 'Op 2' and select *~/qsm_tutorial/data* as the input. The output of the header file will be stored in the same directory as your input by default. Click **Save header** to save the file. The process is doen when you see the message 'Sepia header is saved!' in the command window. You should see a new file is generated in the input directory. You setting should be similar to the following figure:
+The first thing you need to do before using the SEPIA's pipeline is to create a header file that contains all essential information required for the rest of the processing. To do this, select the **Utility** tab and then select **Get header info** in the drop-down menu. This function provides several ways to extract the header information from different types of files. With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine. Click **Open** next to 'Op 2' and select *~/qsm_tutorial/data* as the input. The output of the header file will be stored in the same directory as your input by default. Click **Save header** to save the file. The process is done when you see the message 'Sepia header is saved!' in the command window. You should see a new file is generated in the input directory. Your setting should be similar to the following figure:
 
 .. image:: images/create_header.png
    :align: center
@@ -115,21 +116,27 @@ The first thing you need to do before using the SEPIA's pipeline is to create a 
 Total Field Computation and Phase Unwrapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Go the **Phase unwrapping** tab (which is next to Sepia) and you will see two panels under the tab: the **I/O** is for data input and output and the **Total field recovery and phase unwrapping** is for true phase accumulation estimation.
+To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (which is next to **Sepia** tab). You will see two panels under the tab: the **I/O** panel is for data input and output and the **Total field recovery and phase unwrapping** panel is for phase unwrapping and true phase accumulation estimation.
 
-In the **I/O** panel, select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction**. Having an accurate brain mask is essential to produce a high-quality QSM map.  
+SEPIA supports two types of data input. If your data follow the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. On the other hand, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. In this exercise, select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction** in the **I/O** panel. It is essential to have a brain mask to produce a high-quality QSM map.  
 
-In the **Total field recovery and phase unwrapping** panel, keep the **Echo phase combination** method as 'Optimum weights' and change the **Phase unwrapping** method to 'Laplacian STI Suite'. Then click the **Start** button. Your setting should be similar to the following figure:
+.. note:: Unfortunately, combination of input directory and individual files input are not permitted with the current SEPIA version. Make sure you either specify the input directory **or** specify the individual files.
+
+In the **Total field recovery and phase unwrapping** panel, keep the **Echo phase combination** method as 'Optimum weights' and change the **Phase unwrapping** method to 'Laplacian STI Suite'. Make sure you have similar setting as in the following figure:
 
 .. image:: images/phase_unwrap_setting.png
    :align: center
 
-You should now see some messages are displayed in the command window. Once it finishes, you will see the message ``Done``. Now we can check the output results. Use FSLeyes to open the *Sepia_unwrapped-phase.nii.gz* in the output directory and see the phase development over time again. Can you see all the zipper lines are gone and the changes of phase behaved as Eq. :eq:`pft` prediction? 
+Then click the **Start** button.
 
-Open the *Sepia_total-field.nii.gz* file in the output directory. This is the result we needed in the next exercise. This map is the average phase accumulation between two successive echoes. With this image, we have the phase accumulation and we also know the exact time to develop this phase. We can then compute the frequency shift by simplily rewriting Eq. :eq:`pft` to:
+You should now see some messages are displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of your selected method. Once the process finishes, you will see the message 'Done'. Now we can check the output results. Use FSLeyes to open the *Sepia_unwrapped-phase.nii.gz* in the output directory. This is the unwarpped phase images and observe the phase development over time. Can you see all the zipper lines are gone in the later echoes and the changes of phase behaved as in Eq. :eq:`pft` prediction? 
+
+With the raw phase data being corrected, we can compute the actual frequency shift. This corresponds to rewriting Eq. :eq:`pft` to:
 
 .. math::
    frequency = \frac{phase}{time}
    :label: fpt
+
+Since we know the exact time (i.e. the echo time TE) to develop the phase in each echo, a frequency map can then be computed using Eq. :eq:`fpt`, which is the *Sepia_total-field.nii.gz* file in the output directory. This is the result we needed in the next exercise. 
 
 Proceed to :ref:`fmritoolkit2019-exercise2`.
