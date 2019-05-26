@@ -9,6 +9,18 @@ Objectives
 - Understanding why we need to remove the background magnetic field contributions before QSM  
 - Fine-tuning method parameters to improve the background field removal results
 
+Data Required
+^^^^^^^^^^^^^
+
+- a 3D total field image (*Sepia_total-field.nii.gz* in the previous exercise output directory)
+- a 3D brain mask (*Sepia_mask.nii.gz* in the previous exercise output directory)
+- a SEPIA header (*Sepia_header.mat* in the input directory)
+
+Estimated time
+^^^^^^^^^^^^^^
+
+Less than 15 min.
+
 From frequency to magnetic field
 --------------------------------
 
