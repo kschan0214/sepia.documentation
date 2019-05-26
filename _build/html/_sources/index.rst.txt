@@ -57,7 +57,7 @@ Table of Contents
    :caption: Tutorial
    :name: sec-tutorial
 
-   tutorial/fMRItoolkits2019/index
+   tutorial/fMRItoolkit2019/index
 
 .. toctree::
    :maxdepth: 1
