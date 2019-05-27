@@ -19,12 +19,12 @@ Data Required
 Estimated time
 ^^^^^^^^^^^^^^
 
-Less than 15 min.
+Around 20 min.
 
 Understanding multi-echo GRE data
 ---------------------------------
 
-As mentioned in the introduction, water protons resonate in different frequencies because of the tissue magnetic susceptibility. The frequency difference in brain tissues can be detected as the difference in phase accumulation over time (see Eq. :eq:`pft`). Therefore, the phase measurement of the MRI signal allows us to map the magnetic susceptibility of brain tissues.
+As mentioned in the introduction, water protons resonate at different frequencies because of the tissue magnetic susceptibility. The frequency difference in brain tissues can be detected as the difference in phase accumulation over time (see Eq. :eq:`pft`). Therefore, the phase measurement of the MRI signal allows us to map the magnetic susceptibility of brain tissues.
 
 .. math::
    phase = frequency \times time
@@ -34,20 +34,18 @@ To compute a magnetic susceptibility map, multi-echo gradient-echo images are us
 
 ``cd ~/qsm_tutorial/data``
 
-To view the content of the directory use the command:
-
-``ls``
+To view the content of the directory use the command: ``ls``
 
 .. image:: images/ls.png
    :align: center
 
-You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory. The two NIfTI images correspond to the magnitude (mag.nii.gz) and the phase MR signal (phase.nii.gz). Both of them are 4D data, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time (i.e. the time we sampled data) in the 4th dimension. The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), which allow us to compute the magnetic susceptibility with the correct unit.
+You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory. The two NIfTI images correspond to the magnitude (mag.nii.gz) and the phase MR signal (phase.nii.gz). Both of them are 4D data, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time (i.e. the time we sampled data) in the 4th dimension. The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), allowing us to compute the magnetic susceptibility with the correct unit.
 
-Let's take a look of the magnitude images. You can do that by calling the image viewer FSLeyes in the terminal:
+Let's take a look of the magnitude images. You can do this by calling the image viewer FSLeyes in the terminal:
 
 ``fsleyes mag.nii.gz``
 
-Once you opened the magnitude images in the viewer, adjust the display window to 'Min. 0' and 'Max. 500'. Then click the movie button to see how the brain contrast changes over time.
+Once you have the magnitude images opened in the viewer, adjust the display window to 'Min. 0' and 'Max. 300'. Then click the movie button to see how the brain contrast changes over time.
 
 .. image:: images/mag_display.png
    :align: center
@@ -63,14 +61,19 @@ Let's have a look of the phase images. You can close the viewer and use the foll
 
 ``fsleyes phase.nii.gz``
 
-The phase images look very different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to identify some brain structures. You might wonder why the tissue contrasts are somehow 'hidden' in the data. Before answering this question, let's focus on how the phase developed over time which is the main objective of this exercise. Change the window back to [-3.14,3.14] and click the movie button again to see the phase development over time. Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase images become brighter/dimmer in the later echoes. Do you have this observation with the increase of echo time?
+The phase images look very different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to identify some brain structures. 
+
+.. image:: images/phase_display.png
+   :align: center
+
+You might wonder why the tissue contrasts are somehow 'hiddened' in the data. Before answering this question, let's focus on how the phase developed over time which is the main objective of this exercise. Change the window back to [-3.14,3.14] and click the movie button again to see the phase development over time. Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase images become brighter/dimmer in the later echoes. Can you make this observation?
 
 .. toctree::
    :maxdepth: 1
 
    Exercise1_progress2
 
-It seems that most of the time the phase contrast follow the description in Eq. :eq:`pft` but it is certainly not the case in some regions. Let press ``Ctrl+3`` again to see the phase curve at those regions. Can you identify the cause of the problem?
+It seems that in some regions the phase contrast follows the description in Eq. :eq:`pft` but it is certainly not the case for regions close to the prefrontal cortex and temporal lobes. Press ``Ctrl+3`` to see the phase curve at those problematic regions. Can you identify the cause of the problem?
 
 A. Somebody screwed up the acquisition  
 B. The subject moved during the scan  

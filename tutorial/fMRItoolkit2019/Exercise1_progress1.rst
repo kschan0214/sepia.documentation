@@ -6,6 +6,6 @@ Check You Progress 1
 .. image:: images/mag_decay.png
    :align: center
 
-You should observe the signals are decaying over time in general, which results from water protons losing phase coherence over time. It can be due to field inhomogeneity/diffusion/imperfect shimming etc. Magnitude images can be very useful to improve the quality of a QSM map because they share similar (but not the always same!) contrasts. 
+You should be able to observe the signals decaying over time in general. Precisely, this is the so-called T\ :sub:`2`\ * signal decay of MR signal which results from water protons losing phase coherence over time. The mechanism of T\ :sub:`2`\ * decay is complicated because it can be due to factors such as field inhomogeneity/diffusion/imperfect shimming etc. Although QSM mainly works with phase images, magnitude images can be very useful because they share similar (but not always the same!) contrasts, therefore, have the potential to improve the quality of QSM maps. 
 
 Back to :ref:`fmritoolkit2019-exercise1`.
