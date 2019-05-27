@@ -81,7 +81,7 @@ C. The phase is bounded to certain values
 D. Fast switching gradient introduced extra phase  
 E. I don't know. I'm here to learn some fMRI analysis so just show me the answer
 
-[Answer]()
+[links to each answer]
 
 In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed otherwise we will end up with some incorrect magnetic susceptibility values in those affected regions. To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job.  
 
