@@ -1,4 +1,6 @@
 .. _fmritoolkit2019-exercise1:
+.. role::  raw-html(raw)
+    :format: html
 
 Exercise 1
 ==========
@@ -19,29 +21,43 @@ Data Required
 Estimated time
 ^^^^^^^^^^^^^^
 
-Around 20 min.
+About 10 min.
 
 Understanding multi-echo GRE data
 ---------------------------------
 
-As mentioned in the introduction, water protons resonate at different frequencies because of the tissue magnetic susceptibility. The frequency difference in brain tissues can be detected as the difference in phase accumulation over time (see Eq. :eq:`pft`). Therefore, the phase measurement of the MRI signal allows us to map the magnetic susceptibility of brain tissues.
+To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. 
 
-.. math::
-   phase = frequency \times time
-   :label: pft
+Go to the exercise directory which is located in ~/qsm_tutorial/.
 
-To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. Now, please go to the exercise directory which is located in ~/qsm_tutorial/. You can use the following command in the terminal:
+You can use the following command in the terminal:
 
-``cd ~/qsm_tutorial/data``
+``cd ~/qsm_tutorial/``
 
 To view the content of the directory use the command: ``ls``
+
+.. image:: images/exercise_directory.png
+   :align: center
+
+You will see there are two folders in the directory.
+
+- **sepia** is the software we are going to use thorough this tutorial,
+- **data** contains the multi-echo gradient echo images we will work on.
+
+Go to the data directory using ``cd data`` and have a look of the content inside the folder ``ls``
 
 .. image:: images/ls.png
    :align: center
 
-You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory. The two NIfTI images correspond to the magnitude (mag.nii.gz) and the phase MR signal (phase.nii.gz). Both of them are 4D data, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time (i.e. the time we sampled data) in the 4th dimension. The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), allowing us to compute the magnetic susceptibility with the correct unit.
+You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory:
 
-Let's take a look of the magnitude images. You can do this by calling the image viewer FSLeyes in the terminal:
+- The NIfTI files mag.nii.gz and phase.nii.gz contain the magnitude and the phase data acquire with a multi-echo gradient echo sequence. 
+
+  Both are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time in the 4th dimension. 
+
+- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and  orientation of the acquisition in respect to the physical cordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
+
+Take a look at the magnitude images. You can do this by calling the image viewer FSLeyes in the terminal:
 
 ``fsleyes mag.nii.gz``
 
@@ -57,23 +73,34 @@ You can also press ``Ctrl+3`` to see the plot of signal evolution at different b
 
    Exercise1_progress1
 
-Let's have a look of the phase images. You can close the viewer and use the following command in the terminal:
+Take a look of the phase images:
 
 ``fsleyes phase.nii.gz``
 
-The phase images look very different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to identify some brain structures. 
+The phase images look different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. 
+
+Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to identify some brain structures. 
 
 .. image:: images/phase_display.png
    :align: center
 
-You might wonder why the tissue contrasts are somehow 'hiddened' in the data. Before answering this question, let's focus on how the phase developed over time which is the main objective of this exercise. Change the window back to [-3.14,3.14] and click the movie button again to see the phase development over time. Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase images become brighter/dimmer in the later echoes. Can you make this observation?
+Look at how the phase develops over time 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Change the window back to [-3.14,3.14] and click the movie button again to see the phase development over time. Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase contrasts become higher in the later echoes (bright :raw-html:`&rarr;` berigher; dark :raw-html:`&rarr;` darker). Can you make this observation?
+
+.. math::
+   phase = frequency \times time
+   :label: pft
 
 .. toctree::
    :maxdepth: 1
 
    Exercise1_progress2
 
-It seems that in some regions the phase contrast follows the description in Eq. :eq:`pft` but it is certainly not the case for regions close to the prefrontal cortex and temporal lobes. Press ``Ctrl+3`` to see the phase curve at those problematic regions. Can you identify the cause of the problem?
+It seems that in some regions the phase contrast is changing linearly with time, but not in regions close to the prefrontal cortex and temporal lobes. 
+
+Press ``Ctrl+3`` to see the phase curve at those problematic regions. Can you identify the cause of the problem?
 
 A. Somebody screwed up the acquisition  
 B. The subject moved during the scan  
@@ -83,63 +110,8 @@ E. I don't know. I'm here to learn some fMRI analysis so just show me the answer
 
 [links to each answer]
 
-In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed otherwise we will end up with some incorrect magnetic susceptibility values in those affected regions. To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job.  
+In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed what is called phase unwrapping.
 
-SEPIA
------
-
-SEPIA is a pipeline tool to process phase images in Matlab. To use SEPIA, please open a Matlab application in the cluster by typing:
-
-``matlab2016b``,
-
-click OK, leave the runtime as default and specify the memory requirement as 10 (GB).
-
-.. image:: images/matlab_job.png
-   :align: center
-
-Once you have the Matlab application opened, first go to the tutorial directory and add the SEPIA home directory to the Matlab Path. You can simply do this by typing the following command in the Matlab's command's window:
-
-``addpath('~/qsm_tutorial/sepia/');``
-
-.. note:: The copy of SEPIA that you have in the tutorial directory already included all the external toolboxes required by SEPIA. If you want to know how to setup SEPIA from scratch after today tutorial, you can refer to :ref:`gettingstart-installation` to see how it can be done.
-
-Now, enter ``sepia`` in the command window. A graphical user interface (GUI) should be popped up momentarily. The first tab in SEPIA provides a one-stop application to process QSM from the raw phase data to a magnetic susceptibility map. Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach. 
-
-.. image:: images/sepia_layout.png
-   :align: center
-
-Create SEPIA header
-^^^^^^^^^^^^^^^^^^^
-
-The first thing you need to do before using the SEPIA's pipeline is to create a header file that contains all essential information required for the rest of the processing. To do this, select the **Utility** tab and then select **Get header info** in the drop-down menu. This function provides several ways to extract the header information from different types of files. With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine. Click **Open** next to 'Op 2' and select *~/qsm_tutorial/data* as the input. The output of the header file will be stored in the same directory as your input by default. Click **Save header** to save the file. The process is done when you see the message 'Sepia header is saved!' in the command window. You should see a new file is generated in the input directory. Your setting should be similar to the following figure:
-
-.. image:: images/create_header.png
-   :align: center
-
-Total Field Computation and Phase Unwrapping
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (which is next to **Sepia** tab). You will see two panels under the tab: the **I/O** panel is for data input and output and the **Total field recovery and phase unwrapping** panel is for phase unwrapping and true phase accumulation estimation.
-
-SEPIA supports two types of data input. If your data follow the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. On the other hand, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. In this exercise, select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction** in the **I/O** panel. It is essential to have a brain mask to produce a high-quality QSM map.  
-
-.. note:: Unfortunately, combination of input directory and individual files input are not permitted with the current SEPIA version. Make sure you either specify the input directory **or** specify the individual files.
-
-In the **Total field recovery and phase unwrapping** panel, keep the **Echo phase combination** method as 'Optimum weights' and change the **Phase unwrapping** method to 'Laplacian STI Suite'. Make sure you have similar setting as in the following figure:
-
-.. image:: images/phase_unwrap_setting.png
-   :align: center
-
-Then click the **Start** button.
-
-You should now see some messages are displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of your selected method. Once the process finishes, you will see the message 'Done'. Now we can check the output results. Use FSLeyes to open the *Sepia_unwrapped-phase.nii.gz* in the output directory. This is the unwarpped phase images and observe the phase development over time. Can you see all the zipper lines are gone in the later echoes and the changes of phase behaved as in Eq. :eq:`pft` prediction? 
-
-With the raw phase data being corrected, we can compute the actual frequency shift. This corresponds to rewriting Eq. :eq:`pft` to:
-
-.. math::
-   frequency = \frac{phase}{time}
-   :label: fpt
-
-Since we know the exact time (i.e. the echo time TE) to develop the phase in each echo, a frequency map can then be computed using Eq. :eq:`fpt`, which is the *Sepia_total-field.nii.gz* file in the output directory. This is the result we needed in the next exercise. 
+To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job and this is what we are going to do in the next exercise.  
 
 Proceed to :ref:`fmritoolkit2019-exercise2`.
