@@ -1,7 +1,7 @@
 .. _fmritoolkit2019-exercise1-progress1:
 
-Check You Progress 1
-====================
+Check Your Progress 1
+=====================
 
 .. image:: images/mag_decay.png
    :align: center

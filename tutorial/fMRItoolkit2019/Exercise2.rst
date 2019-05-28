@@ -6,7 +6,7 @@ Exercise 2
 Objectives
 ----------
 
-- Understanding why we need to correct the phase data before mapping the magnetic susceotibility
+- Understanding why we need to correct the phase data before mapping the magnetic susceptibility
 
 Data Required
 ^^^^^^^^^^^^^
@@ -39,6 +39,7 @@ Once Matlab is open, go to the tutorial directory and add the SEPIA home directo
 .. note:: The copy of SEPIA that you have in the tutorial directory already includes all the external toolboxes required. If you want to know how to setup SEPIA from scratch for your research purposes, you can refer to :ref:`gettingstart-installation`.
 
 Now, go the data directory in the Matlab command window and start sepia:
+
 ``cd ~/qsm_tutorial/data`` 
 
 ``sepia``

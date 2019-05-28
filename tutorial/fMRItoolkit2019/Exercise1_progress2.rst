@@ -1,7 +1,7 @@
 .. _fmritoolkit2019-exercise1-progress2:
 
-Check You Progress 2
-====================
+Check Your Progress 2
+=====================
 
 .. image:: images/phase_evol.gif
 
