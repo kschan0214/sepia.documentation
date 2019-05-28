@@ -1,3 +1,5 @@
+.. _fmritoolkit2019-index:
+
 (f)MRI Toolkit 2019
 ===================
 
