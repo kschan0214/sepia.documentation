@@ -62,9 +62,9 @@ Select the **Utility** tab and then select **Get header info** in the drop-down 
 
 With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine: 
 
-- click **Open** next to 'Op 2' 
-- select *~/qsm_tutorial/data* as the input. 
-- click **Save header** to save the file. The process is done when you see the message 'SEPIA header is saved!' in the command window. You should see a new file is generated in the input directory. 
+#. click **Open** next to 'Op 2' 
+#. select *~/qsm_tutorial/data* as the input. 
+#. click **Save header** to save the file. The process is done when you see the message 'SEPIA header is saved!' in the command window. You should see a new file is generated in the input directory. 
 
 Your setting should be similar to the following:
 
@@ -74,15 +74,23 @@ Your setting should be similar to the following:
 Phase Unwrapping and Total Field Computation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (which is next to **Sepia** tab). 
+To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (next to **Sepia** tab). 
 
 You will see two panels under the tab: the **I/O** panel is for data input and output and the **Total field recovery and phase unwrapping** panel is for phase unwrapping and true phase accumulation estimation.
 
 .. tip:: SEPIA supports two types of data input. If your data follows the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. Alternatively, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. 
 
-Select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction** in the **I/O** panel. It is essential to have a brain mask to produce a high-quality QSM map.  
+In the **I/O** panel:
 
-In the **Total field recovery and phase unwrapping** panel, keep the **Echo phase combination** method as 'Optimum weights' and change the **Phase unwrapping** method to 'Laplacian STI Suite'. 
+#. Select the **Input directory**: *~/qsm_tutorial/data*
+#. Check the **FSL brain extraction** 
+   It is essential to have a brain mask to produce a high-quality QSM map.  
+
+In the **Total field recovery and phase unwrapping** panel: 
+
+#. Keep the **Echo phase combination** method as 'Optimum weights'
+#. Change the **Phase unwrapping** method to 'Laplacian STI Suite'. 
+
 It should look like this:
 
 .. image:: images/phase_unwrap_setting.png

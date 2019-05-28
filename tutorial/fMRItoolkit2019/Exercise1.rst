@@ -28,7 +28,10 @@ Understanding multi-echo GRE data
 
 To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. 
 
-[See theory]
+.. toctree::
+   :maxdepth: 1
+
+   Theory_mrphase
 
 Go to the exercise directory which is located in ~/qsm_tutorial/.
 
@@ -53,11 +56,14 @@ Go to the data directory using ``cd data`` and have a look of the content inside
 
 You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory:
 
-- The NIfTI files mag.nii.gz and phase.nii.gz contain the magnitude and the phase data acquire with a multi-echo gradient echo sequence. 
+- The NIfTI files *mag.nii.gz* and *phase.nii.gz* contain the magnitude and the phase data acquire with a multi-echo gradient echo sequence. 
 
   Both are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time in the 4th dimension. 
 
 - The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and  orientation of the acquisition in respect to the physical cordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
+
+Magnitude images
+^^^^^^^^^^^^^^^^
 
 Take a look at the magnitude images. You can do this by calling the image viewer FSLeyes in the terminal:
 
@@ -75,6 +81,9 @@ You can also press ``Ctrl+3`` to see the plot of signal evolution at different b
 
    Exercise1_progress1
 
+Phase images
+^^^^^^^^^^^^
+
 Take a look of the phase images:
 
 ``fsleyes phase.nii.gz``
@@ -86,10 +95,9 @@ Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to i
 .. image:: images/phase_display.png
    :align: center
 
-Look at how the phase develops over time 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Change the window back to 'Min. -3.14' and 'Max. 3.14' and click the movie button again to see the phase development over time. 
 
-Change the window back to [-3.14,3.14] and click the movie button again to see the phase development over time. Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase contrasts become higher in the later echoes (bright :raw-html:`&rarr;` berigher; dark :raw-html:`&rarr;` darker). Can you make this observation?
+Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase contrasts become higher in the later echoes (i.e. bright :raw-html:`&rarr;` brighter; dark :raw-html:`&rarr;` darker). Can you make this observation?
 
 .. math::
    phase = frequency \times time
@@ -100,19 +108,18 @@ Change the window back to [-3.14,3.14] and click the movie button again to see t
 
    Exercise1_progress2
 
-It seems that in some regions the phase contrast is changing linearly with time, but not in regions close to the prefrontal cortex and temporal lobes. 
-
 Press ``Ctrl+3`` to see the phase curve at those problematic regions. Can you identify the cause of the problem?
 
-A. Somebody screwed up the acquisition  
-B. The subject moved during the scan  
-C. The phase is bounded to certain values  
-D. Fast switching gradient introduced extra phase  
-E. I don't know. I'm here to learn some fMRI analysis so just show me the answer
+.. toctree::
+   :maxdepth: 1
 
-[links to each answer]
+   Exercise1_answerA
+   Exercise1_answerB
+   Exercise1_answerC
+   Exercise1_answerD
+   Exercise1_answerE
 
-In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed what is called phase unwrapping.
+In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed which is called phase unwrapping.
 
 To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job and this is what we are going to do in the next exercise.  
 

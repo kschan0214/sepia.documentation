@@ -5,6 +5,6 @@ Check Your Progress 2
 
 .. image:: images/phase_evol.gif
 
-You should see more and more 'zebra' line pattern appeared in the brain in the later echoes. 
+It seems that in some regions the phase contrast is changing linearly with time (blue arrows, the white matter tract and gyrus are more pronounced in later echoes), but not in regions close to the prefrontal cortex and temporal lobes. In those regions, you should see more and more zebra-line pattern, or phase jump, appeared in the later echoes. 
 
 Back to :ref:`fmritoolkit2019-exercise1`.
