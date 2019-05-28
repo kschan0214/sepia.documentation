@@ -54,35 +54,37 @@ In the **I/O** panel, specify by using the open buttons:
 
 Second, in the **Background field removal** panel, the 'LBV' method is shown by default. You can have three parameters to adjust. 
 
-- 'Tolerance' is the threshold to stop the algorithm. 
-- 'Depth'. 
-- 'Peel' is the layer of boundary voxels to be removed after computing the tissue (or so-called local) fields. 
+- 'Tolerance': a threshold to stop the algorithm. 
+- 'Depth':. 
+- 'Peel': the layer of boundary voxels to be removed after computing the tissue (or so-called local) fields. 
 
-In this exercise, we will focus on the differences when using different 'Peel' values. Change the **Output basename** from *Sepia* to *Sepia_peel-2* and then press the **Start** button. 
+In this exercise, we will focus on the differences when using different 'Peel' values. 
 
-Again, you will see the message '*Processing pipeline is completed!*' when the process is finished. 
+- Change the **Output basename** from *Sepia* to *Sepia_peel-2* and then press the **Start** button. 
 
-After the first processing is done, change the 'Peel' value to '4' and change the **Output Basename** to *Sepia_peel-4*.
+- Again, you will see the message '*Processing pipeline is completed!*' when the process is finished. 
 
-Use FSLeyes to display both output images at the same time:
+- After the first processing is done, change the 'Peel' value to '4' and change the **Output Basename** to *Sepia_peel-4*.
 
-``fsleyes Sepia_peel-2.nii.gz``
+- Use FSLeyes to display both output images at the same time:
 
-You can do this using the '+' button in the bottom right panel and select *Sepia_peel-4.nii.gz* in the window provided. 
+  ``fsleyes Sepia_peel-2.nii.gz``
 
-.. image:: images/plus_button.png
-   :align: center
+  You can do this using the '+' button in the bottom right panel and select *Sepia_peel-4.nii.gz* in the window provided. 
+
+  .. image:: images/plus_button.png
+     :align: center
  
-Adjust the display window to 'Min. -5' and 'Max. 5'. Use the 'Opacity' slide to alter the transparence of the top image. What is the main difference between the two results?
+  Adjust the display window to 'Min. -5' and 'Max. 5'. Use the 'Opacity' slide to alter the transparence of the top image. What is the main difference between the two results?
 
-.. image:: images/local_field_window.png
-   :align: center
+  .. image:: images/local_field_window.png
+     :align: center
 
-In any of those images you can now see significant differences [more content here]
+  Note that you can now see very clearly the contrast between grey and white matter, and veins and tissue. Other structures as the globus pallidus, red nucleus and substantia nigra are visible... but not quite normal.
 
-Look for structures as the globus pallidus,
+  Compare the location of the edges with what you can see in the mean magnitude image. This can be computed on the terminal using:
 
-See answer here.
+  ``fslmaths mag.nii.gz -Tmean mag_mean.nii.gz``
 
 Proceed to :ref:`fmritoolkit2019-exercise4`.
 

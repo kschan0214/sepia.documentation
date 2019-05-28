@@ -28,6 +28,8 @@ Understanding multi-echo GRE data
 
 To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. 
 
+[See theory]
+
 Go to the exercise directory which is located in ~/qsm_tutorial/.
 
 You can use the following command in the terminal:
@@ -41,8 +43,8 @@ To view the content of the directory use the command: ``ls``
 
 You will see there are two folders in the directory.
 
-- **sepia** is the software we are going to use thorough this tutorial,
-- **data** contains the multi-echo gradient echo images we will work on.
+- **sepia** - contains the software we will use through out this tutorial;
+- **data** - contains the multi-echo gradient echo images we will work on.
 
 Go to the data directory using ``cd data`` and have a look of the content inside the folder ``ls``
 

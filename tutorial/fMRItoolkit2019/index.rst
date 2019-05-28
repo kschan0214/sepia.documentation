@@ -23,6 +23,8 @@ Introduction
 
 In this tutorial we will go through the standard processing pipeline for quantitative susceptibility mapping (QSM), a novel contrast mechanism that can provide local tissue magnetic properties. 
 
+[See theory]
+
 .. figure:: images/qsm_model_flow.png
    :align: center
    

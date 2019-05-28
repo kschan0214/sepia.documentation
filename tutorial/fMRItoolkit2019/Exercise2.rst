@@ -40,6 +40,7 @@ Once Matlab is open, go to the tutorial directory and add the SEPIA home directo
 
 Now, go the data directory in the Matlab command window and start sepia:
 ``cd ~/qsm_tutorial/data`` 
+
 ``sepia``
 
 A graphical user interface (GUI) should be pop up. 
@@ -76,9 +77,9 @@ To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab 
 
 You will see two panels under the tab: the **I/O** panel is for data input and output and the **Total field recovery and phase unwrapping** panel is for phase unwrapping and true phase accumulation estimation.
 
-SEPIA supports two types of data input. If your data follows the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. Alternatively, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. 
+.. tip:: SEPIA supports two types of data input. If your data follows the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. Alternatively, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. 
 
-In this exercise, select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction** in the **I/O** panel. It is essential to have a brain mask to produce a high-quality QSM map.  
+Select the *~/qsm_tutorial/data* in the **Input directory** and check the **FSL brain extraction** in the **I/O** panel. It is essential to have a brain mask to produce a high-quality QSM map.  
 
 In the **Total field recovery and phase unwrapping** panel, keep the **Echo phase combination** method as 'Optimum weights' and change the **Phase unwrapping** method to 'Laplacian STI Suite'. 
 It should look like this:
