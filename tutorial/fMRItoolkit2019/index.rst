@@ -7,7 +7,7 @@ Objectives
 ----------
 
 - Understanding the background of magnetic susceptibility contrast
-- Gaining experience on basic QSM processing
+- Gaining experience in basic QSM processing
 
 Target Audience
 ^^^^^^^^^^^^^^^
@@ -23,7 +23,7 @@ Less than 1 hour
 Introduction  
 ------------
 
-In this tutorial we will go through the standard processing pipeline for quantitative susceptibility mapping (QSM), a novel contrast mechanism that can provide local tissue magnetic properties. 
+In this tutorial, we will go through the standard processing pipeline for quantitative susceptibility mapping (QSM), a novel contrast mechanism that can provide local tissue magnetic properties. 
 
 .. toctree::
    :maxdepth: 1
