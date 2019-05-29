@@ -9,7 +9,7 @@ Objectives
 ----------
 
 - Understanding the data required for QSM
-- Understanding why we need to correct the phase data before mapping the magnetic susceotibility
+- Understanding why we need to correct the phase data before mapping the magnetic susceptibility
 
 Data Required
 ^^^^^^^^^^^^^
@@ -46,7 +46,7 @@ To view the content of the directory use the command: ``ls``
 
 You will see there are two folders in the directory.
 
-- **sepia** - contains the software we will use through out this tutorial;
+- **sepia** - contains the software we will use throughout this tutorial;
 - **data** - contains the multi-echo gradient echo images we will work on.
 
 Go to the data directory using ``cd data`` and have a look of the content inside the folder ``ls``
@@ -60,7 +60,7 @@ You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the dire
 
   Both are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time in the 4th dimension. 
 
-- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and  orientation of the acquisition in respect to the physical cordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
+- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of the acquisition in respect to the physical coordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
 
 Magnitude images
 ^^^^^^^^^^^^^^^^
@@ -86,7 +86,7 @@ You can also press ``Ctrl+3`` to see the plot of signal evolution at different b
 Phase images
 ^^^^^^^^^^^^
 
-Take a look of the phase images:
+Take a look at the phase images:
 
 ``fsleyes phase.nii.gz``
 
