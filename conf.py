@@ -98,6 +98,7 @@ html_static_path = ['_static']
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
+html_logo = 'asset/logo.png'
 
 
 # -- Options for HTMLHelp output ---------------------------------------------

@@ -49,7 +49,7 @@ In the **I/O** panel, specify by using the open buttons:
 Second, in the **Background field removal** panel, the 'LBV' method is shown by default. You can have three parameters to adjust. 
 
 - 'Tolerance': a threshold to stop the algorithm. 
-- 'Depth':. 
+- 'Depth': multigrid level. 
 - 'Peel': the layer of boundary voxels to be removed after computing the tissue (or so-called local) fields. 
 
 In this exercise, we will focus on the differences when using different 'Peel' values. 

@@ -6,7 +6,7 @@ Exercise 4
 Objectives
 ----------
 
-- Understanding 
+- Understanding QSM dipole inversion
 - Gaining experience to use QSM algorithms
 
 Data Required
@@ -80,7 +80,6 @@ Exercise 4.3
 
 To further improve the quality of the QSM map, some methods, such as Star-QSM, incorporate the additional information during the QSM dipole inversion.
 
-#. Select the **Magnitude** input: *mag.nii.gz*
 #. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_star-qsm*.
 #. Change the **QSM** method to 'Star-QSM' and press **Start**. It will take about 2 mins to finish.
 #. Check the result *Sepia_star-qsm_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tdf-0p15_QSM.nii.gz* in FSLeyes. Can you see any difference?

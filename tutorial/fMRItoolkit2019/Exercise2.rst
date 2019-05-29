@@ -6,7 +6,7 @@ Exercise 2
 Objectives
 ----------
 
-- Understanding why we need to correct the phase data before mapping the magnetic susceptibility
+- Understanding how to perform phase unwrapping
 
 Data Required
 ^^^^^^^^^^^^^
@@ -83,7 +83,7 @@ You will see two panels under the tab: the **I/O** panel is for data input and o
 In the **I/O** panel:
 
 #. Select the **Input directory**: *~/qsm_tutorial/data*
-# Change the **Output basename** to: *~/qsm_tutorial/data/output_unwrap/Sepia*
+#. Change the **Output basename** to: *~/qsm_tutorial/data/output_unwrap/Sepia*
 #. Check the **FSL brain extraction** 
    It is essential to have a brain mask to produce a high-quality QSM map.  
 
