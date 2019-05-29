@@ -107,7 +107,7 @@ Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the ter
 
 ``fsleyes Sepia_total-field.nii.gz``
 
-The first dataset are the unwarpped phase images. Observe the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echoes. 
+The first dataset is the unwrapped phase images. Observe the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echoes. 
 The second corresponds to the frequency (Hz) which was computed using the unwrapped phase images at the different echo times:
 
 .. math::
