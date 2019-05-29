@@ -9,6 +9,6 @@ Yes, this is the correct answer! There is nothing wrong about the signal phase g
 
    An illustration of phase wrapping. The actual phase developed outside the range :math:`-\pi \leq phase < \pi` over time but our measurement will only show the apparent phase.
 
-.. note:: Think of an analog clock with one hand only representing the hour. Every 12 hours the hand is at the same position again. If you look at the clock exactly 12 hours after the first watch, it apparently didn't move but the actual time difference between the two observations that you made is 12 hours.
+.. note:: Think of an analogue clock with one hand only representing the hour. Every 12 hours the hand is in the same position again. If you look at the clock exactly 12 hours after the first watch, it apparently didn't move but the actual time difference between the two observations that you made is 12 hours.
 
 Back to :ref:`fmritoolkit2019-exercise1`.
