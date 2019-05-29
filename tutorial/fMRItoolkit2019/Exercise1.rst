@@ -69,6 +69,8 @@ Take a look at the magnitude images. You can do this by calling the image viewer
 
 ``fsleyes mag.nii.gz``
 
+.. tip:: If you can't see the movie with FSLeyes, replace the command ``fsleyes`` by ``fslview_deprecated``.
+
 Once you have the magnitude images opened in the viewer, adjust the display window to 'Min. 0' and 'Max. 300'. Then click the movie button to see how the brain contrast changes over time.
 
 .. image:: images/mag_display.png

@@ -83,6 +83,7 @@ You will see two panels under the tab: the **I/O** panel is for data input and o
 In the **I/O** panel:
 
 #. Select the **Input directory**: *~/qsm_tutorial/data*
+# Change the **Output basename** to: *~/qsm_tutorial/data/output_unwrap/Sepia*
 #. Check the **FSL brain extraction** 
    It is essential to have a brain mask to produce a high-quality QSM map.  
 
@@ -98,9 +99,9 @@ It should look like this:
 
 Then click the **Start** button.
 
-You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method. Once the process finishes, you will see the message '*Processing pipeline is completed!*'. 
+You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method. Once the process finishes (~3min), you will see the message '*Processing pipeline is completed!*'. 
 
-Check the output, in the terminal type: 
+Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the terminal type: 
 
 ``fsleyes Sepia_unwrapped-phase.nii.gz``
 

@@ -54,15 +54,15 @@ Second, in the **Background field removal** panel, the 'LBV' method is shown by 
 
 In this exercise, we will focus on the differences when using different 'Peel' values. 
 
-1. Change the **Output basename** from *Sepia* to *Sepia_peel-2* 
+1. Change the **Output basename** to: *~/qsm_tutorial/data/output_backgroundremove/Sepia_peel-2*
 
 2. Press the **Start** button. Again, you will see the message '*Processing pipeline is completed!*' when the process is finished. 
 
 3. After the first processing is done, change the 'Peel' value to '4'
 
-4. Change the **Output Basename** to *Sepia_peel-4* and then press the **Start**
+4. Change the **Output Basename** to *~/qsm_tutorial/data/output_backgroundremove/Sepia_peel-4* and then press the **Start**
 
-5. Use FSLeyes to display both output images at the same time:
+5. Use FSLeyes to display both output images (should be in *~/qsm_tutorial/data/output_backgroundremove/*) at the same time:
 
   ``fsleyes Sepia_peel-2_local-field.nii.gz``
 
@@ -78,7 +78,7 @@ In this exercise, we will focus on the differences when using different 'Peel' v
 
 Note that you can also see very clearly the contrast between grey and white matter, and veins and tissue now. Other structures as the globus pallidus, red nuclei and substantia nigra are visible... but not quite normal.
 
-7. Compare the location of the edges with what you can see in the mean magnitude image. This can be computed on the terminal using:
+7. Compare the location of the edges with what you can see in the mean magnitude image. This can be computed on the terminal using (assuming you are still in the data directory, if not then go back to the data directory *~/qsm_tutorial/data/*):
 
   ``fslmaths mag.nii.gz -Tmean mag_mean.nii.gz``
 

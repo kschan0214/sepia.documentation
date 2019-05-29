@@ -50,7 +50,7 @@ Exercise 4.1
 
 #. Select the **Local field** input: *Sepia_peel-4_local-field.nii.gz* from the previous exercise output directory. 
 #. Select the **Header**: *Sepia_header.mat*.
-#. Change the basename of the output to: *sepia_tkd-0*. 
+#. Change the **Output basename** of the output to: *~/qsm_tutorial/data/output_qsm/Sepia_tkd-0*. 
 #. Select the **Brain mask**: *Sepia_peel-4_mask-qsm.nii.gz* from the previous exercise output directory.
 #. To do exactly the operation as in Eq. :eq:`di`, set the threshold of the **TKD** algorithm to '0' and press **Start**.
 #. Check the result *Sepia_tdf-0_QSM.nii.gz* in the output directory. Set the dispay window to 'Min. -0.2' and 'Max. 0.2' (ppm). Does it look like the QSM map as we expected?
@@ -65,7 +65,7 @@ Exercise 4.2
 
 To avoid the previous QSM map we can increase the threshold of the **TKD**. 
 
-#. Change the basename of the output to: *sepia_tkd-0p15*. 
+#. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_tkd-0p15*. 
 #. Change the threshold of the **TKD** algorithm to 0.15 and press **Start**.
 #. Check the result *Sepia_tkd-0p15_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tkd-0_QSM.nii.gz* in FSLeyes using the '+' button. Do you see any improvement?
 #. Compare the location of the tissue edges in this QSM map with what you can see in the mean magnitude image *mag_mean.nii.gz*. Do the edges match between the two data now?
@@ -78,12 +78,12 @@ To avoid the previous QSM map we can increase the threshold of the **TKD**.
 Exercise 4.3
 ^^^^^^^^^^^^
 
-To further improve the quality of the QSM map, some methods, such as FANSI, incorporate the tissue contrasts in magnitude images during the QSM dipole inversion.
+To further improve the quality of the QSM map, some methods, such as Star-QSM, incorporate the additional information during the QSM dipole inversion.
 
 #. Select the **Magnitude** input: *mag.nii.gz*
-#. Change the basename of the output to: *sepia_fansi*.
-#. Change the **QSM** method to 'FANSI' and press **Start**. It will take about 15 mins to finish.
-#. Check the result *Sepia_fansi_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tdf-0p15_QSM.nii.gz* in FSLeyes. Can you see any difference?
+#. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_star-qsm*.
+#. Change the **QSM** method to 'Star-QSM' and press **Start**. It will take about 2 mins to finish.
+#. Check the result *Sepia_star-qsm_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tdf-0p15_QSM.nii.gz* in FSLeyes. Can you see any difference?
 
 .. toctree::
    :maxdepth: 1
