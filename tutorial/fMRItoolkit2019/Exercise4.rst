@@ -32,7 +32,7 @@ The last step of QSM processing is to deconvolute the local (tissue) field by th
 
 where :math:`F` and :math:`F^{-1}` are the Fourier and inverse Fourier transform operators.
 
-This is the co-called dipole inversion of QSM, which is just the division between the Fourier transforms of the two images.
+This is the so-called dipole inversion of QSM, which is just the division between the Fourier transforms of the two images.
 
 .. toctree::
    :maxdepth: 1
@@ -53,7 +53,7 @@ Exercise 4.1
 #. Change the **Output basename** of the output to: *~/qsm_tutorial/data/output_qsm/Sepia_tkd-0*. 
 #. Select the **Brain mask**: *Sepia_peel-4_mask-qsm.nii.gz* from the previous exercise output directory.
 #. To do exactly the operation as in Eq. :eq:`di`, set the threshold of the **TKD** algorithm to '0' and press **Start**.
-#. Check the result *Sepia_tdf-0_QSM.nii.gz* in the output directory. Set the dispay window to 'Min. -0.2' and 'Max. 0.2' (ppm). Does it look like the QSM map as we expected?
+#. Check the result *Sepia_tdf-0_QSM.nii.gz* in the output directory. Set the display window to 'Min. -0.2' and 'Max. 0.2' (ppm). Does it look like the QSM map as we expected?
 
 .. toctree::
    :maxdepth: 1
