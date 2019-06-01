@@ -18,7 +18,7 @@ Target Audience
 Estimated Time
 ^^^^^^^^^^^^^^
 
-Less than 1 hour
+About 1 hour
 
 Introduction  
 ------------

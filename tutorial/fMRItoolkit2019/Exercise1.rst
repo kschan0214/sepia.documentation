@@ -21,7 +21,7 @@ Data Required
 Estimated time
 ^^^^^^^^^^^^^^
 
-About 10 min.
+About 15 min.
 
 Understanding multi-echo GRE data
 ---------------------------------
@@ -69,7 +69,7 @@ Take a look at the magnitude images. You can do this by calling the image viewer
 
 ``fslview_deprecated mag.nii.gz &``
 
-.. note:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
+.. tip:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
 
 Once you have the magnitude images opened in the viewer, adjust the display window to 'Min 0' and 'Max 300'. Then click the movie button to see how the brain contrast changes over time.
 
@@ -112,7 +112,7 @@ Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonical
 
    Exercise1_progress2
 
-Press ``Ctrl+3`` to see the phase curve at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
+Press ``Ctrl+T`` to see the phase curve at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
 
 .. toctree::
    :maxdepth: 1

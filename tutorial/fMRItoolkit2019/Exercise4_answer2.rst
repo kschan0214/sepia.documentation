@@ -3,6 +3,20 @@
 Answer: Exercise 4.2  
 ====================
 
-You should now see some brain structures in the QSM map. However, there are still lots of artefacts that as well.
+You should now see some brain structures in the QSM map. 
+
+The idea of the TKD method is very straightforward. Since we know the location in which the division results are unreliable (i.e. when D equal/close to zero), we can disgard the information in these regions by replacing their values to zero.
+
+For example, without thresholding the QSM k-space:
+
+.. image:: images/qsm_fourier_tkd-0.png
+
+and we can threshold the above k-space when the magnitude of D is smaller then, e.g. 0.15, leading to 
+
+.. image:: images/qsm_fourier_tkd-0p15.png
+
+The Fourier transform of the above image is the QSM map we obtained in this exercise.
+
+However, the larger is the threshold value, the more is the information being disgarded. Therefore, increasing the threshold can improve the appearnce of the resulting QSM map (as artefacts reduced), we are also losing the accuracy between our input (i.e. local field map) and output (i.e. QSM map).
 
 Back to :ref:`fmritoolkit2019-exercise4`.

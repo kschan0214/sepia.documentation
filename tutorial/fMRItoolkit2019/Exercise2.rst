@@ -19,7 +19,7 @@ Data Required
 Estimated time
 ^^^^^^^^^^^^^^
 
-About 10 min.
+About 15 min.
 
 SEPIA
 -----
