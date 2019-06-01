@@ -67,7 +67,7 @@ To avoid the previous QSM map we can increase the threshold of the **TKD**.
 
 #. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_tkd-0p15*. 
 #. Change the threshold of the **TKD** algorithm to 0.15 and press **Start**.
-#. Check the result *Sepia_tkd-0p15_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tkd-0_QSM.nii.gz* in FSLeyes using the '+' button. Do you see any improvement?
+#. Check the result *Sepia_tkd-0p15_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tkd-0_QSM.nii.gz* in FSLView using the '+' button. Do you see any improvement?
 #. Compare the location of the tissue edges in this QSM map with what you can see in the mean magnitude image *mag_mean.nii.gz*. Do the edges match between the two data now?
 
 .. toctree::
@@ -82,7 +82,7 @@ To further improve the quality of the QSM map, some methods, such as Star-QSM, i
 
 #. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_star-qsm*.
 #. Change the **QSM** method to 'Star-QSM' and press **Start**. It will take about 2 mins to finish.
-#. Check the result *Sepia_star-qsm_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tdf-0p15_QSM.nii.gz* in FSLeyes. Can you see any difference?
+#. Check the result *Sepia_star-qsm_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tdf-0p15_QSM.nii.gz* in FSLView. Can you see any difference?
 
 .. toctree::
    :maxdepth: 1

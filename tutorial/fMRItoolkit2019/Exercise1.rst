@@ -65,18 +65,20 @@ You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the dire
 Magnitude images
 ^^^^^^^^^^^^^^^^
 
-Take a look at the magnitude images. You can do this by calling the image viewer FSLeyes in the terminal:
+Take a look at the magnitude images. You can do this by calling the image viewer FSLView in the terminal:
 
-``fsleyes mag.nii.gz``
+``fslview_deprecated mag.nii.gz &``
 
-.. tip:: If you can't see the movie with FSLeyes, replace the command ``fsleyes`` by ``fslview_deprecated``.
+.. note:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
 
-Once you have the magnitude images opened in the viewer, adjust the display window to 'Min. 0' and 'Max. 300'. Then click the movie button to see how the brain contrast changes over time.
+Once you have the magnitude images opened in the viewer, adjust the display window to 'Min 0' and 'Max 300'. Then click the movie button to see how the brain contrast changes over time.
 
 .. image:: images/mag_display.png
    :align: center
 
-You can also press ``Ctrl+3`` to see the plot of signal evolution at different brain tissues. Select a few data points in the brain (e.g. [98 169 87], [143 106 92], and [159 190 77]), how do you describe the signal curve? 
+.. note:: Due to the file size, it is better to view the images with FSLView instead of FSLeyes.
+
+You can also press ``Ctrl+T`` to see the plot of signal evolution at different brain tissues. Select a few data points in the brain (e.g. caudate nucleus [98 169 87], white matter [143 106 92], and cortical grey matter [159 190 77]), how do you describe the signal curves? 
 
 .. toctree::
    :maxdepth: 1
@@ -88,11 +90,11 @@ Phase images
 
 Take a look at the phase images:
 
-``fsleyes phase.nii.gz``
+``fslview_deprecated phase.nii.gz &``
 
 The phase images look different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. 
 
-Adjust the display window to 'Min. -3.14' and 'Max. -1', you should be able to identify some brain structures. 
+Adjust the display window to 'Min. -3.14' and 'Max. -1', and go through different slices. You should be able to identify some brain structures (e.g. at location [114 170 82]). 
 
 .. image:: images/phase_display.png
    :align: center
@@ -110,7 +112,7 @@ Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonical
 
    Exercise1_progress2
 
-Press ``Ctrl+3`` to see the phase curve at those problematic regions. Can you identify the cause of the problem?
+Press ``Ctrl+3`` to see the phase curve at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
 
 .. toctree::
    :maxdepth: 1

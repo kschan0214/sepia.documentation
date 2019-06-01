@@ -6,6 +6,7 @@ Exercise 2
 Objectives
 ----------
 
+- Gaining experience in using SEPIA
 - Understanding how to perform phase unwrapping
 
 Data Required
@@ -63,8 +64,8 @@ Select the **Utility** tab and then select **Get header info** in the drop-down 
 With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine: 
 
 #. click **Open** next to 'Op 2' 
-#. select *~/qsm_tutorial/data* as the input. 
-#. click **Save header** to save the file. The process is done when you see the message 'SEPIA header is saved!' in the command window. You should see a new file is generated in the input directory. 
+#. select *~/qsm_tutorial/data* as the input (The dialog box will show the current directory in Matlab). 
+#. click **Save header** to save the file. The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
 
 Your setting should be similar to the following:
 
@@ -99,15 +100,17 @@ It should look like this:
 
 Then click the **Start** button.
 
-You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method. Once the process finishes (~3min), you will see the message '*Processing pipeline is completed!*'. 
+You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method. Once the process finishes (~3min), you will see the message 
+
+'*Processing pipeline is completed!*'. 
 
 Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the terminal type: 
 
-``fsleyes Sepia_unwrapped-phase.nii.gz``
+``fslview_deprecated Sepia_unwrapped-phase.nii.gz``
 
-``fsleyes Sepia_total-field.nii.gz``
+``fslview_deprecated Sepia_total-field.nii.gz``
 
-The first dataset is the unwrapped phase images. Observe the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echoes. 
+The first dataset is the unwrapped phase images (unit in radian). Observe the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echoes. 
 The second corresponds to the frequency (Hz) which was computed using the unwrapped phase images at the different echo times:
 
 .. math::
