@@ -37,7 +37,7 @@ Once Matlab is open, go to the tutorial directory and add the SEPIA home directo
 
 ``addpath('~/qsm_tutorial/sepia/');``
 
-.. note:: The copy of SEPIA that you have in the tutorial directory already includes all the external toolboxes required. If you want to know how to setup SEPIA from scratch for your research purposes, you can refer to :ref:`gettingstart-installation`.
+.. note:: The copy of SEPIA you have in the tutorial directory already includes all the external toolboxes required. If you want to know how to set up SEPIA from scratch for your research purposes, you can refer to :ref:`gettingstart-installation`.
 
 Now, go the data directory in the Matlab command window and start sepia:
 
@@ -59,7 +59,7 @@ Create a SEPIA header
 
 Before using the SEPIA, create a header file that contains all essential information regarding the data acquisition (magnetic field, resolution, echo time). 
 
-Select the **Utility** tab and then select **Get header info** in the drop-down menu. This function provides several ways to extract the header information from different types of files. 
+Select the **Utility** tab and then select **Get header info** in the drop-down menu. This function provides several ways to extract the header information from different files. 
 
 With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine: 
 
@@ -75,7 +75,7 @@ With all the NifTI images and JSON files stored in the same place, we can use 'O
 
    The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
 
-Your setting should be similar to the following:
+Your setting should be like:
 
 .. image:: images/get_header_overview.png
    :align: center
@@ -113,7 +113,7 @@ You should now see some messages displayed in the Matlab's command window. These
 
 '*Processing pipeline is completed!*'. 
 
-.. tip:: All the output messages of SEPIA will be displayed on the Matlab comman window. Make sure you check the command window before clicking the **Start** button again!
+.. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again!
 
 Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the terminal type: 
 
@@ -121,11 +121,11 @@ Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the ter
 
 ``fslview_deprecated Sepia_total-field.nii.gz``
 
-The first dataset is the unwrapped phase images (unit in radian). Play the movie to see the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echo images (e.g. near the prefontal cortex [113 195 65]). 
+The first dataset is the unwrapped phase images (unit in radian). Play the movie to see the phase development. All the zebra-line pattern and phase jumps are gone in the later echo images (e.g. near the prefrontal cortex [113 195 65]). 
 
-.. note:: In addition to the ability of phase unwrapping, Laplacian based operation removes some of the harmonic fields. Therefore, the phase values in the unwrapped phase map cannot be comparable to the raw wrapped phase.
+.. note:: Besides the ability of phase unwrapping, Laplacian based operation removes some harmonic fields. Therefore, the phase values in the unwrapped phase map cannot be comparable to the raw wrapped phase.
 
-The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times illustraed in Eq.:eq:`fpt`:
+The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times illustrated in Eq. :eq:`fpt`:
 
 .. math::
    frequency = \frac{phase}{time}

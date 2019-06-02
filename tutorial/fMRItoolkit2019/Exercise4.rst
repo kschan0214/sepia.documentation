@@ -92,7 +92,7 @@ To avoid the previous QSM map we can increase the threshold of the **TKD**.
 
    Exercise4_answer2
 
-**Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, finsih the advanced exercises or play around with different QSM methods/methods' parameters. 
+**Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, finish the advanced exercises or experiment with different QSM methods/methods' parameters. 
 
 Advanced Exercise 4.3
 ^^^^^^^^^^^^^^^^^^^^^

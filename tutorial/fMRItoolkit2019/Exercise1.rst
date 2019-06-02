@@ -39,7 +39,7 @@ You can use the following command in the terminal:
 
 ``cd ~/qsm_tutorial/``
 
-.. note:: Here we assume your turial directory is in the home directory '~/'. If not, replace '~/' with the path containing the folder 'qsm_tutorial'.
+.. note:: Here we assume your tutorial directory is in the home directory '~/'. If not, replace '~/' with the path containing the folder 'qsm_tutorial'.
 
 To view the content of the directory use the command: ``ls``
 
@@ -62,7 +62,7 @@ You should see two NIfTI images (.nii.gz) and a few JSON files (.json) in the di
 
   Both images are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and **echo time in the 4th dimension**. 
 
-- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of the acquisition in respect to the physical coordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
+- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of the acquisition regarding the physical coordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
 
 Magnitude images
 ^^^^^^^^^^^^^^^^
@@ -71,7 +71,7 @@ Magnitude images
 
    ``fslview_deprecated mag.nii.gz &``
 
-   .. tip:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
+   .. tip:: The '&' character will enable the viewer running in the background so you can still work with the current section in the terminal.
 
    .. note:: Due to the file size, it is better to view the images with FSLView instead of FSLeyes.
 
@@ -100,13 +100,13 @@ Magnitude images
 Phase images
 ^^^^^^^^^^^^
 
-1. Take a look at the phase images:
+1. Look at the phase images:
 
    ``fslview_deprecated phase.nii.gz &``
 
    The phase images look different compared to the magnitude images and with the current display window it is hard to see any contrast in brain tissues. 
 
-2. Adjust the display window to 'Min. -3.14' and 'Max. -1', and go through different slices. You should be able to identify some brain structures (e.g. at slice 82). 
+2. Adjust the display window to 'Min. -3.14' and 'Max. -1' and go through different slices. You should be able to identify some brain structures (e.g. at slice 82). 
 
    .. image:: images/phase_display.png
       :align: center
@@ -126,7 +126,7 @@ Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonical
 
       Exercise1_progress2
 
-#. Stop the movie and press ``Ctrl+T`` to see the phase accumulation at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
+#. Stop the movie and press ``Ctrl+T`` to see the phase accumulation at those problematic regions (e.g. near the prefrontal cortex [113 195 65]). Can you identify the cause of the problem?
 
    .. toctree::
       :maxdepth: 1
@@ -137,9 +137,9 @@ Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonical
       Exercise1_answerD
       Exercise1_answerE
 
-In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed which is called phase unwrapping.
+In order to estimate the frequency shift correctly using Eq. :eq:`pft`, this phase problem has to be addressed which is called phase unwrapping.
 
-To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job and this is what we are going to do in the next exercise.  
+To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job, and this is what we are going to do in the next exercise.  
 
 You can close all the FSLView window(s) now.
 
