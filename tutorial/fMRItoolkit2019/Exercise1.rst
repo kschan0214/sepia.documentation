@@ -39,6 +39,8 @@ You can use the following command in the terminal:
 
 ``cd ~/qsm_tutorial/``
 
+.. note:: Here we assume your turial directory is in the home directory '~/'. If not, replace '~/' with the path containing the folder 'qsm_tutorial'.
+
 To view the content of the directory use the command: ``ls``
 
 .. image:: images/exercise_directory.png
@@ -54,77 +56,91 @@ Go to the data directory using ``cd data`` and have a look of the content inside
 .. image:: images/ls.png
    :align: center
 
-You will see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory:
+You should see two NIfTI images (.nii.gz) and a few JSON files (.json) in the directory:
 
-- The NIfTI files *mag.nii.gz* and *phase.nii.gz* contain the magnitude and the phase data acquire with a multi-echo gradient echo sequence. 
+- The NIfTI files *mag.nii.gz* and *phase.nii.gz* contain the magnitude and the phase data acquired with a multi-echo gradient echo sequence. 
 
-  Both are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and echo time in the 4th dimension. 
+  Both are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and **echo time in the 4th dimension**. 
 
 - The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of the acquisition in respect to the physical coordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
 
 Magnitude images
 ^^^^^^^^^^^^^^^^
 
-Take a look at the magnitude images. You can do this by calling the image viewer FSLView in the terminal:
+#. Take a look at the magnitude images. You can do this by calling the image viewer FSLView in the terminal:
 
-``fslview_deprecated mag.nii.gz &``
+   ``fslview_deprecated mag.nii.gz &``
 
-.. tip:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
+   .. tip:: The '&' character will enable the viewer running in the background so that you can still work with the current section in the terminal.
 
-Once you have the magnitude images opened in the viewer, adjust the display window to 'Min 0' and 'Max 300'. Then click the movie button to see how the brain contrast changes over time.
+#. Adjust the display window to 'Min 0' and 'Max 300'. 
 
-.. image:: images/mag_display.png
-   :align: center
+#. Click the movie button to see how the brain contrast changes with respect to echo time (time between echoes = 4ms).
 
-.. note:: Due to the file size, it is better to view the images with FSLView instead of FSLeyes.
+   .. image:: images/mag_display.png
+      :align: center
 
-You can also press ``Ctrl+T`` to see the plot of signal evolution at different brain tissues. Select a few data points in the brain (e.g. caudate nucleus [98 169 87], white matter [143 106 92], and cortical grey matter [159 190 77]), how do you describe the signal curves? 
+   .. note:: Due to the file size, it is better to view the images with FSLView instead of FSLeyes.
 
-.. toctree::
-   :maxdepth: 1
+#. Click the movie button again to stop the movie. Press ``Ctrl+T`` to see the plot of signal evolution at different brain tissues over time. 
 
-   Exercise1_progress1
+#. Select a few data points in the brain (e.g. caudate nucleus [98 169 87], white matter [143 106 92], and cortical grey matter [159 190 77]), how do you describe the signal change with respect to the echo time in general? 
+
+   .. toctree::
+      :maxdepth: 1
+
+      Exercise1_progress1
+
+#. Go back to the terminal. Compute the mean magnitude image in time:
+
+   ``fslmaths mag.nii.gz -Tmean mag_mean.nii.gz``
+
+   This image will be used in Exercise 3.
 
 Phase images
 ^^^^^^^^^^^^
 
-Take a look at the phase images:
+#. Take a look at the phase images:
 
-``fslview_deprecated phase.nii.gz &``
+   ``fslview_deprecated phase.nii.gz &``
 
-The phase images look different compared to the magnitude images and with the current display window it is hard to see any contrast of brain tissues. 
+   The phase images look different compared to the magnitude images and with the current display window it is hard to see any contrast in brain tissues. 
 
-Adjust the display window to 'Min. -3.14' and 'Max. -1', and go through different slices. You should be able to identify some brain structures (e.g. at location [114 170 82]). 
+#. Adjust the display window to 'Min. -3.14' and 'Max. -1', and go through different slices. You should be able to identify some brain structures (e.g. at location [114 170 82]). 
 
-.. image:: images/phase_display.png
-   :align: center
+   .. image:: images/phase_display.png
+      :align: center
 
-Change the window back to 'Min. -3.14' and 'Max. 3.14' and click the movie button again to see the phase development over time. 
+#. Change the window back to 'Min. -3.14' and 'Max. 3.14'. 
 
-Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase contrasts become higher in the later echoes (i.e. bright :raw-html:`&rarr;` brighter; dark :raw-html:`&rarr;` darker). Can you make this observation?
+   Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonically. In other words, we should observe the phase contrasts become higher in the later echoes (i.e. bright :raw-html:`&rarr;` brighter; dark :raw-html:`&rarr;` darker). 
 
-.. math::
-   phase = frequency \times time
-   :label: pft
+   .. math::
+      phase = frequency \times time
+      :label: pft
 
-.. toctree::
-   :maxdepth: 1
+#. Click the movie button to see the phase development over time. Can you make this observation?
 
-   Exercise1_progress2
+   .. toctree::
+      :maxdepth: 1
 
-Press ``Ctrl+T`` to see the phase curve at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
+      Exercise1_progress2
 
-.. toctree::
-   :maxdepth: 1
+#. Stop the movie and press ``Ctrl+T`` to see the phase curve at those problematic regions (e.g. near the prefontal cortex [113 195 65]). Can you identify the cause of the problem?
 
-   Exercise1_answerA
-   Exercise1_answerB
-   Exercise1_answerC
-   Exercise1_answerD
-   Exercise1_answerE
+   .. toctree::
+      :maxdepth: 1
+
+      Exercise1_answerA
+      Exercise1_answerB
+      Exercise1_answerC
+      Exercise1_answerD
+      Exercise1_answerE
 
 In order to correctly estimate the frequency shift using Eq. :eq:`pft`, this phase problem has to be addressed which is called phase unwrapping.
 
 To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job and this is what we are going to do in the next exercise.  
+
+You can close all the FSLView windows before proceeding to the next exercise.
 
 Proceed to :ref:`fmritoolkit2019-exercise2`.

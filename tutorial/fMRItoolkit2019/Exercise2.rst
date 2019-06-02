@@ -19,7 +19,7 @@ Data Required
 Estimated time
 ^^^^^^^^^^^^^^
 
-About 15 min.
+About 20 min.
 
 SEPIA
 -----
@@ -63,13 +63,21 @@ Select the **Utility** tab and then select **Get header info** in the drop-down 
 
 With all the NifTI images and JSON files stored in the same place, we can use 'Op 2' routine: 
 
-#. click **Open** next to 'Op 2' 
-#. select *~/qsm_tutorial/data* as the input (The dialog box will show the current directory in Matlab). 
-#. click **Save header** to save the file. The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
+#. Click **Open** next to 'Op 2' 
+
+   .. image :: images/get_header_open.png
+
+#. Select *~/qsm_tutorial/data* as the input (The dialog box will show the current directory in Matlab). 
+
+   .. image :: images/get_header_dialog.png
+
+#. Click **Save header** to save the file. 
+
+   The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
 
 Your setting should be similar to the following:
 
-.. image:: images/create_header.png
+.. image:: images/get_header_overview.png
    :align: center
 
 Phase Unwrapping and Total Field Computation
@@ -88,21 +96,23 @@ In the **I/O** panel:
 #. Check the **FSL brain extraction** 
    It is essential to have a brain mask to produce a high-quality QSM map.  
 
+   .. image:: images/phase_unwrap_io.png
+
 In the **Total field recovery and phase unwrapping** panel: 
 
 #. Keep the **Echo phase combination** method as 'Optimum weights'
-#. Change the **Phase unwrapping** method to 'Laplacian STI Suite'. 
+#. Change the **Phase unwrapping** method to 'Laplacian STI suite'. 
 
-It should look like this:
-
-.. image:: images/phase_unwrap_setting.png
-   :align: center
+   .. image:: images/phase_unwrap_algorithm.png
+      :align: center
 
 Then click the **Start** button.
 
-You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method. Once the process finishes (~3min), you will see the message 
+You should now see some messages displayed in the Matlab's command window. These messages give you the general information of your input data and the overview of the selected method(s). Once the process finishes (~3min), you will see the message 
 
 '*Processing pipeline is completed!*'. 
+
+.. tip:: All the output messages of SEPIA will be displayed on the Matlab comman window. Make sure you check the command window before clicking the **Start** button again!
 
 Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the terminal type: 
 
@@ -110,7 +120,10 @@ Check the output (should be in *~/qsm_tutorial/data/output_unwrap/*), in the ter
 
 ``fslview_deprecated Sepia_total-field.nii.gz``
 
-The first dataset is the unwrapped phase images (unit in radian). Observe the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echoes. 
+The first dataset is the unwrapped phase images (unit in radian). Play the movie to see the phase development over time. All the zebra-line pattern and phase jumps are gone in the later echo images (e.g. near the prefontal cortex [113 195 65]). 
+
+.. note:: In addition to the ability of phase unwrapping, Laplacian based operation removes some of the harmonic fields. Therefore, the phase values in the unwrapped phase map cannot be comparable to the raw wrapped phase.
+
 The second corresponds to the frequency (Hz) which was computed using the unwrapped phase images at the different echo times:
 
 .. math::
@@ -120,3 +133,5 @@ The second corresponds to the frequency (Hz) which was computed using the unwrap
 The latter is the result needed in the next exercise. 
 
 Proceed to :ref:`fmritoolkit2019-exercise3`.
+
+Back to :ref:`fmritoolkit2019-exercise1`.
