@@ -54,8 +54,8 @@ The first tab in SEPIA provides a one-step application to process QSM from the r
 
 Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach. 
 
-Create SEPIA header
-^^^^^^^^^^^^^^^^^^^
+Create a SEPIA header
+^^^^^^^^^^^^^^^^^^^^^
 
 Before using the SEPIA, create a header file that contains all essential information regarding the data acquisition (magnetic field, resolution, echo time). 
 
@@ -85,7 +85,7 @@ Phase Unwrapping and Total Field Computation
 
 To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (next to **Sepia** tab). 
 
-You will see two panels under the tab: the **I/O** panel is for data input and output and the **Total field recovery and phase unwrapping** panel is for phase unwrapping and true phase accumulation estimation.
+You will see two panels under the tab: the **I/O** panel is for specifying data input and output and the **Total field recovery and phase unwrapping** panel is for selecting phase unwrapping and true phase estimation algorithms.
 
 .. tip:: SEPIA supports two types of data input. If your data follows the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. Alternatively, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. 
 
@@ -94,6 +94,7 @@ In the **I/O** panel:
 #. Select the **Input directory**: *~/qsm_tutorial/data*
 #. Change the **Output basename** to: *~/qsm_tutorial/data/output_unwrap/Sepia*
 #. Check the **FSL brain extraction** 
+
    It is essential to have a brain mask to produce a high-quality QSM map.  
 
    .. image:: images/phase_unwrap_io.png
@@ -124,13 +125,15 @@ The first dataset is the unwrapped phase images (unit in radian). Play the movie
 
 .. note:: In addition to the ability of phase unwrapping, Laplacian based operation removes some of the harmonic fields. Therefore, the phase values in the unwrapped phase map cannot be comparable to the raw wrapped phase.
 
-The second corresponds to the frequency (Hz) which was computed using the unwrapped phase images at the different echo times:
+The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times illustraed in Eq.:eq:`fpt`:
 
 .. math::
    frequency = \frac{phase}{time}
    :label: fpt
 
 The latter is the result needed in the next exercise. 
+
+You can close all the FSLView window(s) now.
 
 Proceed to :ref:`fmritoolkit2019-exercise3`.
 
