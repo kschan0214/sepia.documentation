@@ -35,6 +35,9 @@ In this tutorial, we will go through the standard processing pipeline for quanti
    
    Figure 1: The QSM theory. A magnetic source generates a secondary magnetic field inside the MRI scanner, which will eventually alter the signal phase we measured. Decoding the phase images allows us to detect the molecular environment of the brain tissues.  
 
+Exercises
+---------
+
 Let's begin with the following exercises that will take you from the phase data to the susceptibility maps!
 
 .. toctree::
