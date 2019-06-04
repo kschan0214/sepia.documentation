@@ -79,9 +79,9 @@ Note you can clearly see the contrast between grey and white matter, and veins a
 
 4. Compare the location of the edges of brain structures with what you can see in the mean magnitude image computed in Exercise 1.
 
-  #. Use shortcut ``Crtl+A`` in the FSLView to add *mag_mean.nii.gz* to the displayed local field maps.
+  #. Use shortcut ``Crtl+A`` in the FSLView to add *mean_head.nii.gz* to the displayed local field maps.
 
-  #. Adjust the display window of *mag_mean.nii.gz* to 'Min 0' and 'Max 300'.
+  #. Adjust the display window of *mean_head.nii.gz* to 'Min 0' and 'Max 300'.
 
   #. Go to location [133 155 81] which is on the top edge of the globus pallidus.
 
