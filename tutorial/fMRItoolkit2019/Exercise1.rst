@@ -93,7 +93,7 @@ Magnitude images
 
 #. Go back to the terminal. Compute the mean magnitude image in time:
 
-   ``fslmaths mag.nii.gz -Tmean mag_mean.nii.gz``
+   ``fslmaths mag.nii.gz -Tmean mean_head.nii.gz``
 
    This image will be used in Exercise 3.
 
