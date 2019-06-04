@@ -85,7 +85,7 @@ To avoid the previous QSM map we can increase the threshold of the **TKD**.
 
 #. Check the result *Sepia_tkd-0p15_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tkd-0_QSM.nii.gz* in FSLView. Do you see any improvement?
 
-#. Compare the location on the tissue edges (e.g. [133 155 81]) in this QSM map with what you can see in the mean magnitude image *mag_mean.nii.gz*. Do the edges match between the two data now?
+#. Compare the location on the tissue edges (e.g. [133 155 81]) in this QSM map with what you can see in the mean magnitude image *mean_head.nii.gz*. Do the edges match between the two data now?
 
 .. toctree::
    :maxdepth: 1
