@@ -30,6 +30,10 @@ Applied Optics 46, 6623–6635 (2007). <https://doi.org/10.1364/AO.46.006623>`_
 cuts: application in quantitative susceptibility mapping. IEEE Transactions on Medical Imaging 34, 
 531–540 (2015). <https://doi.org/10.1109/TMI.2014.2361764>`_    
 
+**SEGUE**
+`Karsa and Shmueli. SEGUE: A Speedy rEgion-Growing Algorithm for Unwrapping Estimated Phase. 
+ IEEE Transactions on Medical Imaging 38, 1347–1357 (2018). <https://doi.org/10.1109/TMI.2018.2884093>`_  
+
 **Echo phase combination** - **Optimum weights**   
 `Robinson, S. D. et al. An illustrated comparison of processing methods for MR phase imaging and QSM: 
 combining array coil signals and phase unwrapping. 
@@ -39,6 +43,7 @@ NMR Biomed 30, e3601 (2017). <https://doi.org/10.1002/nbm.3601>`_
 `Liu, T. et al. Nonlinear formulation of the magnetic field to source relationship for robust 
 quantitative susceptibility mapping. 
 Magn Reson Med 69, 467–476 (2012). <https://doi.org/10.1002/mrm.24272>`_  
+
 
 
 Background field removal  
@@ -126,3 +131,8 @@ Neuroimage 59, 2560–2568 (2012). <https://doi.org/10.1016/j.neuroimage.2011.08
 `Liu, Z., Spincemaille, P., Yao, Y., Zhang, Y. & Wang, Y. MEDI+0: Morphology enabled dipole 
 inversion with automatic uniform cerebrospinal fluid zero reference for quantitative susceptibility 
 mapping. Magn Reson Med 79, 2795–2803 (2018). <https://doi.org/10.1002/mrm.26946>`_
+
+**NDI**  
+Polak D., Chatnuntawech I., Yoon J., Srinivasan Iyer S., Lee J., Setsompop K., and Bilgic B. VaNDI: 
+Variational Nonlinear Dipole Inversion enables QSM without free parameters (program number 0319). 
+Proceedings of the International Society for Magnetic Resonance in Medicine 2019, Montreal Canada 
