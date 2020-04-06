@@ -13,7 +13,7 @@ Target Audience
 ^^^^^^^^^^^^^^^
 
 - who has some experience with SEPIA
-- researchers who want to add their method(s) to SEPIA framework 
+- researchers who want to add their method(s) to the SEPIA framework 
 
 Estimated Time
 ^^^^^^^^^^^^^^
@@ -23,7 +23,9 @@ About 30 minutes
 Introduction  
 ------------
 
-In this tutorial, we will practice how a new method can be integrated to the SEPIA processing back end. If you are interested to have your method also shown in the SEPIA front end GUI, please visit the Part 2 of this tutorial.
+In this tutorial, we will practice how to integrate a new method to the SEPIA processing back end. The new method can be used in backgorund field removal/QSM processing step. It is also possible to add a new phase unwrapping method, yet minor adaptation of this tutorial might be needed. 
+
+.. note:: If you are interested to have your method also shown in the SEPIA front end GUI, please visit Part 2 of the tutorial. 
 
 
 Exercise
@@ -36,13 +38,13 @@ To begin with, let's go to the ``/SEPIA_HOME/tutorial/myQSMmethod/``. You should
    
 We will need ``myQSM.m`` and ``Wrapper_QSM_myQSM.m`` these two files in this tutorial. 
 
+myQSM.m
+^^^^^^^
+
 Let's have a look on the ``myQSM.m``
 
 .. figure:: images/figure02_myQSM.png
    :align: center
-
-myQSM.m
-^^^^^^^
 
 ``myQSM.m`` is basically a thresholded k-space method to perform the QSM dipole inversion process. It requires 4 essential and 2 optional input variables:  
 
