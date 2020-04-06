@@ -6,16 +6,16 @@ Installation
 Prerequisite  
 ------------
 
-To use **SEPIA** you need three QSM toolboxes which are freely available for the research community, namely MEDI toolbox, STI Suite and FANSI toolbox. You can download these toolboxes with the following links:
+To unleash the fully functionality of **SEPIA**, four external libraries, which are freely available for academic purposes, are required, namely MEDI toolbox, STI suite, FANSI toolbox and SEGUE. You can download these toolboxes/libraries using the following links:
 
-- `MEDI toolbox <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_ (version 25 June 2018)
+- `MEDI toolbox <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_ (version 15 January 2020)
 - `STI Suite <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_ (version 3.0)
-- `FANSI toolbox <https://gitlab.com/cmilovic/FANSI-toolbox>`_ (commit d33759b9)
+- `FANSI toolbox <https://gitlab.com/cmilovic/FANSI-toolbox>`_ (commit dc68c306)
 
-If you encounter any difficulty when downloading these toolboxes please let me know.  
+If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.  
 
-Installing SEPIA
-----------------
+Installation of  SEPIA
+----------------------
 
 Once you have all the toolboxes in place, then you have to specify the directory of each toolbox in `SpecifyToolboxesDirectory.m <https://github.com/kschan0214/sepia/blob/master/SpecifyToolboxesDirectory.m>`_:
 
@@ -23,7 +23,8 @@ Once you have all the toolboxes in place, then you have to specify the directory
 
    MEDI_dir = '/path/to/MEDI/toolbox/';  
    STISuite_dir = '/path/to/STISuite/toolbox/';   
-   FANSI_dir = '/path/to/FASI/toolbox/'; 
+   FANSI_dir = '/path/to/FANSI/toolbox/'; 
+   SEGUE_dir = '/path/to/SEGUE/library/;'
  
 
 For example, I have all my external toolboxes stored under the SEPIA home directory. Additionally, for each toolbox, I have different copies representing different versions when they were published  
