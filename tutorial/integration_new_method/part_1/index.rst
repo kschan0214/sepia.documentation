@@ -67,12 +67,13 @@ First of all, you can define the function's name with your own preference but th
 
 .. code-block:: matlab
 
-	% load some constants 
+   % load some constants 
    sepia_universal_variables;
 
 Some constant terms such as the gyromagnetic ratio of 1H are used in various occasions and can be called using the *sepia_universal_variables* function.
 
 .. code-block:: matlab
+
    % get algorithm parameters, if user doesn't specify them then set some default values
    algorParam = check_and_set_algorithm_default(algorParam);
    thre_tkd   = algorParam.qsm.threshold;  % here you can define how SEPIA will store the user input in the 'algorParam' variable
@@ -80,6 +81,7 @@ Some constant terms such as the gyromagnetic ratio of 1H are used in various occ
 In this example, we need the threshold value defined by the user to threshold the k-space coordinate in myQSM.m. All the user-defined parameters of the chosen method(s) are stored in *algorParam* input in SEPIA. The variable name (e.g. *algorParam.qsm.threshold* here) is defined by the developer and used in the pipelin configuration file. *check_and_set_algorithm_default* is a nested function to make sure the required variable is set (either by user or using the default value) before it is used.
 
 .. code-block:: matlab
+
    % get extra data such as magnitude/weights/B0 direction/TE/etc.
    headerAndExtraData = check_and_set_SEPIA_header_data(headerAndExtraData);
    b0dir = headerAndExtraData.b0dir;
@@ -89,12 +91,14 @@ In this example, we need the threshold value defined by the user to threshold th
 To create a dipole kernel wih correct orientation, the algorithm needs to know the main magnetic field direction which can be obtained from the *headerAndExtraData* variable. If the multi-echo magnitude data and/or SNR-weighted map are needed, they can also be accessed in this variable as well.
 
 .. code-block:: matlab
+
    % add path
    sepia_addpath;
 
 You can add the required path(s) in the function. 
 
 .. code-block:: matlab
+
    %% Display algorithm parameters
    disp('The following parameter is being used...');
    disp(['K-space threshold value  = ' num2str(thre_tkd)]);
@@ -102,6 +106,7 @@ You can add the required path(s) in the function.
 You can also provide some feedback to user by displaying the algorithm parameters/other information in the function.
 
 .. code-block:: matlab
+
    %% main
    % you can change the unit before your method if you wish
    % localField = localField/(b0*gyro); % convert from Hz to ppm
@@ -137,5 +142,6 @@ In the second section, the variable *wrapper_QSM_function* contains the filename
 Now, the method is available in SEPIA! To use it, you specify the method in your script as:
 
 .. code-block:: matlab
+
    algorParam.qsm.method      = 'myQSM';
    algorParam.qsm.threshold   = 0.1; 
