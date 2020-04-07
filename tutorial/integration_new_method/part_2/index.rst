@@ -120,19 +120,83 @@ It returns four variables that specify the position of each cell in the grid:
       'position',position,...
       'backgroundcolor',get(h.fig,'color'),'Visible','on');
 
-Firstly, we create a panel in Matlab. This panel belongs to the QSM task panel which is specified in the *hParent* input. You can only change the '*Title*' value here. 
+Firstly, we create a panel in SEPIA. This panel belongs to the QSM task panel which is specified in the *hParent* input. The only thing you can change is the '*Title*' value here. 
 
 .. code-block:: matlab
 
    panelParent = h.qsm.panel.myQSM;
 
-    % width of each element in a functional column, in normalised unit
+    % width of the first element in a cell, in normalised unit
     wratio = 0.5;
     
     % row 1, col 1
     % text|edit field pair: threshold
     [h.qsm.myQSM.text.threshold,h.qsm.myQSM.edit.threshold] = sepia_construct_text_edit(...
-        panelParent,'Threshold (0-1):', defaultThreshold, [left(1) bottom(1) width height], wratio);
+        panelParent,'Threshold (0-1):', defaultThreshold, [left(1) bottom(1) width height], );
 
-Secondly, we can start adding things to the method panel. 
+Secondly, we can start adding operational functions to the method panel. There are many operations you can add to the method panel in order to obtain input from users. SEPIA provides three functions to simplify the work of adding operations to the panel, including:
+
+1. ``sepia_construct_text_edit``: create a 'text|edit' pair to obatin (numerical) input from users;
+2. ``sepia_construct_text_popup``: create a 'text|popup' pair to obatin predefined input from users by selection;
+3. ``sepia_construct_checkbox_edit``: create a 'checkbo|edit' pair to obatin a logical decision (true or false) from users plus an optional numerical input.
+
+.. figure:: images/figure05_operation.png
+   :align: center
+
+These three functions cover most of the operations in SEPIA. For detail description of how the functions work please check the header of the functions. In this tutorial, we only use the ``sepia_construct_text_edit`` function to obatin the k-space threshold value from the user.
+
+.. code-block:: matlab
+
+   function [h_text,h_edit] = sepia_construct_text_edit(parent,fieldString,defaultValue,pos,wratio)
+
+``sepia_construct_text_edit`` requires 5 input variable:
+
+- *parent*: parent handle of the operation, which is the handle of the panel (e.g. h.qsm.panel.myQSM)
+- *fieldString*: the text displayed in the 'text' field of the operation (e.g. 'Threshold (0-1):')
+- *defaultValue*: the value displayed in the 'edit' field of the operation (e.g. defaultThreshold)
+- *pos*: the position of the entire operation ('text'+'edit' fields), [left bottom width height] (e.g. [left(1) bottom(1) width height])
+- *wratio*: the normalised width taken by the 'text' field.
+
+The function returns two output variables:
+
+- *h_text*: handle of the 'text' field, (e.g. *h.qsm.myQSM.text.threshold* in this tutorial)
+- *h_edit*: handle of the 'edit' field, (e.g. *h.qsm.myQSM.edit.threshold*)
+
+.. figure:: images/figure06_construct_example.png
+   :align: center
+
+These three SEPIA functions are resbonsible for only creating the GUI components. The function of these operations are still missing. 
+
+.. code-block:: matlab
+
+   %% set tooltips
+   set(h.qsm.myQSM.text.threshold, 'Tooltip',tooltip.qsm.myQSM.threshold);
+
+Here we set the tooltips that was defined in the beginning of the file to the 'text' field of the panel.
+
+.. code-block:: matlab
+
+   %% set callbacks
+   set(h.qsm.myQSM.edit.threshold, 'Callback', {@EditInputMinMax_Callback,defaultThreshold,0,0,1});
+
+The callback function allows developer to control the behaviour of the user input. Here we utilise a function called ``EditInputMinMax_Callback`` in SEPIA to limit the range of the input value from the users. Let's have a look to this function
+
+.. code-block:: matlab
+
+   EditInputMinMax_Callback(source,eventdata,defaultValue,isIntegerInput,lb,ub)
+
+Ingoring the input variables *source* and *eventdata*, this function takes three extra input from the developer:
+
+- *defaultValue*: whenever an invalid value is entered, returns to this value (e.g. returns to *defaultThreshold* in this tutorial)
+- *isIntegerInput*: whether the input is an integer or not ('true': input needed to be integer; 'false': input can be floating number) (e.g. the input can be floating number in this tutorial)
+- *lb*: lower bound of the input value (e.g. the minimum number is 0 in this example)
+- *ub*: upper bound of the input value (e.g. the maximum number is 1 in this example)
+
+Now, the method panel is ready for the GUI. Our next job is to make sure the user input can be correctly exported to the pipeline configuration file and afterward imported from the pipeline configuration file to the GUI which will be done the next section.
+
+
+``get_set_qsm_myQSM.m``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+
 
