@@ -70,7 +70,7 @@ Wrapper_QSM_myQSM.m
 .. figure:: images/figure03_WrapperQSMmyQSM.png
    :align: center
 
-**Anatomy of Wrapper_QSM_myQSM**
+**Anatomy of Wrapper_QSM_myQSM.m**
 
 .. code-block:: matlab
 
@@ -101,7 +101,7 @@ In this example, we need the threshold value defined by the user to threshold th
    b0    = headerAndExtraData.b0;
    % magn  = headerAndExtraData.magn;  % you can access the magnitude and/or other data from the 'headerAndExtraData' variable
 
-To create a dipole kernel wih correct orientation, the algorithm needs to know the main magnetic field direction which can be obtained from the *headerAndExtraData* variable. If the multi-echo magnitude data and/or SNR-weighted map are needed, they can also be accessed in this variable as well.
+To create a dipole kernel with correct orientation, the algorithm needs to know the main magnetic field direction which can be obtained from the *headerAndExtraData* variable. If the multi-echo magnitude data and/or SNR-weighted map are needed, they can also be accessed in this variable as well.
 
 .. code-block:: matlab
 
@@ -137,12 +137,12 @@ With these two files, the method is almost ready for SEPIA. Before we can use th
 .. figure:: images/figure04_configurationFolder.png
    :align: center
 
-You can see there are three configuration files in the directory, each of them specifies the methods available in SEPIA. Now open the ``sepia_configuration_QSM.m`` in the editor. You will see the script is divided into 4 sections. We only focus the first two in this tutorial. 
+You can see there are three configuration files in the directory, each of them specifies the methods available for each task in SEPIA. Now open the ``sepia_configuration_QSM.m`` in the editor. You will see the script is divided into 4 sections. We only focus the first two in this tutorial. 
 
 .. figure:: images/figure05_config_QSM.png
    :align: center
 
-In the first section, the variable *methodQSMName* contains the names of QSM methods available in SEPIA and we need to add myQSM to this variable. This name will be used thorough the SEPIA framework. **DO NOT** change the order of the method! Insert our method to the end of the variable instead, as follow:
+In the first section, the variable *methodQSMName* contains the names of QSM methods available in SEPIA and we need to add ``myQSM`` to this variable. This name will be used thorough the SEPIA framework. **DO NOT** change the order of the method! Insert our method to the end of the variable instead, as follow:
 
 .. figure:: images/figure06_methodQSMName.png
    :align: center
