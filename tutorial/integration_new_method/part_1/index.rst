@@ -49,12 +49,14 @@ Let's have a look on the ``myQSM.m``
 ``myQSM.m`` is basically a thresholded k-space method to perform the QSM dipole inversion process. It requires 4 essential and 2 optional input variables:  
 
 **Essential variables**
+
 - *localField*: 3D matrix of a local (tissue) field map, unit is unimportant in this function
 - *mask*: 3D matrix of a signal mask
 - *matrixSize*: 1-by-3 array to indicate the matrix size of the local field map
 - *voxelSize*: 1-by-3 array to indicate the spatial resolution of the local field map, in mm
 
 **Optional variables**
+
 - *thres*: a threshold of k-space cooridate to avoid division-by-zero problem
 - *b0dir*: main magnetic field direction with respect to the local field map
 
@@ -89,7 +91,7 @@ Some constant terms such as the gyromagnetic ratio of 1H are used in various occ
    algorParam = check_and_set_algorithm_default(algorParam);
    thre_tkd   = algorParam.qsm.threshold;  % here you can define how SEPIA will store the user input in the 'algorParam' variable
 
-In this example, we need the threshold value defined by the user to threshold the k-space coordinate in ``myQSM.m``. All the user-defined parameters of the chosen method(s) are stored in *algorParam* input in SEPIA. The variable name (e.g. *algorParam.qsm.threshold* here) is defined by the developer and used in the pipelin configuration file. *check_and_set_algorithm_default* is a nested function to make sure the required variable is set (either by user or using the default value) before it is used.
+In this example, we need the threshold value defined by the user to threshold the k-space coordinate in ``myQSM.m``. All the user-defined parameters of the chosen method(s) are stored in *algorParam* input in SEPIA. The variable name (e.g. *algorParam.qsm.threshold* here) is defined by the developer and used in the pipelin configuration file. ``check_and_set_algorithm_default`` is a nested function to make sure the required variable is set (either by user or using the default value) before it is used.
 
 .. code-block:: matlab
 
