@@ -1,3 +1,5 @@
+.. _gettingstart-sepia-header:
+
 SEPIA header
 ============
 

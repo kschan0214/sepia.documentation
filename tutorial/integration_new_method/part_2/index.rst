@@ -138,7 +138,7 @@ Secondly, we can start adding operational functions to the method panel. There a
 
 1. ``sepia_construct_text_edit``: create a 'text|edit' pair to obatin (numerical) input from users;
 2. ``sepia_construct_text_popup``: create a 'text|popup' pair to obatin predefined input from users by selection;
-3. ``sepia_construct_checkbox_edit``: create a 'checkbo|edit' pair to obatin a logical decision (true or false) from users plus an optional numerical input.
+3. ``sepia_construct_checkbox_edit``: create a 'checkbox|edit' pair to obatin a logical decision (true or false) from users plus an optional numerical input.
 
 .. figure:: images/figure05_operation.png
    :align: center
@@ -151,10 +151,10 @@ These three functions cover most of the operations in SEPIA. For detail descript
 
 ``sepia_construct_text_edit`` requires 5 input variable:
 
-- *parent*: parent handle of the operation, which is the handle of the panel (e.g. h.qsm.panel.myQSM)
-- *fieldString*: the text displayed in the 'text' field of the operation (e.g. 'Threshold (0-1):')
-- *defaultValue*: the value displayed in the 'edit' field of the operation (e.g. defaultThreshold)
-- *pos*: the position of the entire operation ('text'+'edit' fields), [left bottom width height] (e.g. [left(1) bottom(1) width height])
+- *parent*: parent handle of the operation, which is the handle of the panel (e.g. *h.qsm.panel.myQSM*)
+- *fieldString*: the text displayed in the 'text' field of the operation (e.g. *'Threshold (0-1):'*)
+- *defaultValue*: the value displayed in the 'edit' field of the operation (e.g. *defaultThreshold*)
+- *pos*: the position of the entire operation ('text'+'edit' fields), [left bottom width height] (e.g. [*left(1) bottom(1) width height*])
 - *wratio*: the normalised width taken by the 'text' field.
 
 The function returns two output variables:
@@ -188,9 +188,9 @@ The callback function allows developer to control the behaviour of the user inpu
 Ingoring the input variables *source* and *eventdata*, this function takes three extra input from the developer:
 
 - *defaultValue*: whenever an invalid value is entered, returns to this value (e.g. returns to *defaultThreshold* in this tutorial)
-- *isIntegerInput*: whether the input is an integer or not ('true': input needed to be integer; 'false': input can be floating number) (e.g. the input can be floating number in this tutorial)
-- *lb*: lower bound of the input value (e.g. the minimum number is 0 in this example)
-- *ub*: upper bound of the input value (e.g. the maximum number is 1 in this example)
+- *isIntegerInput*: whether the input is an integer or not (*true* or *1*: input needed to be integer; *false* or *0*: input can be floating number) (e.g. the input can be floating number in this tutorial)
+- *lb*: lower bound of the input value (e.g. the minimum number is *0* in this example)
+- *ub*: upper bound of the input value (e.g. the maximum number is *1* in this example)
 
 Now, the method panel is ready for the GUI. Our next job is to make sure the user input can be correctly exported to the pipeline configuration file and afterward imported from the pipeline configuration file to the GUI which will be done the next section.
 
