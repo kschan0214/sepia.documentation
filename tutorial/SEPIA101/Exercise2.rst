@@ -47,12 +47,12 @@ A graphical user interface (GUI) should appear right away.
 
 There are several tabs in SEPIS corresponding to usage of SEPIA in various tasks. The first tab in SEPIA provides a one-step application to process QSM from the raw phase data to a magnetic susceptibility map. Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach. 
 
-In the following exercises, we will go for the second approach in order to explain the QSM processing step by step.
+In the following exercises, we will go for the second approach in this tutorial such that we can explain the QSM processing step by step.
 
 Phase Unwrapping and Total Field Computation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In exercise 1, we observed that the raw phase GRE data is affected by the phase wrapping issue which stops us to calculate the correct frequency shift in the image from the phase data.
+From exercise 1, we understand the raw phase GRE data is affected by the phase wrapping issue which stops us from computing the frequency shift correctly using the phase data.
 
 To correct the wrapped phase in the raw images, go the **Phase unwrapping** tab (next to **SEPIA** tab). 
 
@@ -63,7 +63,7 @@ You will see two panels under the tab: the **I/O** panel is for specifying data 
 In the **I/O** panel:
 
 #. Select the **Input directory**: *~/sepia_tutorial/sepia101_data/*
-#. Change the **Output prefix** to: *~/sepia_tutorial/sepia101_data/**output_unwrap**/Sepia*
+#. Change the **Output prefix** to: *~/sepia_tutorial/sepia101_data/output_unwrap/Sepia*
 
    .. image:: images/exercise2_phase_unwrap_io.png
 
