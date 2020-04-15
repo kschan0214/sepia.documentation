@@ -125,7 +125,7 @@ Let's have a look of the unwrapped phase first (*Sepia_unwrapped-phase.nii.gz*),
 
 Try to see the phase of each echoes using the slider of 'Scan ID'. Now you shall see that all the zebra-line pattern and phase jumps are gone in the later echo images. If we plot the phase of the brain structure in Exercise 1, the phase of the caudate nucleus also evolves linearly after phase unwrapping.
 
-.. image:: images/exercise2_unwrapped_phase.png
+.. image:: images/exercise2_unwrapped_phase_plot3.png
    :align: center
 
 With the correctly unwrapped phase, we can compute the total frequency shift (*Sepia_total-field.nii.gz*) in the tissue from the phase using the following equation:
