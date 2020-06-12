@@ -4,7 +4,7 @@ SEPIA (One-stop QSM processing)
 What is SEPIA?
 --------------
 
-SEPIA is a pipeline analysis tool for quantitative susceptibility mapping (QSM) in Brain Imaging. It provides all the essential functions people would need to compute a susceptibility map from a 3D multi-echo GRE phase data, including phase unwrapping, background field contribution removal and dipole inversion. Incorporate with different toolboxes in SEPIA giving users the advantages of having a variety of options to build a pipeline that works the best for their data. When you use the SEPIA graphical user interface to process the data, a log file will be generated that contains also the setting and command that you've chosen in the pipeline. This log file will be particularly useful for batch processing. 
+SEPIA is a quantitative susceptibility mapping (QSM) pipeline analysis tool for (but not limited to) neuroimaging application. It provides all the essential functions to compute a susceptibility map from a 3D multi-echo GRE phase data, including phase unwrapping, background field contribution removal and dipole inversion. Incorporating with different toolboxes in SEPIA gives users the advantages of having a variety of options to build a pipeline that works the best for their data. When you use the SEPIA graphical user interface to process the data, a configuration (config) file will be generated that contains all the settings and commands that you've specified in the pipeline. This config file will be particularly useful for batch processing. 
 
 Structure of the application
 ----------------------------
@@ -16,38 +16,69 @@ This standalone consists of 4 panels:
 - Background field removal panel, and  
 - QSM panel.
 
-The detailed description of each panel is given below:
+The description of each panel is given below:
 
 I/O panel
 ^^^^^^^^^
 
+.. image:: images/IO_panel.png
+
+The I/O panel is responsible for data input/output and data processing that is not specific to QSM.
+
 - Data input  
 
-  This application accepts three types of data input method:
+  There are two pathways to specify input in this application:
 
-  1. Specify a directory that contains all NIfTI images. Please specify the names of your data as in the following:
+  .. image:: images/IO_panel_pathway.png
 
-     - **Phase**: must contain the string 'ph' in the filename, e.g. *phase.nii.gz*;
-     - **Magnitude**: must contain the string 'mag' in the filename, e.g. *magn.nii.gz*;
-     - **Header**: must contain the string 'header' in the filename, e.g. *header.mat*;
-     - (optional) **Mask data**: if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*, or
+  1. Specify a directory that contains all essential data. 
+
+    The essential data are:
+
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------+
+    | Data               | Description                                                                                                           |
+    +====================+=======================================================================================================================+
+    | Phase              | 4D phase of GRE ([x,y,slice,time]), must contain 'ph' in the filename, e.g. *phase.nii.gz* or *ph.nii.gz*,            |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------+
+    | Magnitude          | 4D magnitude of GRE ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *magn.nii.gz* or *mag.nii.gz*;       |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
+    | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
+    | Mask               | (optional) 3D signal mask, if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*                |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
+
+    .. warning::
+      Please make sure the filenames follow the above rules and no other files in the directory sharing the same string labels (i.e. 'ph', 'mag', 'header' and 'mask').
 
   2. Specify the required data separately using the GUI buttons. 
 
-- Data output  
+    .. note::
+      The 'Weights' input is an optional input. You can specify a 3D data which will be used as prior information in regularised optimisation in QSM dipole inversion. If the 'Weights' input is empty, the weighting map will be automatically computed in subsequent QSM processing.
 
-  You can specify the prefix of the data output name in the editable field 'Output basename'. By default, the SEPIA output will be stored in a directory named '*output*' under the input directory, i.e. '_/your/input/directory/output/_' with prefix '*sepia*'. You can change the default output directory and basename to whatever you need. If the output directory does not exist, the application will create the directory.  
+- Output prefix
+
+  By default, the output files generated by SEPIA will be stored in a directory named '*output*' under the directory of the input files (i.e. '_/your/input/directory/output/_'). The prefix of the output filename is '*Sepia*'. You can change the default output directory and prefix according to your preference. If the output directory does not exist, the application will create the directory.  
+
+  .. note::
+    Make sure the 'Output prefix' field contains a full path of the output directory and a filename prefix.
   
 - Brain mask  
 
-  QSM-related algorithms often require a mask that contains only brain tissue. If you already have the brain mask data in NIfTI format, you can select the file manually, or named it with a specific name (see **Data input** section) and put it in the directory with other NIfTI files. Alternatively, you can check the '**FSL brain extraction**' checkbox to extract the brain mask. Enabling this option will run the Matlab implementation of FSL's brain extraction tool (bet) implemented with MEDI toolbox. 
+  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with MEDI toolbox to compute the brain mask.
 
 - Invert phase data   
 
-  Due to the way of how the phase data is stored, values of the final local field map and/or magnetic susceptibility map might be inverted, i.e. positive frequency shift and paramagnetic magnetic susceptibility will show in negative, and vice versa. If it is the case, you can invert the values of the results by checking the '**Invert phase data**' option. This will apply a conjugate operation to the phase data after the data being loaded.
+  Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
+
+- FSL brain extraction (bet)
+
+  Brain mask can be computed using the Matlab implementation of FSL's BET provided with MEDI toolbox, with options including fractional intensity threshold (-f) and vertical in fractional intensity threshold (-g). More information regarding the options can be found in `BET/UserGuide <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.
+
 
 Total field recovery and phase unwrapping panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: images/tf_panel.png
 
 - Echo phase combination  
 

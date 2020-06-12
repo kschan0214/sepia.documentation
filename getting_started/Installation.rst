@@ -11,20 +11,21 @@ To unleash the fully functionality of **SEPIA**, four external libraries, which 
 - `MEDI toolbox <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_ (version 15 January 2020)
 - `STI Suite <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_ (version 3.0)
 - `FANSI toolbox <https://gitlab.com/cmilovic/FANSI-toolbox>`_ (commit dc68c306)
+- `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
 
 If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.  
 
-Installation of  SEPIA
-----------------------
+Installation of SEPIA
+---------------------
 
 Once you have all the toolboxes in place, then you have to specify the directory of each toolbox in `SpecifyToolboxesDirectory.m <https://github.com/kschan0214/sepia/blob/master/SpecifyToolboxesDirectory.m>`_:
 
 .. code-block:: matlab
 
-   MEDI_dir = '/path/to/MEDI/toolbox/';  
-   STISuite_dir = '/path/to/STISuite/toolbox/';   
-   FANSI_dir = '/path/to/FANSI/toolbox/'; 
-   SEGUE_dir = '/path/to/SEGUE/library/;'
+   MEDI_HOME = '/path/to/MEDI/toolbox/';  
+   STISuite_HOME = '/path/to/STISuite/toolbox/';   
+   FANSI_HOME = '/path/to/FANSI/toolbox/'; 
+   SEGUE_HOME = '/path/to/SEGUE/library/;'
  
 
 For example, I have all my external toolboxes stored under the SEPIA home directory. Additionally, for each toolbox, I have different copies representing different versions when they were published  
@@ -36,9 +37,10 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
 .. code-block:: matlab
 
     % 1. sepcify the toolbox version you want to run
-    MEDI_version        = 'MEDI_toolbox_20180625';
-    FANSI_version       = 'FANSI-toolbox-d33759b970790cc8754adc9d0398cc3d07546074/';
+    MEDI_version        = 'MEDI_toolbox_20200115';
+    FANSI_version       = 'FANSI-toolbox-dc68c306/';
     STISuite_version    = 'STISuite_V3.0';
+    SEGUE_version       = 'SEGUE_14122018';
 
     % 2. get the Sepia HOME directory from this script
     fullName        = mfilename('fullpath');
@@ -76,8 +78,7 @@ Now you can start the GUI by entering ``sepia`` in the MATLAB's command window.
 Compatibility
 -------------
 
-SEPIA is developed mainly in MATLAB R2016b in Linux. In general, all methods should compatible with earlier MATLAB versions. Most of the methods should also compatible with MATLAB R2017a or later, and other OS, except the following functions/algorithms
+SEPIA is developed mainly in MATLAB R2016b in Linux and macOS. In general, all methods should compatible with earlier MATLAB versions up to R2014b. Most of the methods should also compatible with MATLAB R2017a or later, and other OS, except the following functions/algorithms
 
-- DICOM reader
 - Laplacian Boundary Value (LBV) for background field removal
 - Graphcut for phase unwrapping
