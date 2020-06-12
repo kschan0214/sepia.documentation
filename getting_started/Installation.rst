@@ -27,6 +27,8 @@ Once you have all the toolboxes in place, then you have to specify the directory
    FANSI_HOME = '/path/to/FANSI/toolbox/'; 
    SEGUE_HOME = '/path/to/SEGUE/library/;'
  
+.. warning::
+    The variable names of the toolboxes' paths are changed from '_dir' to '_HOME'. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error.
 
 For example, I have all my external toolboxes stored under the SEPIA home directory. Additionally, for each toolbox, I have different copies representing different versions when they were published  
 
@@ -49,15 +51,17 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     % 3. specify the top level of external dependency directory
     external_dir    = [SEPIA_HOME filesep 'external' filesep];
 
-    % 4. specify the HOME directory of each toolbox
-    MEDI_HOME       = [external_dir 'MEDI_toolbox' filesep];
-    FANSI_HOME      = [external_dir 'FANSI_toolbox' filesep];
-    STISuite_HOME   = [external_dir 'STI_Suite' filesep];
+    % 4. specify the mother directory of each toolbox
+    MEDI_dir       = [external_dir 'MEDI_toolbox' filesep];
+    FANSI_dir      = [external_dir 'FANSI_toolbox' filesep];
+    STISuite_dir   = [external_dir 'STI_Suite' filesep];
+    SEGUE_dir      = [external_dir 'SEGUE' filesep];
 
     % 5. sepcify the final destination of each toolbox you want to run in Sepia
-    MEDI_dir        = [MEDI_HOME MEDI_version filesep];
-    FANSI_dir       = [FANSI_HOME FANSI_version filesep];
-    STISuite_dir    = [STISuite_HOME STISuite_version filesep];
+    MEDI_HOME        = [MEDI_dir        MEDI_version        filesep];
+    FANSI_HOME       = [FANSI_dir       FANSI_version       filesep];
+    STISuite_HOME    = [STISuite_dir    STISuite_version    filesep];
+    SEGUE_HOME       = [SEGUE_dir       SEGUE_version       filesep];
 
 
 **IMPORTANT: Please do not modify the original structure of these toolboxes, SEPIA searches the path of the related functions based on the original folder structure.**   
@@ -81,4 +85,7 @@ Compatibility
 SEPIA is developed mainly in MATLAB R2016b in Linux and macOS. In general, all methods should compatible with earlier MATLAB versions up to R2014b. Most of the methods should also compatible with MATLAB R2017a or later, and other OS, except the following functions/algorithms
 
 - Laplacian Boundary Value (LBV) for background field removal
+    .. note::
+        If the LBV algorithm doesn't work on your operating system, you go to the '_LBV' directory of the MEDI toolbox and try the following command in the Matlab command window to re-compile the library: ``mex mexMGv6.cpp``
+
 - Graphcut for phase unwrapping
