@@ -16,7 +16,7 @@ This standalone consists of 4 panels:
 - Background field removal panel, and  
 - QSM panel.
 
-The description of each panel is given below:
+Description of each panel is given below:
 
 I/O panel
 ^^^^^^^^^
@@ -38,9 +38,9 @@ The I/O panel is responsible for data input/output and data processing that is n
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+
     | Data               | Description                                                                                                           |
     +====================+=======================================================================================================================+
-    | Phase              | 4D phase of GRE ([x,y,slice,time]), must contain 'ph' in the filename, e.g. *phase.nii.gz* or *ph.nii.gz*,            |
+    | Phase              | 4D phase data ([x,y,slice,time]), must contain 'ph' in the filename, e.g. *phase.nii.gz* or *ph.nii.gz*,              |
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+
-    | Magnitude          | 4D magnitude of GRE ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *magn.nii.gz* or *mag.nii.gz*;       |
+    | Magnitude          | 4D magnitude data ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *magn.nii.gz* or *mag.nii.gz*;         |
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
     | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                |
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
@@ -82,137 +82,79 @@ Total field recovery and phase unwrapping panel
 
 - Echo phase combination  
 
-  As the first step to process the multi-echo data, we need to recover the total frequency shift of the tissue across times. SEPIA provides two different ways to do this:
+  Select a method for temporal phase unwrapping with multi-echo data.
 
-  1. `Optimum weights <https://doi.org/10.1002/nbm.3601>`_  
+  .. note::
+    If the number of echoes is less than 3. 'Optimum weights' method will be automatically used.
 
-    This is a weighted combination of the phase difference between successive echoes, in which the weights are inversely proportional to the variance of the noise of the fieldmap estimated from the magnitude echo images.
-
-  2. **MEDI nonlinear fit**  
-
-    This is a method in the MEDI toolbox  
+  .. warning::
+    The 'MEDI nonlinear fit (Bipolar, testing)' method is not fully supported yet.
 
 - Phase unwrapping  
 
-  There are 5 phase unwrapping method supported in SEPIA
+  Select a method for spatial phase unwrapping. 
 
-  1. `Laplacian <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_ 
-
-    Laplacian unwrapping implementation in MEDI toolbox
-
-  2. `Laplacian STI suite <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_  
-
-    Laplacian unwrapping implementation in STI Suite v3.0  
-
-  3. `3D best path <https://doi.org/10.1364/AO.46.006623>`_   
-
-    Robust region growing method yet only works in the DCCN cluster (recommended if you use this toolbox in the DCCN cluster)  
-
-  4. **Region growing**  
-  
-    Region growing method in the MEDI toolbox 
-  
-  5. `Graphcut <https://doi.org/10.1109/TMI.2014.2361764>`_  
-
-    Graph-cut algorithm in the MEDI toolbox, sometimes uses with water-fat imaging.
+  .. warning::
+    The '3D best path' method might not work in most operating systems.
 		
-- Bipolar readout eddy current correction:   
+- Bipolar readout correction
 
-  enable to correct the phase inconsistency between odd and even echoes, and a gradient-like field contribution by eddy current effect due to bipolar readout.
-  If this option is enabled, the eddy current corrected data will be stored in the output directory with the following name:
+  Correct the phase inconsistency between odd and even echoes, and a gradient-like magnetic field contributed from eddy current due to bipolar readout.
+  If this option is enabled, the bipolar readout corrected data will be saved in the output directory with the following suffix:
 
-  - *phase_eddy-correct.nii.gz* (eddy current corrected phase data) 
+  - *phase_eddy-correct.nii.gz*
   
-- Exclude unreliable voxels, Threshold:  
+- Exclude voxels using residual, threshold:  
 
-  enable to exclude low SNR voxels that can create strong artefacts in susceptibility map (you may check with '*relative-residual.nii.gz*' to adjust the threshold). Voxels that have relative fitting residual greater than the threshold will be weighted with zero in subsequent processes. Only available for region growing and 3D best path unwrapping methods. 
+  Exclude voxels that have high relative residual based on a single compartment model fitting. The output data with suffix '*relative-residual.nii.gz* will be used for thresholding. For voxels that have intensity **higher** than the threshold will be **excluded** from subsequent processing. Two methods are supported to exclude those voxels: 
 
-- Output  
+  1. 'Weighting map': the excluded voxels will weight as 0 in the weighting map, which will only affect QSM dipole inversion algorithms that accept a weighting map as part of the regularisation.
+  2. 'Brain mask': the excluded voxels will be excluded in the signal mask in the subsequent processing. This will affect both background field removal and QSM dipole inversion results.
 
-  The output of this step are given below:
-
-  - *total-field.nii.gz* 	(unwrapped total (background+local) field, in Hz)  
-  - *fieldmap-sd.nii.gz* 	(normalised field map standard deviation)  
-  - *mask.nii.gz* (FSL's bet brain mask, optional)
-  - *mask-reliable.nii.gz* (thresholded brain mask, optional)
-  - *relative-residual.nii.gz* (relative residual of fitting a mono-exponential decay function with a single frequnecy shift, depends on unwrapping method)
+  Only available for region growing based methods (i.e. '3D best path', 'Region growing (MEDI)' and 'SEGUE') and 'Graphcut' method. 
 
 Background field removal panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. image:: images/bfr_panel_anno.png
+
 - Method
 
-  1. `LBV <https://doi.org/10.1002/nbm.3064>`_  
+  Select a background field removal method. The method parameters will be displayed on the method panel.
 
-     Laplacian boundary value approach to removal background field  
+- Remove potenital B1 residual phase
 
-  2. `PDF <https://doi.org/10.1002/nbm.1670>`_  
+  Remove (not exactly) the harmonic fields contributions using 4th-order polynomial fitting on the local field. Useful when the data contains residual B1(+ &/ -) contributions.
 
-     Projection onto dipole field  
+- Erode edge voxel(s)  
 
-  3. `RESHARP <https://doi.org/10.1002/mrm.24765>`_  
-
-     regularisation enabled SHARP  
-
-  4. `SHARP <https://doi.org/10.1016/j.neuroimage.2010.10.070>`_  
-
-     Sophisticated harmonic artefact reduction for phase data  
-
-  5. `VSHARP STI suite <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_   
-
-     STI suite v3.0 variable-kernel SHARP 
-
-  6. `VSHARP <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_  
-
-  7. `iHARPERELLA <https://doi.org/10.1002/nbm.3056>`_   
-
-     (not optimised with SEPIA yet)  
-
-- Refine local field by 4th order 3D polynomial fit  
-
-  Enable to remove residual B1(+ & -) contribution in the local field
-
-- Output  
-
-  The output of this step are given below:
-
-  - *local-field.nii.gz* (local (or tissue) field, in Hz)  
-  - *mask-qsm.nii.gz* (brain mask where local field is reliable, might be eroded and depended on the background field removal algorithms and '**exclude unreliable voxels**' threshold value)  
+  Further remove the edge voxels from the brain mask. Useful when the local field is not reliably estimated on the brain edges. This operation is performed **prior** the 'Remove potenital B1 residual phase' operation (if selected).
 
 QSM panel
 ^^^^^^^^^
 
+.. image:: images/qsm_panel_anno.png
+
 - Method:
 
-  1. `TKD <https://doi.org/10.1002/mrm.22334>`_  
-
-     Thresholded k-space division
-
-  2. `Closed-form solution <https://doi.org/10.1002/jmri.24365>`_  
-
-     closed-form solution with L2-norm regularisation
-
-  3. `STI suite iLSQR <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_  
-
-     STI suite v3.0 implementation of iterative LSQR approach
-
-  4. `iLSQR <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_
-
-
-  5. `FANSI <https://doi.org/10.1002/mrm.27073>`_  
-
-     Fast algorithm for nonlinear susceptibility inversion
-
-  6. `Star <https://doi.org/10.1002/nbm.3383>`_ 
-
-     STI suite v3.0 Star-QSM (recommended)
-
-  7. `MEDI <https://doi.org/10.1002/mrm.26946>`_  
-
-     Morphology enabled dipole inversion (MEDI+0)   
+  Select a QSM dipole inversion method. The method parameters will be displayed on the method panel.
   
-- Output     
+- Reference tissue
 
-  The output of this step is given below:
+  Select a tissue for QSM value referencing.
 
-  - *QSM.nii.gz* (quantitative susceptibility map, in ppm) 
+  .. warning::
+    The 'CSF' tissue option works only when **multi-echo** magnitude data is provided.
+
+Others
+^^^^^^
+
+.. image:: images/start_button.png
+
+- Load config
+
+  Import the method related settings specified in the SEPIA-generated config file to the SEPIA GUI. **NO** modification will be made in the I/O panel.
+
+- Start
+
+  Generate a SEPIA config file that contains all user-defined methods and parameters for QSM processing based on the setting in the GUI. SEPIA will run the config file immediately once it is generated.
