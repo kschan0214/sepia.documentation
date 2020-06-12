@@ -1,7 +1,7 @@
 .. _gettingstart-installation:
 
-Installation
-============
+Installation/Setp up
+====================
 
 Prerequisite  
 ------------
@@ -51,7 +51,7 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     % 3. specify the top level of external dependency directory
     external_dir    = [SEPIA_HOME filesep 'external' filesep];
 
-    % 4. specify the mother directory of each toolbox
+    % 4. specify the parent directory of each toolbox
     MEDI_dir       = [external_dir 'MEDI_toolbox' filesep];
     FANSI_dir      = [external_dir 'FANSI_toolbox' filesep];
     STISuite_dir   = [external_dir 'STI_Suite' filesep];
@@ -86,6 +86,6 @@ SEPIA is developed mainly in MATLAB R2016b in Linux and macOS. In general, all m
 
 - Laplacian Boundary Value (LBV) for background field removal
     .. note::
-        If the LBV algorithm doesn't work on your operating system, you go to the '_LBV' directory of the MEDI toolbox and try the following command in the Matlab command window to re-compile the library: ``mex mexMGv6.cpp``
+        If the LBV algorithm doesn't work on your operating system, you can go to the '_LBV' directory of the MEDI toolbox and try the following command in the Matlab command window to re-compile the library: ``mex mexMGv6.cpp``
 
 - Graphcut for phase unwrapping
