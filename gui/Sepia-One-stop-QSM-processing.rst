@@ -122,9 +122,9 @@ Background field removal panel
 
   Select a background field removal method. The method parameters will be displayed on the method panel.
 
-- Remove potenital B1 residual phase
+- Remove residual B1 field by
 
-  Remove (not exactly) the harmonic fields contributions using 4th-order polynomial fitting on the local field. Useful when the data contains residual B1(+ &/ -) contributions.
+  Option to remove potential field contributions originated from B1 by polynomial fitting or spherical harmonic fit.
 
 - Erode edge voxel(s)  
 
@@ -149,7 +149,7 @@ QSM panel
 Others
 ^^^^^^
 
-.. image:: images/start_button.png
+.. image:: images/start_button_anno.png
 
 - Load config
 

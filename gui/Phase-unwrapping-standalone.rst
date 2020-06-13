@@ -111,7 +111,7 @@ Total field recovery and phase unwrapping panel
 Others
 ^^^^^^
 
-.. image:: images/start_button.png
+.. image:: images/start_button_anno.png
 
 - Load config
 

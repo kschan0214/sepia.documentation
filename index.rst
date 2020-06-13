@@ -8,9 +8,9 @@ SEPIA Documentation
 
 Welcome to the SEPIA documentation! Here you can find all the documents related to SEPIA.
 
-**SEPIA** provides a graphical user interface in Matlab to build data processing pipelines related to quantitative susceptibility mapping (QSM).
+**SEPIA** provides a graphical user interface (GUI) in Matlab to build data processing pipelines related to quantitative susceptibility mapping (QSM).
 
-**SEPIA** is designed to solve two issues we encountered during my research in QSM:  
+**SEPIA** is designed to solve two issues we encountered in QSM:  
 
 1. Using algorithms from toolboxes developed by different research groups,
 2. Having a platform such that we can quickly adjust (and remember) parameters of each algorithm.  
@@ -22,7 +22,7 @@ The purpose of SEPIA is to provide a platform for easy access to different QSM p
 3. `FANSI toolbox <https://gitlab.com/cmilovic/FANSI-toolbox>`_  
 4. `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
 
-Through SEPIA we hope researchers who are not coming from the field could also be able to use QSM for their research. For those more experienced researchers, I also hope this tool can simplify your workflow.
+Through SEPIA we hope researchers who are not coming from the field could also be able to use QSM for their research. For those more experienced researchers, we also hope this tool can simplify your workflow.
 
 Table of Contents
 =================
@@ -36,6 +36,7 @@ Table of Contents
    getting_started/Data-preparation
    getting_started/Sepia-header
    getting_started/Sepia-output
+   getting_started/Update-log
 
 .. toctree::
    :maxdepth: 1

@@ -87,7 +87,7 @@ QSM panel
 Others
 ^^^^^^
 
-.. image:: images/start_button.png
+.. image:: images/start_button_anno.png
 
 - Load config
 
