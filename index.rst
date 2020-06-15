@@ -36,7 +36,7 @@ Table of Contents
    getting_started/Data-preparation
    getting_started/Sepia-header
    getting_started/Sepia-output
-   getting_started/Update-log
+   getting_started/Release-note
 
 .. toctree::
    :maxdepth: 1
@@ -56,6 +56,7 @@ Table of Contents
    method/Phase-unwrapping-algorithms
    method/Background-field-removal-algorithms
    method/QSM-algorithms
+   method/Lookup-table-algorParam
 
 .. toctree::
    :maxdepth: 1
