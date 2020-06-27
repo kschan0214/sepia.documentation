@@ -1,7 +1,7 @@
 .. _integration_method_part2-index:
 
-Integration of New BFR/QSM Method in SEPIA: Part 2
-=======================================================================
+Integration of New Phase unwrapping/BFR/QSM Method in SEPIA: Part 2
+===================================================================
 
 Objectives
 ----------
