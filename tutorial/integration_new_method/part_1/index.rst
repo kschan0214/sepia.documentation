@@ -7,7 +7,7 @@ Objectives
 ----------
 
 - Learn how to add a new method to SEPIA framework
-- Understanding structure of SEPIA processing back end
+- Understanding structure of SEPIA processing backend
 
 Target Audience
 ^^^^^^^^^^^^^^^
@@ -194,3 +194,7 @@ The method is now available in SEPIA! However, the method is only available in t
    algorParam.qsm.threshold = 0.15 ;
 
    QSMMacroIOWrapper(input,output_basename,mask_filename,algorParam);
+
+.. note:: For phase unwrapping method, the structure of ``addon_config.m`` is slightly different. Please check the ``addon_config.m`` file in ``$SEPIA_HOME/addons/phase_unwrap/segue/`` for more information. 
+
+.. note:: The next part of the tutorial is about adding GUI feature to the method (i.e. method panel). For phase unwrapping method, currently no method panel is supported. Having ``addon_config.m``, ``Wrapper_???_???.m`` and your method (e.g. can be Matlab function or compiled library, etc.) would be enough for both frontend and backend of SEPIA.

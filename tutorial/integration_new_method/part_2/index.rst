@@ -24,7 +24,7 @@ Introduction
 
 In this tutorial, we will practice how to add a new method to the SEPIA GUI. you should complete the tutorial Part 1 before proceeding to this tutorial.
 
-GUI is a major component of SEPIA. It provides the most straightfoward way to access all avaiable resources of QSM processing in SEPIA framework. The main goal of the GUI is to generate a pipeline configuration file containing all the processing tasks, methods and algorithm parameters specified by the users and used to trigger the QSM processing. The configuration file can also be executed without initializing the GUI since it directly accesses the processing back end. 
+GUI is a major component of SEPIA. It provides the most straightfoward way to access all avaiable resources of QSM processing in SEPIA. The main goal of the GUI is to generate a pipeline configuration file (sepia_config.m) containing all the processing tasks, methods and algorithm parameters specified by the users and used to trigger the QSM processing. The configuration file can also be executed without initializing the GUI since it directly accesses the processing backend. 
 
 The full QSM processing pipeline in SEPIA can be summarised into 4 task panels, including:
 
@@ -43,22 +43,35 @@ The method panel will be switched from one to another based on the current selec
 There are two main objectives we need to accomplish in this tutorial:
 
 1. design a method panel that can obtain information from the user, and
-2. export and import the information to/from a pipelin configuration file.
+2. export and import the information to/from a pipeline configuration file.
 
 
 Exercise
 --------
 
-To begin with, let's go to the ``/SEPIA_HOME/tutorial/myQSMmethod/``. You should see there are four Matlab scripts in the folder:
+If you already complete Part 1 of the tutorial, go to the addons directory ``$SEPIA_HOME/addons/qsm/myQSMmethod/``. If not, we strongly recommand go through the Part 1 of the tutorial first.
+
+In the addons directory ``$SEPIA_HOME/addons/qsm/myQSMmethod/``, you should see there are five Matlab scripts in the folder:
 
 .. figure:: images/figure02_files.png
    :align: center
    
-In Part 1, we demonstrated how to connect ``myQSM.m`` to the SEPIA processing back end using ``Wrapper_QSM_myQSM.m`` as a connector. In this tutorial, we will use the remaining two files: ``sepia_handle_panel_qsm_myQSM.m`` and ``get_set_qsm_myQSM.m``
+In Part 1, we demonstrated how to connect ``myQSM.m`` to the SEPIA processing backend using ``Wrapper_QSM_myQSM.m`` as a connector and ``addon_config.m`` for SEPIA to load your method in the framework. In this tutorial, we will use the remaining two files: ``sepia_handle_panel_qsm_myQSM.m`` and ``get_set_qsm_myQSM.m``
 
 
 ``sepia_handle_panel_qsm_myQSM.m``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In Part 1 of this tutorial, we decided that our method ``myQSM.m`` has one adjustable parameter called ``thres``, which is a threshold of the dipole kernel. In the processing backend, users can adjust the threshold value via the user algorithm input structure 'algorParam', e.g.:
+
+.. code-block:: matlab
+
+   algorParam.qsm.method = 'myQSM' ;
+   algorParam.qsm.threshold = 0.15 ;
+
+   QSMMacroIOWrapper(input,output_basename,mask_filename,algorParam);
+
+We therefore need to design a panel for myQSM such that users can input their desired threshold value in the GUI.
 
 Each method in SEPIA GUI has it own panel to obtain information from users. This information can be a value (e.g. tolerance), a decision (e.g. true/false), a selection (given choices) and many others. We will go through the script to understand how a panel can be designed in SEPIA GUI.
 
@@ -198,5 +211,92 @@ Now, the method panel is ready for the GUI. Our next job is to make sure the use
 ``get_set_qsm_myQSM.m``
 ^^^^^^^^^^^^^^^^^^^^^^^
 
+Once the method panel is setup, our final task is to translate this information from the GUI to the pipeline configuration file (sepia_config.m) in a way the processing backend can understand. This job is done by the ``get_set_qsm_myQSM.m`` file.
 
+In Part 1 of this tutorial, we defined a variable named ``algorParam.qsm.threshold`` in the wrapping function ``Wrapper_QSM_myQSM.m`` to allow user to adjust the threshold on the dipole kernel, i.e.
+
+.. code-block:: matlab
+
+   % get algorithm parameters, if user doesn't specify them then set some default values
+   algorParam = check_and_set_algorithm_default(algorParam);
+   thre_tkd   = algorParam.qsm.threshold;  % here you can define how SEPIA will store the user input in the 'algorParam' variable
+
+The usage of the variable name ``algorParam.qsm.threshold`` is consistent thorough all levels of the SEPIA framework. This means the name and the structure of ``algorParam.qsm.threshold`` are the same in the sepia_config.m file as in the ``Wrapper_QSM_myQSM.m`` file which is the connector between SEPIA and the main script of processing. 
+
+In a nutshell, ``get_set_qsm_myQSM.m`` obtains the user input value from the GUI and converts it in a correct format in the pipeline configuration file. It is also responsible to read the value from the pipeline configuration file and update the number shown in the GUI when users load the pipeline configuration file back to the GUI.
+
+We are going to explain how to archieve all these in ``get_set_qsm_myQSM.m``. 
+
+.. figure:: images/figure07_getset_script.png
+   :align: center
+   
+**Anatomy of get_set_qsm_myQSM.m**
+
+.. code-block:: matlab
+
+	function get_set_qsm_myQSM(h,mode,input)
+
+``get_set_qsm_myQSM.m`` has three predefined input variables. No modfication is allowed here.
+
+.. code-block:: matlab
+
+	str_pattern = {'.qsm.threshold'};
+
+``str_pattern`` stores all the sub-structures you defined in ``Wrapper_QSM_myQSM.m`, e.g. the ``.qsm.threshold`` part of ``algorParam.qsm.threshold``. The string pattern specified here will be printed on the pipeline configuration file and read into GUI when the configuration file is loaded. For methods with multiple input, separate the sub-structure string patterns of the corresponding input using ','. 
+
+.. code-block:: matlab
+
+	action_handle = {h.qsm.myQSM.edit.threshold};
+
+``action_handle`` contains all the GUI handles of where the information is exported/imported. In this example, the threshold is specified in ``h.qsm.myQSM.edit.threshold`` in the GUI function (see above section). 
+
+.. note:: The handle variable stored in ``action_handle`` must have the same position as in ``str_pattern``.
+
+.. code-block:: matlab
+
+	switch lower(mode)
+
+The variable ``mode`` here corresponds to 
+
+1. 'set': exporting the GUI input to a pipeline configuration file; 
+2. 'get': importing values in a pipeline configuration file to the GUI.
+
+.. code-block:: matlab
+
+   case 'set'
+      fid = input;
+      
+      fprintf(fid,'algorParam%s = %s ;\n'	,str_pattern{1},get(action_handle{1},	'String'));
+
+In 'set' scenario, ``get_set_qsm_myQSM.m`` tries to export information from the GUI to a pipeline configuration file (sepipa_config.m). The first line ``fid = input;`` is just to obtain the sepia_config.m file ID in order to write something to the file in the second line. 
+
+There are two formatted text data (%s) we need to write, the first %s corresponds to the algorithm parameter sub-structure, in this case adding text specified in ``str_pattern`` which is '.qsm.threshold' after the text 'algorParam'. The second %s corresponds to the value in the ``action_handle`` (i.e. ``h.qsm.myQSM.edit.threshold``) which is the value specified in the GUI. The input obtained from an 'edit' field in the GUI is in text instead of a number. Therefore %s is used.
+
+.. code-block:: matlab
+
+   case 'get'
+
+      config_txt = input;
+      
+      % first edit field
+      val             = get_num_as_string(config_txt, str_pattern{1}, '=', ';');
+      set_non_nan_value(action_handle{1},'String',val)
+
+In 'get' scenario, ``get_set_qsm_myQSM.m`` tries to import information from a pipeline configuration file back into the GUI. Noted that the input variable ``input`` contains file ID in the 'set' scenario while here it contains all the text in the input pipeline configuration file. 
+
+The first task here is to obatin the required value from the pipeline configuration file. This is done via the ``get_num_as_string`` function, which captures information stated as a number in the text to the Matlab text format. The ``get_num_as_string`` function has four input variables:
+
+.. code-block:: matlab
+
+   str = get_num_as_string(A, str_pattern, start_indicator, end_indicator)
+
+The first input, ``A``, in a variable containing all text of the pipeline configuration file.
+The second input, ``str_pattern`` is a variable that contains a specific string of text, that is '.qsm.threshold' in this example.
+The third and fourth input, ``start_indicator`` and ``end_indicator`` indicate that the position of the required information after ``str_pattern``. In this example, the threshold is exported as ``algorParam.qsm.threshold = 0.1 ;`` specified in the 'set' scenario. Therefore, the threshold value can be captured between the special characters '=' and ';', corresponding to the ``start_indicator`` and ``end_indicator`` input.
+
+Once we obtain the threshold value as text format stored in ``val``, the second task is to update the corresponding value shown in the GUI, which is done in the last line here.
+
+With these two files ready, our new QSM dipole inversion method can now work properly with the SEPIA GUI. Start the SEPIA GUI and try it out!
+
+Here we demonstrated the simpliest way to incorporate a new method in the SEPIA framework. There are so much more options available to obtain user input for your method, as shown in the MEDI method panel and the FANSI method panel. You can also check out the ``sepia_handle_panel_qsm_???.m``, ``get_set_qsm_???.m`` and ``Wrapper_QSM_???.m`` files to understand how the GUI function of other existing methods is designed. 
 
