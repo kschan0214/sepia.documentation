@@ -77,7 +77,7 @@ In the **Total field recovery and phase unwrapping** panel:
 
    This option is to determine the algorithm to spatially unwrap the phase. 'SEGUE' is a region growing based method.
 
-#. Check **Exlcude voxles using residual, threshold:** option. 
+#. Check **Exlcude voxels using residual, threshold:** option. 
 
    This optino allows us to create a new weighting map based on how closely the signal evolves like a simple linear model. 
 
