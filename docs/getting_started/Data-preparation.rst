@@ -36,6 +36,7 @@ Once you have the NIfTI files ready, **SEPIA** provides two options to load the 
 
 - select the required files directly, or  
 - prepare the data with specific names and put all of them in a common directory, from which you can specify the input directory in **SEPIA**. The name requirement depends on the standalone you are working on. For more specific details please check the wiki pages of each standalone applications:
+
     :ref:`Sepia-One-stop-QSM-processing`
     :ref:`Phase-unwrapping-standalone`
     :ref:`Background-field-removal-standalone`
@@ -43,10 +44,18 @@ Once you have the NIfTI files ready, **SEPIA** provides two options to load the 
 
 - Brain Imaging Data Structure (BIDS) specification
     Starting from v1.0, it is possible to specify a directory that follows the BIDS specification as an input method for **SEPIA** one-stop standalone application. Specifically, the following rules are required:
+
     1. Filename of the phase data must contain the following key|label pair: 'part-phase';
+
     2. Filename of the magnitude data must contain the following key|label pair: 'part-mag';
+
     3. Filename of the JSON file must contain the following key|label pair: 'part-mag';
+
     4. There should be no other NIfTI and JSON files have filenames containing the key|label pairs 'part-mag' and 'part-phase' except the data for QSM processing.
+
+    Here is an example of valid BIDS directory input for **SEPIA**
+
+    .. image:: images/bids_directory.png  
 
     .. note::
         For BIDS directory input, it is not neccessary to the (multi-echo) NIfTI data in 4D.
