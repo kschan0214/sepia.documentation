@@ -18,15 +18,16 @@ Data conversion
 
 SEPIA is tested with (but not limited to) the following three data conversion tools:
 
-1. `MRIConvert <https://lcni.uoregon.edu/downloads/mriconvert>`_: Please have the following setting checked: 'Option' -> 'Save multivolumes series as 4D files':
+1. `dcm2niix <https://github.com/neurolabusc/dcm2niix>`_: Please make sure the 'merge' option (-m) is set to 'no' for the conversion (i.e. ``dcm2niix -m n``). In this way, multiple 3D volumes (the number of volumes depends on the number of echoes acquired) will be created together with the JSON files containing the TE of each echo (if you enable the merge option of dcm2niix you will only have one JSON file containing one TE). You can then merge the echo images into 4D using tools like `fslmerge <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Fslutils>`_.  
+
+2. `dicm2nii <https://github.com/xiangruili/dicm2nii>`_
+
+3. `MRIConvert <https://lcni.uoregon.edu/downloads/mriconvert>`_: Please have the following setting checked: 'Option' -> 'Save multivolumes series as 4D files':
 
     .. image:: images/mriconvert_save4d.png  
 
     In this way, your mGRE data will be stored as 4D FSL NIfTI data that is a valid input of **SEPIA**.  
 
-2. `dcm2niix <https://github.com/neurolabusc/dcm2niix>`_: Please make sure the 'merge' option (-m) is set to 'no' for the conversion (i.e. ``dcm2niix -m n``). In this way, multiple 3D volumes (the number of volumes depends on the number of echoes acquired) will be created together with the JSON files containing the TE of each echo (if you enable the merge option of dcm2niix you will only have one JSON file containing one TE). You can then merge the echo images into 4D using tools like `fslmerge <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Fslutils>`_.  
-
-3. `dicm2nii <https://github.com/xiangruili/dicm2nii>`_
 
 Data input
 ^^^^^^^^^^
@@ -34,4 +35,11 @@ Data input
 Once you have the NIfTI files ready, **SEPIA** provides two options to load the data: 
 
 - select the required files directly, or  
-- prepare the data with specific names and put all of them in a common directory, from which you can specify the input directory in **SEPIA**. The name requirement depends on the standalone you are working on. For more specific details please check the wiki pages of each standalone applications. 
+- prepare the data with specific names and put all of them in a common directory, from which you can specify the input directory in **SEPIA**. The name requirement depends on the standalone you are working on. For more specific details please check the wiki pages of each standalone applications:
+    :ref:`Sepia-One-stop-QSM-processing`
+    :ref:`Phase-unwrapping-standalone`
+    :ref:`Background-field-removal-standalone`
+    :ref:`QSM-standalone`
+
+- Brain Imaging Data Structure (BIDS) specification
+    Starting from v1.0, it is possible to specify a directory that follows the BIDS specification as an input method for **SEPIA**
