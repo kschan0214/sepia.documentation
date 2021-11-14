@@ -3,7 +3,7 @@
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 # Required
-version: 1
+version: 2
 
 # Set the version of Python and other tools you might need
 build:
@@ -25,5 +25,6 @@ sphinx:
 
 # Optionally declare the Python requirements required to build your docs
 python:
+version: 3.5
    install:
    - requirements: docs/environment.yaml
