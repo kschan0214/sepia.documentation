@@ -4,28 +4,32 @@ SEPIA Output Files
 Output files of Total field reconvery and phase unwrapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+
-| Data                              | Description                                                                                                  |
-+===================================+==============================================================================================================+
-| <Prefix>_total-field.nii.gz       | Unwrapped total frequency shift map in Hz.                                                                   |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+
-| <Prefix>_weights.nii.gz           | SNR-weighted image derived from standard deviation of noise in phase data.                                   |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_noise-sd.nii.gz          | Estimated standard deviation of noise in the phase data.                                                     |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_phase.nii.gz             | Wrapped phase data in radian (only if the input data contains voxel exceeds the range of [-pi,pi]).          |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_unwrapped-phase.nii.gz   | Unwrapped phase data in radian (if selected).                                                                |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_mask.nii.gz              | Brain mask derived from brain extraction of FSL  (if selected).                                              |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_mask-local_field.nii.gz  | Signal mask for background field removal step (if voxel exclusion is selected with 'Brain mask' option).     |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_relative-residual.nii.gz | Relative residual derived using mono-exponential model with a single frequency shift (if voxel exclusion     |
-|                                   | is selected).                                                                                                |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
-| <Prefix>_mask-reliable.nii.gz     | Derived from thresholding relative-residual map using user-defined value.                                    |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+
+| Data                                   | Description                                                                                                  |
++========================================+==============================================================================================================+
+| <Prefix>_fieldmap.nii.gz               | Unwrapped total frequency shift map in Hz.                                                                   |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+
+| <Prefix>_weights.nii.gz                | SNR-weighted image derived from standard deviation of noise in phase data.                                   |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_noisesd.nii.gz                | Estimated standard deviation of noise in the phase data.                                                     |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_part-phase_rad.nii.gz         | Wrapped phase data in radian (only if the input data contains voxel exceeds the range of [-pi,pi]).          |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_part-phase_unwrapped.nii.gz   | Unwrapped phase data in radian (if selected).                                                                |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_part-phase_reverse.nii.gz     | inverted phase data, = -(phase)                                                                              |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_part-phase_bipolarcorr.nii.gz | phase data corrected for bipolar readout gradient                                                            |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_mask_brain.nii.gz             | Brain mask derived from brain extraction of FSL  (if selected).                                              |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_mask_localfield.nii.gz        | Signal mask for background field removal step (if voxel exclusion is selected with 'Brain mask' option).     |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_relativeresidual.nii.gz       | Relative residual derived using mono-exponential model with a single frequency shift (if voxel exclusion     |
+|                                        | is selected).                                                                                                |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_mask_reliable.nii.gz          | Derived from thresholding relative-residual map using user-defined value.                                    |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 
 Output files of Background field removal
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -33,9 +37,9 @@ Output files of Background field removal
 +-----------------------------------+--------------------------------------------------------------------------------------------------------------+
 | Data                              | Description                                                                                                  |
 +===================================+==============================================================================================================+
-| <Prefix>_local-field.nii.gz       | Local (tissue) field map in Hz.                                                                              |
+| <Prefix>_localfield.nii.gz        | Local (tissue) field map in Hz.                                                                              |
 +-----------------------------------+--------------------------------------------------------------------------------------------------------------+
-| <Prefix>_mask-qsm.nii.gz          | Signal mask for QSM step.                                                                                    |
+| <Prefix>_mask_QSM.nii.gz          | Signal mask for QSM step.                                                                                    |
 +-----------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 
 Output files of QSM dipole inversion
@@ -44,9 +48,9 @@ Output files of QSM dipole inversion
 +----------------------------------------+---------------------------------------------------------------------------------------------------------+
 | Data                                   | Description                                                                                             |
 +========================================+=========================================================================================================+
-| <Prefix>_QSM.nii.gz                    | Magnetic susceptibility map in ppm.                                                                     |
+| <Prefix>_Chimap.nii.gz                 | Magnetic susceptibility map in ppm.                                                                     |
 +----------------------------------------+---------------------------------------------------------------------------------------------------------+
-| <Prefix>_mask_reference_region.nii.gz  | Reference region used in QSM normalisation (if selected).                                               |
+| <Prefix>_mask_referenceregion.nii.gz   | Reference region used in QSM normalisation (if selected).                                               |
 +----------------------------------------+---------------------------------------------------------------------------------------------------------+ 
 
 Other output files

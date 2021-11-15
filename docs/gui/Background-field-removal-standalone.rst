@@ -1,3 +1,8 @@
+.. _gui-Background-field-removal-standalone:
+.. _Background-field-removal-standalone:
+.. role::  raw-html(raw)
+    :format: html
+
 Background Magnetic Field Removal Standalone
 ============================================
 

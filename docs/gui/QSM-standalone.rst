@@ -1,3 +1,8 @@
+.. _gui-QSM-standalone:
+.. _QSM-standalone:
+.. role::  raw-html(raw)
+    :format: html
+
 QSM Standalone
 ==============
 

@@ -1,3 +1,8 @@
+.. _gui-Sepia-One-stop-QSM-processing:
+.. _Sepia-One-stop-QSM-processing:
+.. role::  raw-html(raw)
+    :format: html
+
 SEPIA (One-stop QSM processing)
 ===============================
 

@@ -1,9 +1,56 @@
 Release note
 ============
 
-0.8.0 (commmit master)
+1.0 (commit ???)
 ----------------------
-Release date: 
+Release date: ???
+
+GUI related
+^^^^^^^^^^^
+
+Toolbox related
+^^^^^^^^^^^^^^^
+
+Bug fix
+^^^^^^^
+
+Backend related (advanced user)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+0.8.1.1 (commit 52dd20b)
+----------------------
+Release date: 6 May 2021
+
+Bug fix
+^^^^^^^
+* Fixed bug when using single-echo dataset
+* Fixed bug when input phase data in unit of radian with single datatype
+
+0.8.1 (commit c78247d)
+----------------------
+Release date: 4 Feb 2021
+
+Toolbox related
+^^^^^^^^^^^^^^^
+* Log file and error message file are now paired (last 15 digits in the extension) instead of sorting in simple numerical order
+* Log file and error message file are now generated in both GUI and command-based operations (when using ``sepiaIO``)
+* When running SEPIA, the current directory will temporaily move to the output directory to avoid overwriting temporary files if multiple processings happen simultaneously
+* A SEPIA pipeline configuration file will be automatically generated using ``sepiaIO`` is the output directory does not have any existing configuration file. This would be useful to look up the pipeline used to produce the results when using command-based operation
+
+Bug fix
+^^^^^^^
+* Bug fix when running FANSI (see `here <https://github.com/kschan0214/sepia/issues/8>`_)
+* Bug fix when getting B0 direction from Sagittal or Coronal acquisition (see `here <https://github.com/kschan0214/sepia/issues/10>`_)
+* Bug fix when running QSM standalone with magnitude image for regularisation (see `here <https://github.com/kschan0214/sepia/issues/9>`_)
+* Bug fix when running MEDI with zeropadding option is not equal to zero
+
+Backend related (advanced user)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Improved readiility of how the data are loaded in SEPIA, which could make better BIDS compartibility in the future
+
+0.8.0 (commmit b4255d8)
+----------------------
+Release date: 18 July 2020
 
 GUI related
 ^^^^^^^^^^^
