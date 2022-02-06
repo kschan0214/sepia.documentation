@@ -1,3 +1,8 @@
+.. _gettingstart-datapreparation:
+.. _Data-preparation:
+.. role::  raw-html(raw)
+    :format: html
+
 Data Preparation
 ================
 
@@ -44,10 +49,10 @@ Once you have the NIfTI files ready, **SEPIA** provides two options to load the 
     - :ref:`Phase-unwrapping-standalone`, e.g., 
         .. image:: images/one-stop-directory-input.png 
 
-    - :ref:`Background-field-removal-standalone` 
+    - :ref:`Background-field-removal-standalone`, e.g., 
         .. image:: images/bfr-directory-input.png
     
-    - :ref:`QSM-standalone` 
+    - :ref:`QSM-standalone`, e.g., 
         .. image:: images/qsm-directory-input.png
 
 - Brain Imaging Data Structure (BIDS) specification

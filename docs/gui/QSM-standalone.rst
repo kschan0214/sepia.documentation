@@ -39,7 +39,7 @@ The I/O panel is responsible for data input/output and data processing that is n
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+
     | Data               | Description                                                                                                           |
     +====================+=======================================================================================================================+
-    | Local field        | 3D local (tissue) field map ([x,y,slice]) in Hz, must contain 'local-field' in the filename, e.g. *local-field.nii.gz*|
+    | Local field        | 3D local (tissue) field map ([x,y,slice]) in Hz, must contain 'localfield' in the filename, e.g. *localfield.nii.gz*  |
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+
     | Magnitude          | (optional) 4D magnitude data ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *mag.nii.gz*                |
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+
@@ -51,7 +51,7 @@ The I/O panel is responsible for data input/output and data processing that is n
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
 
     .. warning::
-      Please make sure the filenames follow the above rules and no other files in the directory sharing the same string labels (i.e. 'local-field', 'mag', 'weights', 'header' and 'mask').
+      Please make sure the filenames follow the above rules (see also:ref:`Data-preparation`) and no other files in the directory sharing the same string labels (i.e. 'localfield', 'mag', 'weights', 'header' and 'mask').
 
   2. Specify the required data separately using the GUI buttons. 
 

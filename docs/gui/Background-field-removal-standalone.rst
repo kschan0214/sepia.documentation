@@ -38,23 +38,26 @@ The I/O panel is responsible for data input/output and data processing that is n
 
     The essential data are:
 
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+
-    | Data               | Description                                                                                                           |
-    +====================+=======================================================================================================================+
-    | Total field        | 3D total field map in Hz ([x,y,slice]), must contain 'total-field' in the filename, e.g. *total-field.nii.gz*         |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-    | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-    | Mask               | 3D signal mask, if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*                           |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+    | Data               | Description                                                                                                                       |
+    +====================+===================================================================================================================================+
+    | Total field        | 3D fieldmap (a.k.a. total field map) in Hz ([x,y,slice]), must contain 'fieldmap' in the filename, e.g. *fieldmap.nii.gz*         |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------------------+ 
+    | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                            |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------------------+ 
+    | Mask               | 3D signal mask, if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*                                       |
+    +--------------------+-----------------------------------------------------------------------------------------------------------------------------------+ 
 
     .. warning::
-      Please make sure the filenames follow the above rules and no other files in the directory sharing the same string labels (i.e. 'total-field', 'header' and 'mask').
+      Please make sure the filenames follow the above rules (see also:ref:`Data-preparation`) and no other files in the directory sharing the same string labels (i.e. 'fieldmap', 'header' and 'mask').
+
+    .. warning::
+      The rule of filename for the fieldmap is changed from 'total-field' to 'fieldmap' in v1.0 in accordance to BIDS specification.
 
   2. Specify the required data separately using the GUI buttons. 
 
     .. note::
-      The 'Noise SD' input is an optional input for 'PDF' algorithm. You can specify a 3D data that provides the noise standard deviation of the original phase data (e.g. *noise-sd.nii.gz* derived from phase unwarpping step in SEPIA).
+      The 'Noise SD' input is an optional input for 'PDF' algorithm. You can specify a 3D data that provides the noise standard deviation of the original phase data (e.g. *noisesd.nii.gz* derived from phase unwarpping step in SEPIA).
 
 - Output prefix
 

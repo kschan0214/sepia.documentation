@@ -38,20 +38,20 @@ The I/O panel is responsible for data input/output and data processing that is n
 
     The essential data are:
 
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+
-    | Data               | Description                                                                                                           |
-    +====================+=======================================================================================================================+
-    | Phase              | 4D phase data ([x,y,slice,time]), must contain 'ph' in the filename, e.g. *phase.nii.gz* or *ph.nii.gz*,              |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+
-    | Magnitude          | 4D magnitude data ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *magn.nii.gz* or *mag.nii.gz*;         |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-    | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-    | Mask               | (optional) 3D signal mask, if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*                |
-    +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
+    +--------------------+--------------------------------------------------------------------------------------------------------------------------+
+    | Data               | Description                                                                                                              |
+    +====================+==========================================================================================================================+
+    | Phase              | 3D/4D phase data ([x,y,slice,time]), must contain 'ph' in the filename, e.g. *phase.nii.gz* or *ph.nii.gz*,              |
+    +--------------------+--------------------------------------------------------------------------------------------------------------------------+
+    | Magnitude          | 3D/4D magnitude data ([x,y,slice,time]), must contain 'mag' in the filename, e.g. *magn.nii.gz* or *mag.nii.gz*;         |
+    +--------------------+--------------------------------------------------------------------------------------------------------------------------+ 
+    | Header             | see :ref:`sepia-header` for more information, must contain 'header' in the filename, e.g. *header.mat*                   |
+    +--------------------+--------------------------------------------------------------------------------------------------------------------------+ 
+    | Mask               | (optional) 3D signal mask, if provided, must contain string 'mask' in the filename, e.g. *mask.nii.gz*                   |
+    +--------------------+--------------------------------------------------------------------------------------------------------------------------+ 
 
     .. warning::
-      Please make sure the filenames follow the above rules and no other files in the directory sharing the same string labels (i.e. 'ph', 'mag', 'header' and 'mask').
+      Please make sure the filenames follow the above rules, or the BIDS specification (see :ref:`Data-preparation`), and no other files in the directory sharing the same string labels (i.e. 'ph', 'mag', 'header' and 'mask').
 
   2. Specify the required data separately using the GUI buttons. 
 

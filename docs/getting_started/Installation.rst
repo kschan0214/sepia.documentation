@@ -25,16 +25,21 @@ Once you have all the toolboxes in place, you have to add the directory containi
 This can be done by:
 'Set Path' -> 'Add Folder' -> /your/sepia/directory/ -> 'Save'  
 
-(**Caution**: To ensure only the selected algorithm is used for the QSM processing, please do not manually add the paths to the external toolboxes you want to run in SEPIA to the Matlab PATH, the `sepia_addpath` function will do the job for you:).)  
+.. warning::
+    To ensure only the selected algorithm is used for the QSM processing, please do not manually add the paths to the external toolboxes you want to run in SEPIA to the Matlab PATH, the `sepia_addpath` function will do the job for you:).)  
 
 or
 
 with MATLAB's command: ``addpath('/your/sepia/directory')``  
 
+Managing external dependency 
+----------------------------
+SEPIA is a pipeline processing tool focusing on integrating various tools in a single platform. Although SEPIA does provide QSM methods for some basic processing, the majority of the methods supported by SEPIA are from external tool. Users have to download these tools from the URLs provided aboved before they can be run in SEPIA. Once you have all the tools available in your computer, you can use the following options to manage these tools in the SEPIA environment.
+
 Managing external dependency via GUI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Then you have to specify the directory of each toolbox. From SEPIA v1.0, this can be done on the SEPIA's GUI: simply initialises the GUI using command ``sepia``, this should start the GUI. For the first time, you will see a lot of warning messages regarding missing dependencies. Ignore those messages for now.
+You have to specify the directory of each toolbox. From SEPIA v1.0, this can be done on the SEPIA's GUI: simply initialises the GUI using command ``sepia``, this should start the GUI. For the first time, you will see some warning messages regarding missing dependencies. Ignore those messages for now.
 
 Navigates to the 'Utility' tab, and select 'Manage Dependency':
 
@@ -61,7 +66,7 @@ Alternatively, the traditional way of manging dependency in `SpecifyToolboxesDir
    ROMEO_HOME = '/path/to/ROMEO/library/;'
  
 .. warning::
-    The variable names of the toolboxes' paths are changed from '_dir' to '_HOME'. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error.
+    The variable names of the toolboxes' paths are changed from '_dir' to '_HOME' from v0.8. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error.
 
 For example, I have all my external toolboxes stored under the SEPIA home directory. Additionally, for each toolbox, I have different copies representing different versions when they were published  
 
@@ -110,7 +115,7 @@ Now you can start the GUI by entering ``sepia`` in the MATLAB's command window.
 Compatibility
 -------------
 
-SEPIA is developed mainly in MATLAB R2016b on Linux and macOS. In general, all methods should compatible with earlier MATLAB versions up to R2014b. Most of the methods should also compatible with MATLAB R2017a or later, and other OS, except the following functions/algorithms
+SEPIA is developed mainly in MATLAB R2016b on Linux and macOS. In general, all methods should compatible with earlier MATLAB versions up to R2014b. Most of the methods should also compatible with MATLAB R2017a or later, and other OS, except you might encounter issue with the following functions/algorithms
 
 - Laplacian Boundary Value (LBV) for background field removal
     .. note::

@@ -20,7 +20,8 @@ SEPIA header is a MAT-file (.mat) that stores some important header information 
 	matrixSize = [64,64,64]	% image matrix size
 	voxelSize = [1,1,1]	% spatial resolution of the data, in mm
 
-Example of 5-echo 3D data:
+Example of 5-echo 3D data: 
+
 .. image:: images/sepia-header-example.png
 
 You can create this file manually in Matlab. Alternatively, you can use the Utility standalone application to generate the file. Please visit the corresponding `wiki page <https://github.com/kschan0214/sepia/wiki/Get-header-info>`_ for more information about how to generate the header file. 
