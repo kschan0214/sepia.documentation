@@ -35,6 +35,21 @@ Total field recovery and phase unwrapping algorithm parameters
 | isSaveUnwrappedEcho       | Logical value of saving unwrapped phase for all echoes                                                       |
 +---------------------------+--------------------------------------------------------------------------------------------------------------+ 
 
+ROMEO (see also `here <https://github.com/korbinian90/ROMEO>`_)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++----------------------+--------------------------------------------+
+| algorParam.unwrap.   | Description                                |
++======================+============================================+
+| offsetCorrect        | corresponding to --phase-offset-correction |
++----------------------+--------------------------------------------+
+| mask                 | single mask                                |
++----------------------+--------------------------------------------+
+| qualitymaskThreshold | Threshold for ROMEO quality mask           |
++----------------------+--------------------------------------------+
+| useRomeoMask         | Use ROMEO mask in SEPIA                    |
++----------------------+--------------------------------------------+
+
 Background field removal algorithm parameters
 ---------------------------------------------
 

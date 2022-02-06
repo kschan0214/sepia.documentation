@@ -26,6 +26,9 @@ The purpose of SEPIA is to provide a platform for easy access to different QSM p
 
 Through SEPIA we hope researchers who are not coming from the field could also be able to use QSM for their research. For those more experienced researchers, we also hope this tool can simplify your workflow.
 
+.. note::
+    We recommand to use only one specific SEPIA version throughtout a single study (i.e., do not update SEPIA in the middle of your study) to ensure all data undergoing a consistient processing pipeline. 
+
 Table of Contents
 =================
 

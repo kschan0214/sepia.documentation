@@ -51,7 +51,7 @@ The I/O panel is responsible for data input/output and data processing that is n
     +--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
 
     .. warning::
-      Please make sure the filenames follow the above rules (see also:ref:`Data-preparation`) and no other files in the directory sharing the same string labels (i.e. 'localfield', 'mag', 'weights', 'header' and 'mask').
+      Please make sure the filenames follow the above rules (see also **Data Input** in :ref:`Data-preparation`) and no other files in the directory sharing the same string labels (i.e. 'localfield', 'mag', 'weights', 'header' and 'mask').
 
   2. Specify the required data separately using the GUI buttons. 
 

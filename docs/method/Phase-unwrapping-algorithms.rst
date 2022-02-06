@@ -24,6 +24,11 @@ Temporal phase unwrapping with multi-echo data
 
   This is a method in the MEDI toolbox  
 
+3. `ROMEO total field calculation <https://doi.org/10.1002/mrm.28563>`_
+  
+  This is the method kindly provided from the ROMEO team. Please check the ROMEO GitHub page for the detailed arguments (settings).
+
+
 Phase unwrapping
 ^^^^^^^^^^^^^^^^
 
@@ -50,3 +55,7 @@ Spatial phase unwrapping
   Graph-cut algorithm in the MEDI toolbox, sometimes uses with water-fat imaging.
 
 6. `SEGUE <https://doi.org/10.1109/TMI.2018.2884093>`_
+
+7. `ROMEO <https://doi.org/10.1002/mrm.28563>`_
+
+  Using ROMEO for single phase unwrapping only. 
