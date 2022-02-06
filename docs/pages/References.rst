@@ -31,8 +31,7 @@ cuts: application in quantitative susceptibility mapping. IEEE Transactions on M
 531–540 (2015). <https://doi.org/10.1109/TMI.2014.2361764>`_    
 
 **SEGUE**
-`Karsa and Shmueli. SEGUE: A Speedy rEgion-Growing Algorithm for Unwrapping Estimated Phase. 
- IEEE Transactions on Medical Imaging 38, 1347–1357 (2018). <https://doi.org/10.1109/TMI.2018.2884093>`_  
+`Karsa and Shmueli. SEGUE: A Speedy rEgion-Growing Algorithm for Unwrapping Estimated Phase. IEEE Transactions on Medical Imaging 38, 1347-1357 (2018). <https://doi.org/10.1109/TMI.2018.2884093>`_  
 
 **Echo phase combination** - **Optimum weights**   
 `Robinson, S. D. et al. An illustrated comparison of processing methods for MR phase imaging and QSM: 
@@ -44,7 +43,10 @@ NMR Biomed 30, e3601 (2017). <https://doi.org/10.1002/nbm.3601>`_
 quantitative susceptibility mapping. 
 Magn Reson Med 69, 467–476 (2012). <https://doi.org/10.1002/mrm.24272>`_  
 
+**ROMEO**   
+`ROMEO Dymerska, B., Eckstein, K., Bachrata, B., Siow, B., Trattnig, S., Shmueli, K., Robinson, S.D., 2020. Phase Unwrapping with a Rapid Opensource Minimum Spanning TreE AlgOrithm (ROMEO). Magnetic Resonance in Medicine. <https://doi.org/10.1002/mrm.28563>`_  
 
+`MCPC-3D-S Coil Combination: Eckstein, K., Dymerska, B., Bachrata, B., Bogner, W., Poljanc, K., Trattnig, S., Robinson, S.D., 2018. Computationally Efficient Combination of Multi-channel Phase Data From Multi-echo Acquisitions (ASPIRE). Magnetic Resonance in Medicine 79, 2996–3006. <https://doi.org/10.1002/mrm.26963>`_
 
 Background field removal  
 ------------------------
@@ -136,3 +138,12 @@ mapping. Magn Reson Med 79, 2795–2803 (2018). <https://doi.org/10.1002/mrm.269
 Polak D., Chatnuntawech I., Yoon J., Srinivasan Iyer S., Lee J., Setsompop K., and Bilgic B. VaNDI: 
 Variational Nonlinear Dipole Inversion enables QSM without free parameters (program number 0319). 
 Proceedings of the International Society for Magnetic Resonance in Medicine 2019, Montreal Canada 
+
+**MRI Susceptibility Calculation Methods**
+For the TKD software implementation, the following citation shall be included in the acknowledgements: 
+`Shmueli, K et al. (2009). Magnetic susceptibility mapping of brain tissue in vivo using MRI phase data, Magnetic Resonance in Medicine vol 62 issue 6, 1510-1522 <https://doi.org/10.1002/mrm.22135>`_ and 
+`Schweser, F et al. (2013). Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion, Magnetic Resonance in Medicine vol 69 issue 6, 1581-1593. <https://doi.org/10.1002/mrm.24405>`_
+
+For the dirTik and iterTik software implementations in the package, the following citation shall be included in the acknowledgements: 
+Karsa, A et al. (2019). High Repeatability of Quantitative Susceptibility Mapping (QSM) in the Head and Neck With a View to Detecting Hypoxic Cancer Sites, In Proceedings of the 27th Annual Meeting of the ISMRM, Montreal, p. 4939 and 
+`Schweser, F et al. (2013). Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion, Magnetic Resonance in Medicine vol 69 issue 6, 1581-1593. <https://doi.org/10.1002/mrm.24405>`_

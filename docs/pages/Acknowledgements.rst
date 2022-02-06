@@ -49,3 +49,16 @@ Cristian Tejos, PhD - Department of Electrical Engineering, Pontificia Universid
 Chile, Santiago, Chile and the Biomedical Imaging Center at Pontificia Universidad Católica de Chile  
 
 - FANSI QSM (including both linear and non-linear solvers, and TV and TGV regularisation options)   
+
+`SEGUE <https://xip.uclb.com/product/SEGUE>`_ developed by 
+
+Anita Karsa, PhD - University College London, UK
+Karin Shmueli, PhD - University College London, UK
+
+`MRI Susceptibility Calculation Methods <https://xip.uclb.com/product/mri_qsm_tkd>`_ developed by 
+
+Karin Shmueli's group in UCL, UK
+
+`ROMEO <https://github.com/korbinian90/ROMEO>`_ developed by 
+
+ROMEO development team 
