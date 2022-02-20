@@ -19,15 +19,19 @@ The purpose of SEPIA is to provide a platform for easy access to different QSM p
 
 1. `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
 2. `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
-3. `FANSI toolbox (v2.0, i.e., commit 77023b65) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/77023b65c4e3b8721b7bd0e904dff486c878bc68>`_  
+3. `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
 4. `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
 5. `MRI susceptibility calculation methods <https://xip.uclb.com/product/mri_qsm_tkd>`_
 6. `ROMEO (v3.2.4) <https://github.com/korbinian90/ROMEO/releases>`_
 
 Through SEPIA we hope researchers who are not coming from the field could also be able to use QSM for their research. For those more experienced researchers, we also hope this tool can simplify your workflow.
 
-.. note::
-    We recommand to use only one specific SEPIA version throughtout a single study (i.e., do not update SEPIA in the middle of your study) to ensure all data undergoing a consistient processing pipeline. 
+.. warning::
+    We recommand to use only one specific SEPIA version throughtout a single study (i.e., re-run all the processing with the latest version or do not update SEPIA in the middle of your study) to ensure all data undergoing a consistient processing pipeline. 
+
+If you encounter a bug in SEPIA, please report to `this GitHub issue page <https://github.com/kschan0214/sepia/issues>`_
+
+If you have a more general question reagrding the usgae of SEPIA and/or other QSM questions, please make use of `the GitHub Discussion page <https://github.com/kschan0214/sepia/discussions>`_
 
 Table of Contents
 =================

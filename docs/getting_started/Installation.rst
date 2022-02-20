@@ -10,7 +10,7 @@ To unleash the fully functionality of **SEPIA**, the following external librarie
 
 - `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
 - `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
-- `FANSI toolbox (v2.0, i.e., commit 77023b65) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/77023b65c4e3b8721b7bd0e904dff486c878bc68>`_  
+- `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
 - `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
 - `MRI susceptibility calculation methods <https://xip.uclb.com/product/mri_qsm_tkd>`_
 - `ROMEO (v3.2.4) <https://github.com/korbinian90/ROMEO/releases>`_
@@ -122,3 +122,5 @@ SEPIA is developed mainly in MATLAB R2016b on Linux and macOS. In general, all m
         If the LBV algorithm doesn't work on your operating system, you can go to the '_LBV' directory of the MEDI toolbox and try the following command in the Matlab command window to re-compile the library: ``mex mexMGv6.cpp``
 
 - Graphcut for phase unwrapping
+
+- SEPIA v1.0 supports both FANSI v1.0 and v3.0. However, compartibility to FANSI v2.0 (commit 77023b65, released on 2020.07.27) is not yet tested!

@@ -7,18 +7,27 @@ Release date: ???
 
 GUI related
 ^^^^^^^^^^^
+* New utility tool for managing external dependencies
 
 Toolbox related
 ^^^^^^^^^^^^^^^
+* Support ROMEO as total field computation and phase unwrapping method
+* Support MRI susceptibility calculation methods for QSM dipole field inversion
+* Support FANSI v2.0
+* Improve BIDS compartibility with SEPIA
+* Update output filenames in accordance with BIDS format 
 
 Bug fix
 ^^^^^^^
+* Improve the robustness of measuring a reference phase point for B0 computation
 
 Backend related (advanced user)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* New architecture for easier integration of new echo combination methods
+* New data loading method to reduce memory usage during processing
 
 0.8.1.1 (commit 52dd20b)
-----------------------
+------------------------
 Release date: 6 May 2021
 
 Bug fix
