@@ -35,7 +35,7 @@ Normalisation of the weights. To establish more comparable weights between subje
 Step 3
 ^^^^^^
 Clipping extreme values (possibly outliers). To further aviod outliers causing any issues, the values at the ends of the histogram are clipped by a boundary. The boundary is defined as:  
-Lower bound (lb) - 0; upper bound (ub) - 3IQR
+Lower bound (lb) - 0; upper bound (ub) - 3IQR_new
 
 .. math::
    weights(weights<lb) = 0
@@ -68,7 +68,7 @@ Normalisation of the weights. Normalisation is performed by simply using the max
    weights(mask) = \frac{weights(mask)}{max(weights(mask))}
    :label: max
 
-The issue with this approach is the maximum value of the weights before normalisation might not be in the similar range across subjects and acquisition protocols, and it is prone to the outliers in the data. As a results, there could be a global differences in terms of the magnitude of the weights between subjects and between protocols. If a dipole field inversion algorithm takes the weights for the processing, the differences of the overall weights magnitude could impose intrinsic regularisation differences between datasets (e.g. among subjects of the same study) even the same regularisation parameter is used. 
+The issue with this approach is the maximum value relying on a single voxel so it would be subject to outliers and variation between dataset (e.g., different subjects or acquisition protocol can produce different maximum). As a results, there could be a global differences in terms of the magnitude of the weights between different datasets. If a dipole field inversion algorithm takes the weights for the processing, without further normalisation by the algorithms, the differences of the overall weights magnitude could impose additional regularisation differences between datasets (e.g. among subjects of the same study) even the same regularisation parameter is used. 
 
 .. warning::
     The medians of the weights of these two versions are in different range (before v1: less than 1 and around 0.3-0.4; v1: close to 1), meaning it may require adjusting the regularisation parameter to match regularisation effect between the two versions. Therefore, it is not recommended to mix software versions in a single study.
