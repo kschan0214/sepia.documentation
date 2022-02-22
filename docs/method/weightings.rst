@@ -50,7 +50,7 @@ And this is the final output of the weights.
 How does SEPIA compute the weights before v1?
 ---------------------------------------------
 
-Before v1, SEPIA utilises also the inverse of the feidl map standard deviation map as the weights, but the normalisation is different and more primitive. 
+Before v1, SEPIA utilises also the inverse of the field map standard deviation map as the weights, but the normalisation is different and more primitive. 
 
 Step 1
 ^^^^^^
@@ -69,3 +69,7 @@ Normalisation of the weights. Normalisation is performed by simply using the max
    :label: max
 
 The issue with this approach is the maximum value of the weights before normalisation might not be in the similar range across subjects and acquisition protocols, and it is prone to the outliers in the data. As a results, there could be a global differences in terms of the magnitude of the weights between subjects and between protocols. If a dipole field inversion algorithm takes the weights for the processing, the differences of the overall weights magnitude could impose intrinsic regularisation differences between datasets (e.g. among subjects of the same study) even the same regularisation parameter is used. 
+
+.. warning::
+    The medians of the weights of these two versions are in different range (before v1: less than 1 and around 0.3-0.4; v1: close to 1), meaning it may require adjusting the regularisation parameter to match regularisation effect between the two versions. Therefore, it is not recommended to mix software versions in a single study.
+
