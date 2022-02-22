@@ -13,7 +13,7 @@ Toolbox related
 ^^^^^^^^^^^^^^^
 * Support ROMEO as total field computation and phase unwrapping method
 * Support MRI susceptibility calculation methods for QSM dipole field inversion
-* Support FANSI v2.0
+* Support FANSI v3.0 (note that the algorithm parameters are adapted for this version)
 * Improve BIDS compartibility with SEPIA
 * Update output filenames in accordance with BIDS format 
 

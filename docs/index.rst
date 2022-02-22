@@ -65,6 +65,7 @@ Table of Contents
    method/Phase-unwrapping-algorithms
    method/Background-field-removal-algorithms
    method/QSM-algorithms
+   method/weightings
    method/Lookup-table-algorParam
 
 .. toctree::
