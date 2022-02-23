@@ -18,34 +18,24 @@ Invert the fieldmap standard deviation and remove non-value entries (i.e., NaN &
 
 Step 2
 ^^^^^^
-Normalisation of the weights. To establish more comparable weights between subjects and between protocols, the weights are then normalised to have the median close to 1 and interquartile range (IQR) around 0.33 inside the signal mask. This is performed using the method modified from the robust normalisation in machine learning:
-
-2.1: Robust z-score normalisation  
+Normalisation of the weights. To establish more comparable weights between subjects and between protocols, the weights are first normalised by the value defined as (median + 3IQR). Because of the fast R2* tissues (e.g., globus pallidus), the histogram of the weights is usually negatively skewed. The threshold of (median +3IQR) should capture most of the brain issue <= 1.
 
 .. math::
-   weights(mask) = \frac{weights(mask) - median(weights(mask))}{IQR(weights(mask))}
-   :label: robust
-
-2.2: Rescale and re-centre  
-
-.. math::
-   weights(mask) = \frac{weights(mask)}{3} + 1
-   :label: rescale
+   weights = \frac{weights)}{median(weights(mask) + 3\times IQR(weights(mask))}
+   :label: normalise
 
 Step 3
 ^^^^^^
-Clipping extreme values (possibly outliers). To further aviod outliers causing any issues, the values at the ends of the histogram are clipped by a boundary. The boundary is defined as:  
-Lower bound (lb) - 0; upper bound (ub) - 3IQR_new
+To avoid the weights estimated from vaious echo combination methods and dataset having significant differences in magnitude overall, the median of the histogram of the weights is re-centred to 1.
 
 .. math::
-   weights(weights<lb) = 0
-   :label: clippinglb
+   weights = weights - median(weights(mask) + 1
+   :label: recentre
 
-.. math::
-   weights(weights>ub) = 3 \times IQR(weights(mask))
-   :label: clippingub
+And this is the final output of the weights. Since the median after normalisation will be less than 1. Therefore, the minimum value of the weights will not be equal to zero, roughly speaking, most gray matter and white matter could have weight ~1; globus pallidus, red nucleus and substantia nigra ~0.7-0.9; veneous structures ~0.3-0.6.
 
-And this is the final output of the weights.
+.. note::
+   In future, we would seek for providing more controls on different ways to produce the weighting map.
 
 How does SEPIA compute the weights before v1?
 ---------------------------------------------
@@ -68,7 +58,7 @@ Normalisation of the weights. Normalisation is performed by simply using the max
    weights(mask) = \frac{weights(mask)}{max(weights(mask))}
    :label: max
 
-The issue with this approach is the maximum value relying on a single voxel so it would be subject to outliers and variation between dataset (e.g., different subjects or acquisition protocol can produce different maximum). As a results, there could be a global differences in terms of the magnitude of the weights between different datasets. If a dipole field inversion algorithm takes the weights for the processing, without further normalisation by the algorithms, the differences of the overall weights magnitude could impose additional regularisation differences between datasets (e.g. among subjects of the same study) even the same regularisation parameter is used. 
+The potential issue with this approach is the maximum value relying on a single voxel so it could be subject to outliers and variations between dataset (e.g., different subjects or acquisition protocol can produce different maximum). As a results, there could be a global differences in terms of the magnitude of the weights between different datasets. If a dipole field inversion algorithm takes the weights for the processing, without further normalisation by the algorithms, the differences of the overall weights magnitude could impose additional regularisation differences between datasets (e.g., among subjects of the same study) even the same regularisation parameter is used across the entire study. 
 
 .. warning::
     The medians of the weights of these two versions are in different range (before v1: less than 1 and around 0.3-0.4; v1: close to 1), meaning it may require adjusting the regularisation parameter to match regularisation effect between the two versions. Therefore, it is not recommended to mix software versions in a single study.
