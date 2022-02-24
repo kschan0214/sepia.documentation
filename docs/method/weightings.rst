@@ -37,6 +37,17 @@ And this is the final output of the weights. Since the median after normalisatio
 .. note::
    In future, we would seek for providing more controls on different ways to produce the weighting map.
 
+Override SEPIA weighting method
+-------------------------------
+If you prefer to derive your own weighting map and use it in SEPIA instead of the default weighting method of SEPIA in the One-stop processing application, you can sepcify your own NIfTI file in the I/O panel, or put the weighting map with a string 'weights' in the filename (e.g., 'data001_weights.nii.gz') along with your phase and magnitude data if you select a directory that contains SEPIA default naming structure files as the input. 
+
+
+.. image:: images/weighting/override.png
+   :align: center
+
+.. warning::
+   User-defined weighting map is not supported if you use BIDS directory as the input.
+
 How does SEPIA compute the weights before v1?
 ---------------------------------------------
 
