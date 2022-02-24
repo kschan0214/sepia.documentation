@@ -21,7 +21,7 @@ Step 2
 Normalisation of the weights. To establish more comparable weights between subjects and between protocols, the weights are first normalised by the value defined as (median + 3IQR). Because of the fast R2* tissues (e.g., globus pallidus), the histogram of the weights is usually negatively skewed. The threshold of (median +3IQR) should capture most of the brain issue <= 1.
 
 .. math::
-   weights = \frac{weights)}{median(weights(mask) + 3\times IQR(weights(mask))}
+   weights = \frac{weights}{median(weights(mask) + 3\times IQR(weights(mask))}
    :label: normalise
 
 Step 3
@@ -29,7 +29,7 @@ Step 3
 To avoid the weights estimated from vaious echo combination methods and dataset having significant differences in magnitude overall, the median of the histogram of the weights is re-centred to 1.
 
 .. math::
-   weights = weights - median(weights(mask) + 1
+   weights = weights - median(weights(mask)) + 1
    :label: recentre
 
 And this is the final output of the weights. Since the median after normalisation will be less than 1. Therefore, the minimum value of the weights will not be equal to zero, roughly speaking, most gray matter and white matter could have weight ~1; globus pallidus, red nucleus and substantia nigra ~0.7-0.9; veneous structures ~0.3-0.6.
