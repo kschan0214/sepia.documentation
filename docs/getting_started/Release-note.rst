@@ -1,9 +1,9 @@
 Release note
 ============
 
-1.0 (commit ???)
+1.0 (commit 8e35aee)
 ----------------------
-Release date: ???
+Release date: 25 Feb 2022
 
 GUI related
 ^^^^^^^^^^^
@@ -16,6 +16,8 @@ Toolbox related
 * Support FANSI v3.0 (note that the algorithm parameters are adapted for this version)
 * Improve BIDS compartibility with SEPIA
 * Update output filenames in accordance with BIDS format 
+* Improve the comparability of weighting maps across different datasets and methods
+* GUI supports on managing toolbox dependencies
 
 Bug fix
 ^^^^^^^

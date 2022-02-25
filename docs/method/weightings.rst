@@ -37,13 +37,13 @@ Step 4
 The last step is to reduce the extreme values on the right hand side of the histogram, which can introduce an overall weight offset between different echo combination methods if the dipole field inversion methods performs weight normalisation using the maximum value of the input data (e.g., FANSI). Since the weights (to be more precisely, the fieldmap standard deviation, noisesd.nii.gz) are commonly derived from the magnitude data, these extreme values often correspond to the fresh spins in the arteries and spatially sparse. To reduce the extreme values while preserving the smoothness of the weighting map, the weighting map is thresholded (threshold defined as median + 3IQR) and the extreme values are replaced by a 3x3x3 (voxel) box filtered copy:
 
 .. math::
-   weights(weights>threshold) = weights_smooth(weights>threshold)
+   weights(weights>threshold) = weights_{smooth}(weights>threshold)
    :label: replace
 
 where
 
 .. math::
-   weights_smooth = smooth3(weight.*mask)
+   weights_{smooth} = smooth3(weight.*mask)
    :label: filter
 
 And this is the final output of the weights. Since the median after normalisation will be less than 1. Therefore, the minimum value of the weights will not be equal to zero, roughly speaking, most gray matter and white matter could have weight ~1; globus pallidus, red nucleus and substantia nigra ~0.7-0.9; veneous structures ~0.3-0.6.
