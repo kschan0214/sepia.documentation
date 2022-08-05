@@ -1,6 +1,19 @@
 Release note
 ============
 
+1.0.1 (commit 3a2b387)
+----------------------
+Release date: 4 Aug 2022
+
+Toolbox related
+^^^^^^^^^^^^^^^
+* Updated function performing phase conversion from arbitary DICOM values to radian (could result in minor numerical differences compared to previous versions if the input phase NIfTI not in radian)
+
+Bug fix
+^^^^^^^
+* Fixed bug when phase NIfTI is in wrapped range with non-unity rescale slope (e.g. from Philips' scanners)
+* Several other minor bugs fixed
+
 1.0 (commit 8e35aee)
 ----------------------
 Release date: 25 Feb 2022
