@@ -53,7 +53,7 @@ Further modulation on the weighting maps
 It is possible to further adjust the weighting map in SEPIA if a "quantitative unwrapping method" is chosen (e.g., SEGUE, ROMEO & region growing). This can be done by checking the "Exclude voxels using residual" option and select "Weighting map" as the input to be applied. The residual here is the relative residual of fitting the multi-echo data with a mono-exponential model:
 
 .. math::
-   relative residual = \frac{$\sum^{t} |\hat{S(TE)} - S(TE)|^{2}}{|S|^{2}}
+   relative residual = \frac{\sum^{t} \lvert \hat{S}(TE) - S(TE) \rvert ^{2}}{\lvert S \rvert ^{2}}
    :label: rr
 
 where
@@ -65,7 +65,7 @@ where
 and
 
 .. math::
-   \hat{S(TE)} = \hat{S(TE)} \times \overline{\hat{S(TE_{1})}}
+   \hat{S}(TE) = \hat{S}(TE) \times \overline{\hat{S}(TE_{1})}
    :label: shat
 
 This information can be brought to the weighting map using the following steps
@@ -81,7 +81,7 @@ Step 2: Weighting component from the relative residual
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. math::
-   relative_residual_weights = (thres - relative_residual_weights) / thres
+   relative residual weights = (thres - relative residual weights) / thres
    :label: rrw2
 
 which has values between 0 and 1
@@ -89,7 +89,7 @@ which has values between 0 and 1
 Step 3: Applying the weights from relative residual on previusly derived weighting map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. math::
-   weights = weights .* relative_residual_weights
+   weights = weights .* relative residual weights
    :label: wrr
 
 
