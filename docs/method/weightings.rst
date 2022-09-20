@@ -48,8 +48,50 @@ where
 
 And this is the final output of the weights. Since the median after normalisation will be less than 1. Therefore, the minimum value of the weights will not be equal to zero, roughly speaking, most gray matter and white matter could have weight ~1; globus pallidus, red nucleus and substantia nigra ~0.7-0.9; veneous structures ~0.3-0.6.
 
-.. note::
-   In future, we would seek to provide more controls on the ways to produce the weighting map.
+Further modulation on the weighting maps
+----------------------------------------
+It is possible to further adjust the weighting map in SEPIA if a "quantitative unwrapping method" is chosen (e.g., SEGUE, ROMEO & region growing). This can be done by checking the "Exclude voxels using residual" option and select "Weighting map" as the input to be applied. The residual here is the relative residual of fitting the multi-echo data with a mono-exponential model:
+
+.. math::
+   relative residual = \frac{$\sum^{t} |\hat{S(TE)} - S(TE)|^{2}}{|S|^{2}}
+   :label: rr
+
+where
+
+.. math::
+   S(TE) = S(TE) \times \overline{S(TE_{1})}
+   :label: s
+
+and
+
+.. math::
+   \hat{S(TE)} = \hat{S(TE)} \times \overline{\hat{S(TE_{1})}}
+   :label: shat
+
+This information can be brought to the weighting map using the following steps
+
+Step 1: Clipping
+^^^^^^^^^^^^^^^^
+
+.. math::
+   relative_residual_weights(relative_residual_weights>thres) = thres
+   :label: rrw1
+
+Step 2: Weighting component from the relative residual
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. math::
+   relative_residual_weights = (thres - relative_residual_weights) / thres
+   :label: rrw2
+
+which has values between 0 and 1
+
+Step 3: Applying the weights from relative residual on previusly derived weighting map
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. math::
+   weights = weights .* relative_residual_weights
+   :label: wrr
+
 
 Override SEPIA weighting method
 -------------------------------
