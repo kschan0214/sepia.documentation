@@ -50,7 +50,7 @@ And this is the final output of the weights. Since the median after normalisatio
 
 Further modulation on the weighting maps
 ----------------------------------------
-It is possible to further adjust the weighting map in SEPIA if a "quantitative unwrapping method" is chosen (e.g., SEGUE, ROMEO & region growing). This can be done by checking the "Exclude voxels using residual" option and select "Weighting map" as the input to be applied. The residual here is the relative residual of fitting the multi-echo data with a mono-exponential model:
+It is possible to further adjust the weighting map in SEPIA if a "quantitative unwrapping method" is chosen (e.g., SEGUE, ROMEO & region growing). This can be done by checking the "Exclude voxels using residual" box and select "Weighting map" as the data to be applied. Here, the residual is the relative residual of fitting the multi-echo data with a mono-exponential model:
 
 .. math::
    relative residual = \frac{\sum^{t} \lvert \hat{S}(TE) - S(TE) \rvert ^{2}}{\sum^{t} \lvert S(TE) \rvert ^{2}}
@@ -62,13 +62,15 @@ where S(TE) is the acquired data with the phase subtracted from the 1st echo
    S(TE) = S(TE)e^{-i \theta_{S(TE_1)} }
    :label: s
 
-and S hat is the mono-exponential model signal with the phase subtracted from the 1st echo
+and S hat is the simulated mono-exponential model signal with the phase subtracted from the 1st echo
 
 .. math::
-   \hat{S}(TE) = S_{0}e^{R_{2}^{*}TE + i\omega TE}
+   \hat{S}(TE) = S_{0}e^{-R_{2}^{*}TE + i\omega TE}e^{-i\omega TE_1}
    :label: shat
 
-This information can be brought to the weighting map using the following operations:
+where omega is the angular frequency derived from the total field map, R2* is estimated using closed-from solution and S0 is the extrapolated signal amplitude at TE=0.
+
+The relative residual is a representation of the goodness of fit to the monoexponential model and this information can be brought to the weighting map using the following operations:
 
 Step 1: Clipping
 ^^^^^^^^^^^^^^^^
