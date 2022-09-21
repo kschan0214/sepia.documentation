@@ -65,7 +65,7 @@ where S(TE) is the acquired data with the phase subtracted from the 1st echo
 and S hat is the mono-exponential model signal with the phase subtracted from the 1st echo
 
 .. math::
-   \hat{S}(TE) = S_0e^{-TE \times R_{2}^{*} + i \times TE \times \omega}e^{-i \times TE_1 \times \omega} }
+   \hat{S}(TE) = S_0e^{-TE \times R_2^* + iTE}e^{-iTE_1} }
    :label: shat
 
 This information can be brought to the weighting map using the following operations:
