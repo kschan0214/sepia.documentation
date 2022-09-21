@@ -59,13 +59,13 @@ It is possible to further adjust the weighting map in SEPIA if a "quantitative u
 where S(TE) is the acquired data with the phase subtracted from the 1st echo
 
 .. math::
-   S(TE) = S(TE) \times e^{-i \theta_{S(TE_1)} }
+   S(TE) = S(TE)e^{-i \theta_{S(TE_1)} }
    :label: s
 
 and S hat is the mono-exponential model signal with the phase subtracted from the 1st echo
 
 .. math::
-   \hat{S}(TE) = S_0 \times e^{-TE \times R_{2}^{*} + i \times TE \times \omega} \times e^{-i \times TE_{1} \times \omega} }
+   \hat{S}(TE) = S_0e^{-TE \times R_{2}^{*} + i \times TE \times \omega}e^{-i \times TE_1 \times \omega} }
    :label: shat
 
 This information can be brought to the weighting map using the following operations:
