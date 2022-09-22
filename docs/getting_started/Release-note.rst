@@ -1,6 +1,28 @@
 Release note
 ============
 
+1.1.0 (commit d8cd602)
+----------------------
+Release date: 22 September 2022
+
+GUI related
+^^^^^^^^^^^
+* Experimental support to export phase image from real|imaginary images (could be useful for GE data)
+
+Toolbox related
+^^^^^^^^^^^^^^^
+* Better compatibility with ROMEO, including loading config file with ROMEO parameter back to GUI
+* New implementation of bipolar readout phase offset correction (no phase unwrapping is required) and provide the estimated phase offset map as output
+* New implementation of incorporating relative residual map into the weighting map when the "Exclude voxels using reisdual" box is checked with "weighting map" option
+
+Bug fix
+^^^^^^^
+* Several minor bugs fixed
+
+Backend related (advanced user)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* New backend architecture for SWI/SMWI. Now new SWI or SMWI methods can be added to SEPIA usinf the add-on feature similar to other methods
+
 1.0.1 (commit 3a2b387)
 ----------------------
 Release date: 4 Aug 2022
