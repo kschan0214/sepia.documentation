@@ -86,7 +86,7 @@ Step 2: Weighting component from the relative residual
    relative residual weights = (thres - relative residual weights) / thres
    :label: rrw2
 
-which has values between 0 and 1
+which has values between 0 (bad fit to monoexponential model) and 1 (good fit).
 
 Step 3: Applying the weights from relative residual on previusly derived weighting map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
