@@ -6,14 +6,14 @@ Installation/Setp up
 Prerequisite  
 ------------
 
-To unleash the fully functionality of **SEPIA**, the following external libraries, which are freely available for academic purposes, are required. You can download these toolboxes/libraries using the following links:
+To support the fully functionality of **SEPIA**, the following external libraries, which are freely available for academic purposes, are required. You can download these toolboxes/libraries using the following links:
 
 - `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
 - `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
 - `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
-- `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
-- `MRI susceptibility calculation methods <https://xip.uclb.com/product/mri_qsm_tkd>`_
-- `ROMEO (v3.2.4) <https://github.com/korbinian90/ROMEO/releases>`_
+- `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
+- `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
+- `mritools (v3.5.5) <https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5>`_
 
 If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.  
 
@@ -43,7 +43,7 @@ You have to specify the directory of each toolbox. From SEPIA v1.0, this can be 
 
 Navigates to the 'Utility' tab, and select 'Manage Dependency':
 
-.. image:: images/manage-dependency.png
+.. image:: images/manage-dependency2.png
 
 1. Use the icon to select the top folder of the tool 
 2. Click 'Open' to select the folder 
@@ -63,10 +63,13 @@ Alternatively, the traditional way of manging dependency in `SpecifyToolboxesDir
    FANSI_HOME = '/path/to/FANSI/toolbox/'; 
    SEGUE_HOME = '/path/to/SEGUE/library/;'
    MRISC_HOME = '/path/to/MRI_susceptibility_calculation/library/;'
-   ROMEO_HOME = '/path/to/ROMEO/library/;'
+   MRITOOLS_HOME = '/path/to/MRITOOLS/library/;'
  
 .. warning::
     The variable names of the toolboxes' paths are changed from '_dir' to '_HOME' from v0.8. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error.
+
+.. warning::
+    The variable 'ROMEO_HOME' is changed to 'MRITOOLS_HOME' in v1.1.1. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error. You can also specify the path to the previous ROMEO executable (but CLEAR-SWI might not work in this case).
 
 For example, I have all my external toolboxes stored under the SEPIA home directory. Additionally, for each toolbox, I have different copies representing different versions when they were published  
 
@@ -82,7 +85,7 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     STISuite_version    = 'STISuite_V3.0';
     SEGUE_version       = 'SEGUE_28012021';
     MRISC_version       = 'MRI_susceptibility_calculation_20190912';
-    ROMEO_version       = 'v3.2.4';
+    MRITOOLS_version    = 'v3.5.5';
 
     % 2. get the Sepia HOME directory from this script
     fullName        = mfilename('fullpath');
@@ -97,7 +100,7 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     STISuite_dir   = [external_dir 'STI_Suite' filesep];
     SEGUE_dir      = [external_dir 'SEGUE' filesep];
     MRISC_dir      = [external_dir 'MRI_susceptibility_calculation' filesep];
-    ROMEO_dir      = [external_dir 'ROMEO' filesep];
+    MRITOOLS_dir   = [external_dir 'MRITOOLS' filesep];
 
     % 5. sepcify the final destination of each toolbox you want to run in Sepia
     MEDI_HOME        = [MEDI_dir        MEDI_version        filesep];
@@ -105,7 +108,7 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     STISuite_HOME    = [STISuite_dir    STISuite_version    filesep];
     SEGUE_HOME       = [SEGUE_dir       SEGUE_version       filesep];
     MRISC_HOME       = [MRISC_dir       MRISC_version       filesep];
-    ROMEO_HOME       = [ROMEO_dir       ROMEO_version       filesep];
+    MRITOOLS_HOME    = [MRITOOLS_dir    MRITOOLS_version    filesep];
 
 
 **IMPORTANT: Please do not modify the original structure of these toolboxes, SEPIA searches the path of the related functions based on the original folder structure.**   

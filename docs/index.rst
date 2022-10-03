@@ -15,14 +15,14 @@ Welcome to the SEPIA documentation! Here you can find all the documents related 
 1. Using algorithms from toolboxes developed by different research groups,
 2. Having a platform such that we can quickly adjust (and remember) parameters of each algorithm.  
 
-The purpose of SEPIA is to provide a platform for easy access to different QSM processing methods in the field. For **SEPIA** v1.0, it provides interfaces to use the following toolboxes freely available online for academic purposes, i.e.  
+The purpose of SEPIA is to provide a platform for easy access to different QSM processing methods in the field. For **SEPIA** v1.1.1, it provides interfaces to use the following toolboxes freely available online for academic purposes, i.e.  
 
 1. `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
 2. `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
 3. `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
-4. `SEGUE <https://xip.uclb.com/i/software/SEGUE.html>`_
-5. `MRI susceptibility calculation methods <https://xip.uclb.com/product/mri_qsm_tkd>`_
-6. `ROMEO (v3.2.4) <https://github.com/korbinian90/ROMEO/releases>`_
+4. `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
+5. `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
+6. `MRITOOLS (v3.5.5) <https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5>`_
 
 Through SEPIA we hope researchers who are not coming from the field could also be able to use QSM for their research. For those more experienced researchers, we also hope this tool can simplify your workflow.
 

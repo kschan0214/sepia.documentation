@@ -21,12 +21,16 @@ Output files of Total field reconvery and phase unwrapping
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 | <Prefix>_part-phase_bipolarcorr.nii.gz | phase data corrected for bipolar readout gradient                                                            |
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_bipolar_phase.nii.gz          | Estimated phase offset induced by bipolar gradient readout.                                                  |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 | <Prefix>_mask_brain.nii.gz             | Brain mask derived from brain extraction of FSL  (if selected).                                              |
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 | <Prefix>_mask_localfield.nii.gz        | Signal mask for background field removal step (if voxel exclusion is selected with 'Brain mask' option).     |
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 | <Prefix>_relativeresidual.nii.gz       | Relative residual derived using mono-exponential model with a single frequency shift (if voxel exclusion     |
 |                                        | is selected).                                                                                                |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
+| <Prefix>_relativeresidualweights.nii.gz| Weighting maps [0,1] derived from thresholding relative-residual map using user-defined value.               |
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 
 | <Prefix>_mask_reliable.nii.gz          | Derived from thresholding relative-residual map using user-defined value.                                    |
 +----------------------------------------+--------------------------------------------------------------------------------------------------------------+ 

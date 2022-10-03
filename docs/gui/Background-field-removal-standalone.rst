@@ -77,7 +77,7 @@ The I/O panel is responsible for data input/output and data processing that is n
 Background field removal panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: images/bfr_panel_anno.png
+.. image:: images/bfr_panel_anno2.png
 
 - Method
 
@@ -87,7 +87,12 @@ Background field removal panel
 
   Option to remove potential field contributions originated from B1 by polynomial fitting or spherical harmonic fit.
 
-- Erode edge voxel(s)  
+- Erode edge voxel(s) before BFR 
+
+  Remove the edge voxels from the brain mask before background field removal step. Useful when the input brain mask is not tightly fitted. 
+
+
+- Erode edge voxel(s) after BFR 
 
   Further remove the edge voxels from the brain mask. Useful when the local field is not reliably estimated on the brain edges. This operation is performed **prior** the 'Remove potenital B1 residual phase' operation (if selected).
 

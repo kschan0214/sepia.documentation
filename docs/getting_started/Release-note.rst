@@ -1,7 +1,23 @@
 Release note
 ============
 
-1.1.0 (commit d8cd602)
+1.1.1 (commit ??????) Patch update
+----------------------------------
+Release date: 3 October 2022
+
+Toolbox related
+^^^^^^^^^^^^^^^
+* New function to support refining brain mask before background field removal step
+* Support CLEAR-SWI
+* 'ROMEO_HOME' is now renamed to 'MRITOOLS_HOME' in SpecifyToolboxesDirectory.m 
+* Add GPU compatibility for NDI
+
+Bug fix
+^^^^^^^
+* Fixed bug for full pipeline application and phase unwrapping standalone application used different bipolar readout correction implementations 
+* Fixed bug for NDI when weight was used instead of weight^2
+
+1.1.0 (commit 9ffe0e2)
 ----------------------
 Release date: 22 September 2022
 
@@ -114,7 +130,7 @@ Toolbox related
 * Support extra brain extraction (FSL's BET) parameters from MEDI toolbox
 * New 'percentage' option for MEDI+0 algorithm
 * Support the lastest version of FANSI toolbox (commit dc68c306)
-* New option to use `weak harmonic regularisation <https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.27483)>`_ with FANSI
+* New option to use `weak harmonic regularisation <https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.27483>`_ with FANSI
 
 Backend related (advanced user)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
