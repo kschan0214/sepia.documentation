@@ -1,7 +1,7 @@
 Release note
 ============
 
-1.1.1 (commit ??????) Patch update
+1.1.1 (commit a7680bb) Patch update
 ----------------------------------
 Release date: 3 October 2022
 
