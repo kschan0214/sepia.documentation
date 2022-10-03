@@ -8,7 +8,7 @@ Release date: 3 October 2022
 Toolbox related
 ^^^^^^^^^^^^^^^
 * New function to support refining brain mask before background field removal step
-* Support CLEAR-SWI
+* Official support mritools v3.5.5 (https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5), which included ROMEO and CLEAR-SWI
 * 'ROMEO_HOME' is now renamed to 'MRITOOLS_HOME' in SpecifyToolboxesDirectory.m 
 * Add GPU compatibility for NDI
 
