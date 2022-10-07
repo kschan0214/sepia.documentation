@@ -115,6 +115,10 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
 
 Now you can start the GUI by entering ``sepia`` in the MATLAB's command window.
 
+Setup deep learning tools for SEPIA
+-----------------------------------
+Starting from v1.1.2, several deep learning methods for QSM processing are (experimentally) supported in SEPIA. Please refer to the individual algorithm pages on :ref:`method_QSM_algorithm_all` and :ref:`method_BFR_algorithm_all` for more infomation on setting up these methods in SEPIA.
+
 Compatibility
 -------------
 

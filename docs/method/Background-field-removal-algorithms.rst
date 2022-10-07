@@ -1,3 +1,8 @@
+.. _method-BFR:
+.. _method_BFR_algorithm_all:
+.. role::  raw-html(raw)
+    :format: html
+
 Background Magnetic Field Removal Algorithms
 ============================================
 
@@ -21,3 +26,4 @@ The phase we measured in a GRE acquisition is affected by not only the brain tis
    bfr/VSHARP_STISuite
    bfr/VSHARP
    bfr/iHARPERELLA
+   bfr/BFRnet

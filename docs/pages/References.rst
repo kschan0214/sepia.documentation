@@ -78,6 +78,9 @@ Neuroimage 55, 1645–1656 (2011). <https://doi.org/10.1016/j.neuroimage.2010.11
 background phase removal for quantitative susceptibility mapping. 
 NMR Biomed 27, 219–227 (2014). <https://doi.org/10.1002/nbm.3056>`_  
 
+**BFRnet**
+`Xuanyu Zhu, Yang Gao, Feng Liu, Stuart Crozier, Hongfu Sun, 2022. BFRnet: A deep learning-based MR background field removal method for QSM of the brain containing significant pathological susceptibility sources <https://arxiv.org/abs/2204.02760>`_ 
+
 QSM
 ---
 
@@ -147,3 +150,24 @@ For the TKD software implementation, the following citation shall be included in
 For the dirTik and iterTik software implementations in the package, the following citation shall be included in the acknowledgements: 
 Karsa, A et al. (2019). High Repeatability of Quantitative Susceptibility Mapping (QSM) in the Head and Neck With a View to Detecting Hypoxic Cancer Sites, In Proceedings of the 27th Annual Meeting of the ISMRM, Montreal, p. 4939 and 
 `Schweser, F et al. (2013). Toward online reconstruction of quantitative susceptibility maps: superfast dipole inversion, Magnetic Resonance in Medicine vol 69 issue 6, 1581-1593. <https://doi.org/10.1002/mrm.24405>`_
+
+**QSMnet+**
+`J. Yoon, E. Gong, I. Chatnuntawech, B. Bilgic, J. Lee, W. Jung, J. Ko, H. Jung, K. Setsompop, G. Zaharchuk, E.Y. Kim, J. Pauly, J. Lee. Quantitative susceptibility mapping using deep neural network: QSMnet. Neuroimage. 2018 Oct;179:199-206. <https://www.sciencedirect.com/science/article/pii/S1053811918305378>`_ 
+
+`W. Jung, J. Yoon, S. Ji, J. Choi, J. Kim, Y. Nam, E. Kim, J. Lee. Exploring linearity of deep neural network trained QSM: QSMnet+. Neuroimage. 2020 May; 116619. <https://www.sciencedirect.com/science/article/pii/S1053811920301063>`_ 
+
+`W. Jung, S. Bollmann, J. Lee. Overview of quantitative susceptibility mapping using deep learning: Current status, challenges and opportunities. NMR in Biomedicine. 2020 Mar; e4292. <https://doi.org/10.1002/nbm.4292>`_ 
+
+**LP-CNN**
+`Kuo-Wei Lai, Manisha Aggarwal, Peter van Zijl, Xu Li & Jeremias Sulam, 2020. Learned Proximal Networks for Quantitative Susceptibility Mapping <https://link.springer.com/chapter/10.1007/978-3-030-59713-9_13>`_ 
+
+**xQSM**
+`Yang Gao, Xuanyu Zhu, Bradford A. Moffat, Rebecca Glarin, Alan H. Wilman, G. Bruce Pike, Stuart Crozier, Feng Liu, Hongfu Sun, 2020. xQSM: quantitative susceptibility mapping with octave convolutional and noise-regularized neural networks. <https://doi.org/10.1002/nbm.4461>`_ 
+
+SWI/SMWI
+--------
+**CLEAR-SWI**
+`Eckstein, K., Bachrata, B., Hangel, G., Widhalm, G., Enzinger, C., Barth, M., Trattnig, S., Robinson, S.D., 2021. Improved susceptibility weighted imaging at ultra-high field using bipolar multi-echo acquisition and optimized image processing: CLEAR-SWI. Neuroimage 237, 118175–118175. <https://doi.org/10.1016/j.neuroimage.2021.118175>`_
+
+**SMWI**
+`Gho, S.-M., Liu, C., Li, W., Jang, U., Kim, E.Y., Hwang, D., Kim, D.-H., 2014. Susceptibility map-weighted imaging (SMWI) for neuroimaging. Magnetic resonance in medicine 72, 337–346. <https://doi.org/10.1002/mrm.24920>`_
