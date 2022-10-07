@@ -6,7 +6,6 @@
 LP-CNN
 ======
 
-Reference:
 `Kuo-Wei Lai, Manisha Aggarwal, Peter van Zijl, Xu Li & Jeremias Sulam, 2020. Learned Proximal Networks for Quantitative Susceptibility Mapping <https://link.springer.com/chapter/10.1007/978-3-030-59713-9_13>`_ 
 
 Setup LP-CNN for SEPIA
@@ -21,7 +20,7 @@ Your setup_LPCNN_environment.m should look something like this:
 .. image:: ../images/qsm/LPCNN_setup.png
 
 .. warning::
-The support this method is still in an early stage and only tested on a Linux machine.
+    The support this method is still in an early stage and only tested on a Linux machine.
 
 LP-CNN panel
 ------------

@@ -6,7 +6,6 @@
 BFRnet
 ======
 
-Reference:
 `Xuanyu Zhu, Yang Gao, Feng Liu, Stuart Crozier, Hongfu Sun, 2022. BFRnet: A deep learning-based MR background field removal method for QSM of the brain containing significant pathological susceptibility sources <https://arxiv.org/abs/2204.02760>`_ 
 
 Setup BFRnet for SEPIA
@@ -21,7 +20,7 @@ Your setup_BFRnet_environment.m should look something like this:
 .. image:: ../images/bfr/BFRnet_setup.png
 
 .. warning::
-The support this method is still in an early stage and only tested on a Linux machine.
+    The support this method is still in an early stage and only tested on a Linux machine.
 
 BFRnet panel
 ------------

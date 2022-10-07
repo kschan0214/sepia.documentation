@@ -6,7 +6,6 @@
 xQSM
 ====
 
-Reference:
 `Yang Gao, Xuanyu Zhu, Bradford A. Moffat, Rebecca Glarin, Alan H. Wilman, G. Bruce Pike, Stuart Crozier, Feng Liu, Hongfu Sun, 2020. xQSM: quantitative susceptibility mapping with octave convolutional and noise-regularized neural networks. <https://doi.org/10.1002/nbm.4461>`_ 
 
 Setup xQSM for SEPIA
@@ -21,7 +20,7 @@ Your setup_xQSM_environment.m should look something like this:
 .. image:: ../images/qsm/xQSM_setup.png
 
 .. warning::
-The support this method is still in an early stage and only tested on a Linux machine.
+    The support this method is still in an early stage and only tested on a Linux machine.
 
 xQSM panel
 ----------

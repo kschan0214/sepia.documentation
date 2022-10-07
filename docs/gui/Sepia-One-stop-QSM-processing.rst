@@ -69,16 +69,19 @@ The I/O panel is responsible for data input/output and data processing that is n
   
 - Brain mask  
 
-  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with MEDI toolbox to compute the brain mask.
-
-- Invert phase data   
-
-  Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
+  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with the MEDI toolbox to compute the brain mask.
 
 - FSL brain extraction (bet)
 
   Brain mask can be computed using the Matlab implementation of FSL's BET provided with MEDI toolbox, with options including fractional intensity threshold (-f) and vertical in fractional intensity threshold (-g). More information regarding the options can be found in `BET/UserGuide <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.
 
+- Refine brain mask using R2* (Multi-echo data only)
+  
+  If enable, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask.
+
+- Invert phase data   
+
+  Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
 
 Total field recovery and phase unwrapping panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,7 +93,7 @@ Total field recovery and phase unwrapping panel
   Select a method for temporal phase unwrapping with multi-echo data.
 
   .. note::
-    If the number of echoes is less than 3. 'Optimum weights' method will be automatically used.
+    If the number of echoes is less than 3 and 'MEDI nonlinear fit' is chosen, 'Optimum weights' method will be automatically used.
 
   .. warning::
     The 'MEDI nonlinear fit (Bipolar, testing)' method is not fully supported yet.
@@ -104,19 +107,20 @@ Total field recovery and phase unwrapping panel
 		
 - Bipolar readout correction
 
-  Correct the phase inconsistency between odd and even echoes, and a gradient-like magnetic field contributed from eddy current due to bipolar readout.
-  If this option is enabled, the bipolar readout corrected data will be saved in the output directory with the following suffix:
+  Correct the phase inconsistency between odd and even echoes, and a gradient-like (should be only in the readout direction) magnetic field contributed from eddy current due to bipolar readout.
 
-  - *phase_eddy-correct.nii.gz*
+- Save unwrapped echo phase
+  
+  Export all unwrapped echo phase images as NIfTI.
   
 - Exclude voxels using residual, threshold:  
 
   Exclude voxels that have high relative residual based on a single compartment model fitting. The output data with suffix '*relative-residual.nii.gz* will be used for thresholding. For voxels that have intensity **higher** than the threshold will be **excluded** from subsequent processing. Two methods are supported to exclude those voxels: 
 
-  1. 'Weighting map': the excluded voxels will weight as 0 in the weighting map, which will only affect QSM dipole inversion algorithms that accept a weighting map as part of the regularisation.
+  1. 'Weighting map': Please see :ref: `weightings-in-sepia`` Section **Further modulation on the weighting maps**
   2. 'Brain mask': the excluded voxels will be excluded in the signal mask in the subsequent processing. This will affect both background field removal and QSM dipole inversion results.
 
-  Only available for region growing based methods (i.e. '3D best path', 'Region growing (MEDI)' and 'SEGUE') and 'Graphcut' method. 
+  Only available for quantitative methods (i.e. '3D best path', 'Region growing (MEDI)', 'SEGUE' and 'ROMEO') and 'Graphcut' method. 
 
 Background field removal panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,9 +135,13 @@ Background field removal panel
 
   Option to remove potential field contributions originated from B1 by polynomial fitting or spherical harmonic fit.
 
-- Erode edge voxel(s)  
+- Erode edge voxel(s) before BFR 
 
-  Further remove the edge voxels from the brain mask. Useful when the local field is not reliably estimated on the brain edges. This operation is performed **prior** the 'Remove potenital B1 residual phase' operation (if selected).
+  Remove n voxel(s) away from the edge of the brain mask **BEFORE** the background field removal step.
+
+- Erode edge voxel(s) after BFR 
+
+  Remove n voxel(s) away from the edge of the brain mask **AFTER** the background field removal step. This operation is performed **prior** the 'Remove potenital B1 residual phase' operation (if selected).
 
 QSM panel
 ^^^^^^^^^

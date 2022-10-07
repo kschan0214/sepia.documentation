@@ -64,16 +64,19 @@ The I/O panel is responsible for data input/output and data processing that is n
   
 - Brain mask  
 
-  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with MEDI toolbox to compute the brain mask.
-
-- Invert phase data   
-
-  Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
+  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with the MEDI toolbox to compute the brain mask.
 
 - FSL brain extraction (bet)
 
   Brain mask can be computed using the Matlab implementation of FSL's BET provided with MEDI toolbox, with options including fractional intensity threshold (-f) and vertical in fractional intensity threshold (-g). More information regarding the options can be found in `BET/UserGuide <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.
 
+- Refine brain mask using R2* (Multi-echo data only)
+  
+  If enable, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask.
+
+- Invert phase data   
+
+  Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
 
 Total field recovery and phase unwrapping panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -99,19 +102,20 @@ Total field recovery and phase unwrapping panel
 		
 - Bipolar readout correction
 
-  Correct the phase inconsistency between odd and even echoes, and a gradient-like magnetic field contributed from eddy current due to bipolar readout.
-  If this option is enabled, the bipolar readout corrected data will be saved in the output directory with the following suffix:
+  Correct the phase inconsistency between odd and even echoes, and a gradient-like (should be only in the readout direction) magnetic field contributed from eddy current due to bipolar readout.
 
-  - *phase_eddy-correct.nii.gz*
+- Save unwrapped echo phase
+  
+  Export all unwrapped echo phase images as NIfTI.
   
 - Exclude voxels using residual, threshold:  
 
   Exclude voxels that have high relative residual based on a single compartment model fitting. The output data with suffix '*relative-residual.nii.gz* will be used for thresholding. For voxels that have intensity **higher** than the threshold will be **excluded** from subsequent processing. Two methods are supported to exclude those voxels: 
 
-  1. 'Weighting map': the excluded voxels will weight as 0 in the weighting map, which will only affect QSM dipole inversion algorithms that accept a weighting map as part of the regularisation.
+  1. 'Weighting map': Please see :ref: `weightings-in-sepia`` Section **Further modulation on the weighting maps**
   2. 'Brain mask': the excluded voxels will be excluded in the signal mask in the subsequent processing. This will affect both background field removal and QSM dipole inversion results.
 
-  Only available for region growing based methods (i.e. '3D best path', 'Region growing (MEDI)' and 'SEGUE') and 'Graphcut' method. 
+  Only available for quantitative methods (i.e. '3D best path', 'Region growing (MEDI)', 'SEGUE' and 'ROMEO') and 'Graphcut' method. 
 
 Others
 ^^^^^^

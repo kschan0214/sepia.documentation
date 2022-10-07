@@ -6,7 +6,6 @@
 QSMnet+
 =======
 
-Reference:
 `J. Yoon, E. Gong, I. Chatnuntawech, B. Bilgic, J. Lee, W. Jung, J. Ko, H. Jung, K. Setsompop, G. Zaharchuk, E.Y. Kim, J. Pauly, J. Lee. Quantitative susceptibility mapping using deep neural network: QSMnet. Neuroimage. 2018 Oct;179:199-206. <https://www.sciencedirect.com/science/article/pii/S1053811918305378>`_ 
 
 `W. Jung, J. Yoon, S. Ji, J. Choi, J. Kim, Y. Nam, E. Kim, J. Lee. Exploring linearity of deep neural network trained QSM: QSMnet+. Neuroimage. 2020 May; 116619. <https://www.sciencedirect.com/science/article/pii/S1053811920301063>`_ 
@@ -25,7 +24,7 @@ Your setup_qsmnet_environment.m should look something like this:
 .. image:: ../images/qsm/QSMnet_setup.png
 
 .. warning::
-The support this method is still in an early stage and only tested on a Linux machine.
+    The support this method is still in an early stage and only tested on a Linux machine.
 
 QSMnet+ panel
 -------------
