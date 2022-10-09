@@ -12,7 +12,7 @@ Before using any of these methods, 'ANTS_HOME' has to be specified in SpecifyToo
 
 The path required for 'ANTS_HOME' should be the bin folder of ANTs that contains all the libraries, e.g.,
 
-.. image:: ../images/segmentation/ANTs_bin.png
+.. image:: images/segmentation/ANTs_bin.png
 
 and in the Manage Dependency tool it should be like
 
@@ -24,7 +24,7 @@ Then you need to download the atlases from their corresponding online sources. F
 
 ``sh download_atlas.sh``
 
-.. image:: ../images/segmentation/download_atlas_cmd.png
+.. image:: images/segmentation/download_atlas_cmd.png
 
 By default, the atlases will be downloaded in SEPIA_HOME/atlas/. Make sure you have enough disk space in your computer and do not alter the location where the atlases stored.
 
