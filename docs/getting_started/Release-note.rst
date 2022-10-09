@@ -1,8 +1,20 @@
 Release note
 ============
 
-1.1.1 (commit a7680bb) Patch update
+1.2.0 (commit ???) 
 ----------------------------------
+Release date: ?? October 2022
+
+Toolbox related
+^^^^^^^^^^^^^^^
+* Support several deep learning based methods (BFRnet, xQSM, QSMnet+ and LP-CNN) on Linux
+* Support atlas-based subcortical structure segmentation (CIT168 Reinforcement learning atlas, MuSus-100 and AHEAD) on Linux and Mac
+* Integrate R2* mapping toolbox into SEPIA
+* New function to further refine brain mask by thresholding high R2* voxels on brain edges
+* When magnitude image is used for NDI, the image will be weighted by the intensity of the 99th percentile of the masked voxels instead of the maximum to improve robustness
+
+1.1.1 (commit a7680bb) Patch update
+-----------------------------------
 Release date: 3 October 2022
 
 Toolbox related

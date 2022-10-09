@@ -16,7 +16,7 @@ The path required for 'ANTS_HOME' should be the bin folder of ANTs that contains
 
 and in the Manage Dependency tool it should be like
 
-.. image:: ../images/segmentation/ants_home.png
+.. image:: images/segmentation/ants_home.png
 
 .. note:: If you don't have ANTs, you can still use SEPIA for QSM reconstruction but you can't use the segmentation methods provided in the Analysis tab.
 
