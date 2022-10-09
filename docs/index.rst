@@ -67,6 +67,7 @@ Table of Contents
    method/QSM-algorithms
    method/SWISMWI-algorithms
    method/R2star-algorithms
+   method/Analysis_segmentation
    method/weightings
    method/Lookup-table-algorParam
 
