@@ -1,9 +1,9 @@
 Release note
 ============
 
-1.2.0 (commit ???) 
+1.2.0 (commit d2f54a3) 
 ----------------------------------
-Release date: ?? October 2022
+Release date: 11 October 2022
 
 Toolbox related
 ^^^^^^^^^^^^^^^
