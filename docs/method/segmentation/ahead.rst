@@ -36,7 +36,7 @@ Procedures:
 3. Bringing Chimap to T1w space and create a hybrid image using the following equation:
 
     .. math::
-        hybrid = T1w \times \mu Chi
+        hybrid = T1w - \mu Chi
         :label: hybrid
 
     where T1w is the T1w image normalised to range [0,255] (clipped at 0.5 and 99.5 percentile of masked voxels), mu = 400 and Chi is the magnetic susceptibility map in ppm.
