@@ -1,6 +1,15 @@
 Release note
 ============
 
+1.2.1 (commit 190dd44) 
+----------------------------------
+Release date: 7 December 2022
+
+Bug fix
+^^^^^^^
+* Fix bug when one of the dimension of the input images is odd nunmber
+* Fix bug for missing function for R2* nonlinear least square algorithm
+
 1.2.0 (commit d2f54a3) 
 ----------------------------------
 Release date: 11 October 2022
