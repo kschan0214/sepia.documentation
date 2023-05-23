@@ -45,7 +45,7 @@ A graphical user interface (GUI) should appear right away.
 .. image:: images/exercise2_gui.png
    :align: center
 
-There are several tabs in SEPIS corresponding to usage of SEPIA in various tasks. The first tab in SEPIA provides a one-step application to process QSM from the raw phase data to a magnetic susceptibility map. Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach. 
+There are several tabs in SEPIA corresponding to usage of SEPIA in various tasks. The first tab in SEPIA provides a one-step application to process QSM from the raw phase data to a magnetic susceptibility map. Alternatively, we can break down the processing pipeline into several steps and SEPIA also supports this approach. 
 
 In the following exercises, we will go for the second approach in this tutorial such that we can explain the QSM processing step by step.
 
