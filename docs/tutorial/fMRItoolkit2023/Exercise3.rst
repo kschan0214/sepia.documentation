@@ -82,14 +82,20 @@ In the **Background field removal** panel, the 'LBV' method is shown by default.
 In the **QSM** pannel there are various methods that have been implemented by different teams around the world.
 
 There are : 
+
 - AI GPU enabled reconstructions (xQSM, LPCNN, QSM+);
+  
 - Iterative reconstructions;
+  
 - Direct or Close form solutions;
    
 The first class requires GPU hardware, the second often requires some parameter tunning and can be very time consuming. 
-The thrid class, while simplistic, is very time and memory efficient. In this tutorial it is suggested you 
-- Select the **Method**  the 'MRI Suscep. Calc.' (Univerity College of London Toolbox)
-- Select **solver** 'Truncated kspace division'    
+The thrid class, while simplistic, is very time and memory efficient. In this tutorial it is suggested you: 
+
+- Select the **Method**  the 'MRI Suscep. Calc.' (Univerity College of London Toolbox);
+
+- Select **solver** 'Truncated kspace division';    
+
 - Use the suggested provide **K-space Threshold** of 0.66 (Schwezer et al, MRM, 2012).
 
    .. image:: images/FullSepiaConfiguration_QSM.PNG
