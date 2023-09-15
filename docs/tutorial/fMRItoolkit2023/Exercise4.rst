@@ -93,10 +93,12 @@ If you now vary between the visibility of the two QSM reconstructions you will n
    
 Finally you can appreciate the difference between the R2* and Star QSM recosntruction.
 Points to note:
-   - the reduce mask size associated with the QSM reconstruction;
-   - white the R2*map has a strong tissue CSF contrast, this is vanished in the QSM showing that the magnetic porperties of most brain tissue is comparable
-   - appreciate the increased visibility of the Substantia Nigra and Dentate Nucleus on the QSM map.
-   -  
+
+- the reduced mask size associated with the QSM reconstruction;
+
+- while the R2* map has a strong tissue CSF contrast, this is vanished in the QSM showing that the magnetic properties of most brain tissue is comparable
+
+- appreciate the increased visibility of the Substantia Nigra and Dentate Nucleus on the QSM map.
 
 
 **Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, finish the advanced exercises or experiment with different QSM methods/methods' parameters or move to the next exercise that will show you how to get Synthetic images out of some of these iamges and maps. 
