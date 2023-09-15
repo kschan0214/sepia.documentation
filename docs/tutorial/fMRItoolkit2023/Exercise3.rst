@@ -98,7 +98,6 @@ The thrid class, while simplistic, is very time and memory efficient. In this tu
 Press on the **start** button. On the command window some text will appear reflecting the progress of your pipeline as well as some of the choices you have made.  
 Wait until:  '*Processing pipeline is completed!*'. 
 
-
 .. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again with a new set of parameters you might want to try!
 
 Check the output (should be in *~/QuantitativeTutorial/outputQSM/*), in the terminal, once on the desired output directory: 
@@ -112,7 +111,7 @@ You should see the following viewer with three layers and the different images w
       :align: center
 
 
-The first dataset is the standard phase images (unit in radian). 
+The first dataset is the standard phase images (units in radians). 
 You can make the different layers visible by clicking on the eye next to the dataset name at the bottom left of the fsl window. 
 If you have selected the phase dataset you can use the volume counter to see the different  echo times
 In the second map (already in fequency units, Hz) you have the computed total field which has no phase wraps. 
