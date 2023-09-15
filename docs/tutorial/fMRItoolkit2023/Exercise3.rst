@@ -111,7 +111,7 @@ You should see the following viewer with three layers and the different images w
       :align: center
 
 
-The first dataset is the standard phase images (unit in radian). 
+The first dataset is the standard phase images (units in radians). 
 You can make the different layers visible by clicking on the eye next to the dataset name at the bottom left of the fsl window. 
 If you have selected the phase dataset you can use the volume counter to see the different  echo times
 In the second map (already in fequency units, Hz) you have the computed total field which has no phase wraps. 
