@@ -44,6 +44,7 @@ This is the so-called dipole inversion of QSM, which is just the element-wise di
 
 One extra QSM reconstruction 
 ----------------------------
+
 Move to the **QSM** tab of SEPIA. 
 
 In the **I\O** panel, we will now simply select the data required to perform the QSM step, starting from the previously preprocessed data.
@@ -64,12 +65,12 @@ In the **QSM** you will now choose the STAR method (Wei et al, NMR in Biomed, 20
 
 Press **start** on the SEPIA window and continue the exercise.
 
-In the Exercise 2 you already had a change to see many iron rich strucures throught out the brain.
+In the Exercise 2 you already had a chance to see many iron rich strucures throught out the brain.
 
    .. image:: images/DeepGM_rois.jpg
       :align: center
 
-   1, Caudate Nnucleus;   2, Globus pallidus;   3, Putamen,   4, Thalamus;    5, Substantia Nigra;   6, Red Nucleus;    7, Dentate Nucleus;
+   1, Caudate Nucleus;   2, Globus pallidus;   3, Putamen,   4, Thalamus;    5, Substantia Nigra;   6, Red Nucleus;    7, Dentate Nucleus;
    Figure from Chai et al, Front. Neurosci., 2022
 
 Return to the terminal and type
