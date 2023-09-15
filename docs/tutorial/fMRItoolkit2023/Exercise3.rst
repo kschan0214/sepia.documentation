@@ -28,7 +28,6 @@ Data Required
 Performing a full QSM reconstruction  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
 While Sepia allows to do perfrom the three steps of the QSM pocessing seperatily (using the 2nd, 3rd and 4th tab respectively) here for the interest of time we will to it in one go. 
 
    .. image:: images/FullSepiaConfiguration_IO.PNG
@@ -50,7 +49,10 @@ In the **I/O** panel:
 #. Select the **Brain Mask**: *~/QuantitativeTutorial/data/mask.nii.gz*
 #. Select the **SEPIA header**: *~/QuantitativeTutorial/data/sepia_header.mat*
 #. Change the **Output basename** to: *~/QuantitativeTutorial/outputQSM/Sepia*
+#. Turn on **Refine brain mask**
 
+
+While earlier we mentioned that it was the phase data that was needed to compute QSM, in practice you also need the magnitude to learn how trustworhy your phase data is.
 
 For the purpose of this tutorial we will broadly follow the current QSM harmonization settings for both the total field computation and background field removal, but select a more time efficient reconstruction for the last step (QSM).
 
@@ -69,18 +71,27 @@ In the **Total field recovery and phase unwrapping** panel:
 
 In the **Background field removal** panel, the 'LBV' method is shown by default. While this would be an acceptable option. In this tutorial we will choose the more robust to noise option **VSHARP**
 
-- 'Erode edge voxel before BFR': 1. 
-- 'Max. radius': 12. 
+- 'Erode edge voxel before BFR': 0. 
+- 'Max. radius': 10. 
 - 'Min. radius': 1. 
-- 'Remove Residual': Spherical harmonics of 2nd order. 
+- 'Remove Residual': 'None'. 
 
    .. image:: images/FullSepiaConfiguration_BFR.PNG
       :align: center
 
-In the **QSM** panel for the sake of a fast solution we will use the **Closed-form solution**
+In the **QSM** pannel there are various methods that have been implemented by different teams around the world.
 
-- Change the **lambda** spatial smoothing regularization factor to 0.1
- 
+There are : 
+- AI GPU enabled reconstructions (xQSM, LPCNN, QSM+);
+- Iterative reconstructions;
+- Direct or Close form solutions;
+   
+The first class requires GPU hardware, the second often requires some parameter tunning and can be very time consuming. 
+The thrid class, while simplistic, is very time and memory efficient. In this tutorial it is suggested you 
+- Select the **Method**  the 'MRI Suscep. Calc.' (Univerity College of London Toolbox)
+- Select **solver** 'Truncated kspace division'    
+- Use the suggested provide **K-space Threshold** of 0.66 (Schwezer et al, MRM, 2012).
+
    .. image:: images/FullSepiaConfiguration_QSM.PNG
       :align: center
 
@@ -89,8 +100,9 @@ Wait until:  '*Processing pipeline is completed!*'.
 
 .. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again with a new set of parameters you might want to try!
 
-Check the output (should be in *~/QuantitativeTutorial/output/*), in the terminal, once on the desired output directory: 
+Check the output (should be in *~/QuantitativeTutorial/outputQSM/*), in the terminal, once on the desired output directory: 
 
+``cd ~/QuantitativeTutorial/outputQSM``
 ``fsleyes data/phase.nii.gz output/Sepia_fieldmap.nii.gz -dr -200 200 output/Sepia_localfield.nii.gz -dr -200 200``
 
 You should see the following viewer with three layers and the different images will already have a predefined color display range
@@ -104,10 +116,10 @@ You can make the different layers visible by clicking on the eye next to the dat
 If you have selected the phase dataset you can use the volume counter to see the different  echo times
 In the second map (already in fequency units, Hz) you have the computed total field which has no phase wraps. 
 
-The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times using the following :eq:`fpt`:
+The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times using the knowlege that  :eq:`fpt`:
 
 .. math::
-   frequency = \frac{phase}{time}
+   phase_{TE} = frequency x TE + constant 
    :label: fpt
 
 Finally, as you click and unclick the third layer, you will see the that the local field only conserves high-spatial frequnecy features with very low amplitude values 
@@ -120,13 +132,12 @@ Finally, as you click and unclick the third layer, you will see the that the loc
 
   iv. Check/Uncheck the 'Visibility' button to turn on/off of the mean magnitude image.
 
-     .. image:: images/visibility_button.png
-
-  #. It is known that there is a high concentration of iron deposition in the red nucleus (also in the globus pallidus [144 131 60]). This generates a strong secondary magnetic field that results in an enhancement of the edges of this structures.
+  v. It is known that there is a high concentration of iron deposition in the red nucleus (also in the globus pallidus [144 131 60]). This generates a strong secondary magnetic field that results in an enhancement of the edges of this structures.
 
 
 
-The frequency map we obtained from the last exercise contains magnetic fields generated by not only the brain tissue but also the scanner hardware imperfection and fields generated at air/tissue interfaces. Therefore, we have to remove the non-tissue field, or background field, contributions before computing the susceptibility map.
+The frequency map ìnitially computed contains magnetic fields generated by not only the brain tissue but also the scanner hardware imperfection and fields generated at air/tissue interfaces, where the susceptibility differences are one order of magnitude greater than inside the brain. 
+Therefore, we have to remove the non-tissue field, or background field, contributions before computing the susceptibility map.
 
 .. toctree::
    :maxdepth: 1

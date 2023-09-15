@@ -46,60 +46,61 @@ One extra QSM reconstruction
 ----------------------------
 Move to the **QSM** tab of SEPIA. 
 
-In the **I\O** panel, the 'LBV' method is shown by default. While this would be an acceptable option. In this tutorial we will choose the more robust to noise option **VSHARP**
+In the **I\O** panel, we will now simply select the data required to perform the QSM step, starting from the previously preprocessed data.
 
+#. Select the **Local field**: *~/QuantitativeTutorial/outputQSM/Sepia_localfield.nii.gz*
+#. Select the **weights**: *~/QuantitativeTutorial/outputQSM/Sepia_weights.nii.gz*
+#. Select the **Brain Mask**: *~/QuantitativeTutorial/outputQSM/Sepia_mask_QSM.nii.gz*
+#. Select the **SEPIA header**: *~/QuantitativeTutorial/data/sepia_header.mat*
+#. Change the **Output basename** to: *~/QuantitativeTutorial/outputQSM/SepiaSTAR*
+
+Note 1: The various preprocessing steps will erode the brain mask, resulting in a final brain mask that is significantly tighter. 
+Note 1: More advanced methods of QSM benefit from knowing about the confidence you have on your measured fieldmap, that information is embedded on 'weights'
 
    .. image:: images/STARset.PNG
       :align: center
 
-In the **QSM** pannel there are various methods that have been implemented by different teams around the world.
+In the **QSM** you will now choose the STAR method (Wei et al, NMR in Biomed, 2015).
+
+Press **start** on the SEPIA window and continue the exercise.
+
+In the Exercise 2 you already had a change to see many iron rich strucures throught out the brain.
+
+   .. image:: images/DeepGM_rois.jpg
+      :align: center
+
+   1, Caudate Nnucleus;   2, Globus pallidus;   3, Putamen,   4, Thalamus;    5, Substantia Nigra;   6, Red Nucleus;    7, Dentate Nucleus;
+   Figure from Chai et al, Front. Neurosci., 2022
+
+Return to the terminal and type
+
+``fsleyes outputR2star/Sepia_R2starmap.nii.gz -dr 0 50 outputQSM/SepiaSTAR_Chimap.nii.gz -dr -0.15 0.2 outputQSM/Sepia_Chimap.nii.gz -dr -0.15 0.2 outputQSM/Sepia_localfield.nii.gz -dr -5 5 ``
 
 
+As the top layer you will have the local field map that you have already seen on the previous exercise.
 
-1. Check the result *Sepia_tkd-0_QSM.nii.gz* in the output directory. Set the display window to 'Min. -0.2' and 'Max. 0.2' (ppm). Does it look like the QSM map as we expected?
+While many of the deep gray matter regions mentioned above are clear discernible, with very sharp edges, the intensity inside the regions is not very different than that of White Matter.
 
-.. toctree::
-   :maxdepth: 1
+If you now  remove the visibility of this first layer you will be able to see the reconstructed QSM (TKD) where these ROIs are now visible and have a stron positive contrast (meaning they have paramagnetic contrast).
 
-   Exercise4_answer1
+If you now vary between the visibility of the two QSM reconstructions you will note that SepiaSTAR_Chimap has less deconvolution artifacts and that the edges of Iron rich structures have less artifacts on the edges.
 
-Exercise 4.2
-^^^^^^^^^^^^
 
-To avoid the previous QSM map we can increase the threshold of the **TKD**. 
+   .. image:: images/FSLeyesQSM.PNG
+      :align: center
 
-#. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_tkd-0p15*. 
+   
+Finally you can appreciate the difference between the R2* and Star QSM recosntruction.
+Points to note:
+   - the reduce mask size associated with the QSM reconstruction;
+   - white the R2*map has a strong tissue CSF contrast, this is vanished in the QSM showing that the magnetic porperties of most brain tissue is comparable
+   - appreciate the increased visibility of the Substantia Nigra and Dentate Nucleus on the QSM map.
+   -  
 
-#. Change the threshold of the **TKD** algorithm to 0.15 and press **Start**.
 
-#. Check the result *Sepia_tkd-0p15_QSM.nii.gz* in the output directory. Display it along with the *Sepia_tkd-0_QSM.nii.gz* in FSLView. Do you see any improvement?
+**Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, finish the advanced exercises or experiment with different QSM methods/methods' parameters or move to the next exercise that will show you how to get Synthetic images out of some of these iamges and maps. 
 
-#. Compare the location on the tissue edges (e.g. [133 155 81]) in this QSM map with what you can see in the mean magnitude image *mean_head.nii.gz*. Do the edges match between the two data now?
 
-.. toctree::
-   :maxdepth: 1
-
-   Exercise4_answer2
-
-**Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, finish the advanced exercises or experiment with different QSM methods/methods' parameters. 
-
-Advanced Exercise 4.3
-^^^^^^^^^^^^^^^^^^^^^
-
-To further improve the quality of the QSM map, some methods, such as Star-QSM, incorporate additional information, e.g. smoothness of the QSM map, during the QSM dipole inversion.
-
-1. Change the **Output basename** to: *~/qsm_tutorial/data/output_qsm/Sepia_star-qsm*.
-2. Change the **QSM** method to 'Star-QSM' and press **Start**. It will take about 2 mins to finish.
-
-It is difficult to see the differences between the two QSM maps with the naked eyes. Subtract the two maps so that you can see the differences:
-
-``fslmaths Sepia_tkd-0p15_QSM.nii.gz -sub Sepia_star-qsm_QSM.nii.gz difference_qsm``
-
-3. Display the *difference_qsm.nii.gz* image (dispay window [-0.1,0.1]) in FSLView with *Sepia_star-qsm_QSM.nii.gz* (dispay window [-0.2,0.2]) and *Sepia_tkd-0p15_QSM.nii.gz* (dispay window [-0.2,0.2]) in the output directory. Can you see any difference between the two QSM maps?
-
-.. toctree::
-   :maxdepth: 1
-
-   Exercise4_answer3
 
 Back to :ref:`fmritoolkit2023-exercise3`.
+Proceed to :ref:`fmritoolkit2023-exercise5`.

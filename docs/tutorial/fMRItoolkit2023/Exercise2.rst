@@ -6,8 +6,9 @@ Exercise 2
 Objectives
 ----------
 
-- Gaining experience in using SEPIA
-- Understanding how to create an R2* map in SEPIA
+- Gaining experience in using SEPIA;
+- Creating an R2* map in SEPIA;
+- Learning the facilities provided by the SEPIA config file; 
 
 Data Required
 ^^^^^^^^^^^^^
@@ -108,13 +109,16 @@ To see some of thes images you can return to terminal and type
 
 ``cd ~/QuantitativeTutorial/data`` 
 
-``fsleyes data/mag.nii.gz outputR2star/Sepia_S0map.nii.gz -dr 0 1000000 outputR2star/Sepia_R2starmap.nii.gz -dr 0 50 ``
+``fsleyes data/mag.nii.gz outputR2star/Sepia_S0map.nii.gz -dr 0 500000 outputR2star/Sepia_R2starmap.nii.gz -dr 0 50``
 
 This command line will open an fsleyes window with 3 layers, the original magnitude data, the S0 and the R2* map.
 You will quickly note that the R2* map contains very high values in large blood regions, as well as in deep gray matter regions.
 This is because the signal in those regions decays at a faster rate. As very dark you will see the CSF whose signal decays very slowly.
 
    .. image :: images/FSLviewR2starmap.PNG
+
+You can switch between the R2* map and the S0 map by, on the overlay list, clicking on the yee next to **Sepia_R2starmap**.
+One aspect that you might notice is that the intensity of white matter in the R2* map has only fiber plausible variations while the S0 map contains intensity variations related to the RF coil used. This is one of the big advantages of quantitative imaging.
 
 Proceed to :ref:`fmritoolkit2023-exercise3`.
 

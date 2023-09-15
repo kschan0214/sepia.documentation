@@ -6,14 +6,15 @@
 Objectives
 ----------
 
-- Understanding the data needed for R2* and QSM mapping
-- Gaining experience in basic QSM processing and some of the intermediate steps and data
+- Understanding the data needed for R2* and QSM mapping;
+- Gaining experience in basic QSM processing and some of the intermediate steps and data generated;
+- Generating SWI images from multi-echo data; 
 
 Target Audience
 ^^^^^^^^^^^^^^^
 
 - who is new to SEPIA
-- who wants to learn ao to create a QSM pipeline
+- who wants to learn ao to create an R2* or QSM pipeline using SEPIA
 
 Estimated Time
 ^^^^^^^^^^^^^^
@@ -23,7 +24,7 @@ About 1 hour
 Introduction  
 ------------
 
-In this tutorial, we will go through the standard processing pipeline for quantitative susceptibility mapping (QSM), a novel contrast mechanism that can provide local tissue magnetic properties. 
+In this tutorial, we will discuss the datarequired to obtain R2* and quantitative susceptibility mapping (QSM). This are two qunatitative methods that give insight to the tissue magnetic properties. 
 
 .. toctree::
    :maxdepth: 1
@@ -38,7 +39,12 @@ In this tutorial, we will go through the standard processing pipeline for quanti
 Exercises
 ---------
 
-Let's begin with the following exercises that will take you from the phase data to the susceptibility maps!
+Let's begin with the following exercises:
+  - **1** to familiarize you with Multi-Echo data;
+  - **2** to start SEPIA and obtain an R2* map;
+  - **3** to run a complete QSM pipeline in SEPIA and visualize intermediate data;
+  - **4** to rerun the final step of QSM and compare various quantitative maps;
+  - **5** to use SEPIA to obtain synthetic images also derived from the same multi-echo data
 
 .. toctree::
    :maxdepth: 1
@@ -48,4 +54,5 @@ Let's begin with the following exercises that will take you from the phase data 
    Exercise2
    Exercise3
    Exercise4
+   Exercise5
    
