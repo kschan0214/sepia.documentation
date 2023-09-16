@@ -109,12 +109,13 @@ Points to note:
 - appreciate the increased visibility of the Substantia Nigra and Dentate Nucleus on the QSM map.
 
 
-**Congratulations! You have finished all the exercises in this tutorial.** If you still have time left, experiment with different `QSM methods/parameters` or move to the next exercise that will show you how to get Synthetic images out of some of these iamges and maps. 
+**Congratulations! You have finished all the exercises in this tutorial.** 
+
+If you still have time left, experiment with different `QSM methods/parameters` or move to the next exercise that will show you how to get Synthetic images out of some of these images and maps. 
 
 Advanced Exercise, open the **config** files of the exercises 3 and 4 in the editor and create a new matlab script file `MyQSMrecon.m`. In this file you can create a script that generates a **truncated k-space division** QSM map with a threshold of 0.0001. 
 
 Run the script from the Matlab command window and apreciate on FSLeyes a terrible but very accurate reconstruction! 
-
 
 
 Back to :ref:`fmritoolkit2023-exercise3`.
