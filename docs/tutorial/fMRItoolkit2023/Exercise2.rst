@@ -120,7 +120,7 @@ This is because the signal in those regions decays at a faster rate. As very dar
 
    .. image :: images/FSLviewR2starmap.PNG
 
-You can switch between the R2* map and the S0 map by, on the overlay list, clicking on the yee next to **Sepia_R2starmap**.
+You can switch between the R2* map and the S0 map by, on the overlay list, clicking on the eye next to **Sepia_R2starmap**.
 If you visualize again the timeline, you will see that larger R2* values are indeed obtained when the signal decays faster.
 
 Another aspect you should notice is that the intensity of white matter in the R2* map has only fiber plausible variations while the S0 map contains intensity variations related to the RF coil used. This is one of the big advantages of quantitative imaging.
