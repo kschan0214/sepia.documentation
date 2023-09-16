@@ -9,7 +9,7 @@ Objectives
 ----------
 
 - Understanding the data required for QSM and R2*
-- Understanding why we need to correct the phase data before mapping the magnetic susceptibility
+- Understanding why we need to pre-process the phase data before mapping the magnetic susceptibility
 
 Data Required
 ^^^^^^^^^^^^^
@@ -29,7 +29,7 @@ About 15 min.
 Understanding multi-echo GRE data
 ---------------------------------
 
-If using the Donders HPC, start your an interactive session with increased memory by typing in the command in a terminal
+If using the Donders HPC, start an interactive session with increased memory by typing in the command in a terminal (you will use this terminal both to visualize data using fsleyes and to run MATLAB/SEPIA)
 
 ``qsub -I -l 'walltime=20:00:00,mem=20gb'``
 
@@ -56,16 +56,16 @@ You should see three NIfTI images (.nii.gz) and a few JSON files (.json) in the 
 
 - The NIfTI files *mag.nii.gz* and *phase.nii.gz* contain the magnitude and the phase data acquired with a multi-echo gradient echo sequence. 
 
-  Both images are 4D datasets, with the first 3 dimensions containing spatial information (i.e. the image of the brain) and **echo time in the 4th dimension**. 
+  Both images are 4D datasets, with the first 3 dimensions being spatial (i.e. the brain volume in x,y and z) and ** the echo time in the 4th dimension**. 
 
-- The NIfTI files *mask.nii.gz* contains a precomputed 3D brain mask
+- The NIfTI file *mask.nii.gz* contains a precomputed 3D brain mask
   
-- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of the acquisition regarding the physical coordinates of the scanner. These are important to compute the magnetic susceptibility with the correct units and ensure the physical model is correct.
+- The JSON files contain important information such as the echo times (TE) and magnetic field strength (in Tesla), orientation of the acquisition in respect to the physical coordinates of the scanner. These are essential parameteres to correctly define our magnetic dipole in the image space and compute the magnetic susceptibility, ensuring that the physical model is correct!
 
 Magnitude images
 ^^^^^^^^^^^^^^^^
 
-#. Take a look at the magnitude images. You can do this by calling the image viewer FSLView in the terminal:
+#. Take a look at the magnitude images. You can do this byusing an image viewer such as FSLeyes. Type in the terminal:
 
    ``fsleyes mag.nii.gz &``
 
@@ -93,7 +93,7 @@ Magnitude images
 Phase images
 ^^^^^^^^^^^^
 
-To compute a magnetic susceptibility map, multi-echo gradient-echo images are usually used because it can provide phase images. 
+Phase images are traditionaly discarded, yet they are essential to compute a magnetic susceptibility map. For QSM multi-echo gradient-echo images are usually used to obtain this phase images that encode the local magnetic field strength. 
 
 .. toctree::
    :maxdepth: 1
@@ -132,7 +132,7 @@ Based on Eq. :eq:`pft`, it is expected the phase increases/decreases monotonical
 
 In order to estimate the frequency shift correctly using Eq. :eq:`pft`, this phase problem has to be addressed which is called phase unwrapping.
 
-To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job, and this is what we are going to do in the next exercise.  
+To unwrap the phase and to map back to the correct values, SEPIA provides several algorithms to do the job.  
 
 You can close all the FSLeyes window(s) now.
 

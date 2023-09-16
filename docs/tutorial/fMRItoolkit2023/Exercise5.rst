@@ -26,9 +26,9 @@ Data Required
 Clear SWI (Susceptibility Weighted Imaging)  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-While quantitative imaging has many interesting properties, MDs often value more an image that clear shows something.
+While quantitative imaging has many interesting properties, MDs often value more an image that clearly shows something clinically relevant... even it somewhat exagerated.
 
-In this exercise we will be able to create an image of the venous structures by combining the magnitude and the phase data in a creative way!
+SWI creates an image that enhances venous structures by combining the magnitude and the phase data in a creative way!
 
 As by now you are an expert on SEPIA, simply follow the instructions bellow
 
@@ -54,4 +54,4 @@ On the fsleyes window you can now open an image *Sepia_clearswi-minIP.nii.gz*
 
 This image combines the standard magnitude image with phase information that enhances (by reducing the signal) not only deep gray matter regions, but also all venous structures! While it is usefull to visualize venous malformations or hemorrages, the values in the images are meaningless!
 
-There are many other ways to create synthetic including using some of the quantitative maps as in SMWI... but that will be another tutorial.
+There are many other ways to create synthetic including using some of the quantitative maps as in SMWI... but that will be another tutorial :)
