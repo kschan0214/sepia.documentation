@@ -83,6 +83,7 @@ In the **Background field removal** panel, the 'LBV' method is shown by default.
 
 In the **QSM** pannel there are various methods that have been implemented by different teams around the world.
 
+
 There are : 
 
 - AI GPU enabled reconstructions (xQSM, LPCNN, QSM+);

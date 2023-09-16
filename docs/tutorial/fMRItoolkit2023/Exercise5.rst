@@ -54,4 +54,5 @@ On the fsleyes window you can now open an image *Sepia_clearswi-minIP.nii.gz*
 
 This image combines the standard magnitude image with phase information that enhances (by reducing the signal) not only deep gray matter regions, but also all venous structures! While it is usefull to visualize venous malformations or hemorrages, the values in the images are meaningless!
 
+
 There are many other ways to create synthetic including using some of the quantitative maps as in SMWI... but that will be another tutorial :)
