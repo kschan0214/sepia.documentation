@@ -8,7 +8,7 @@ Objectives
 
 - Gaining experience in using SEPIA;
 - Creating an R2* map in SEPIA;
-- Learning the facilities provided by the SEPIA config file; 
+- Learning about the facilities provided by the SEPIA config file; 
 
 Data Required
 ^^^^^^^^^^^^^
@@ -34,7 +34,7 @@ Once Matlab is open, go to the tutorial directory and add the SEPIA home directo
 
 ``addpath('/home/common/matlab/sepia/sepia_1.2.2.4/');``
 
-.. note:: The copy of SEPIA you have in the tutorial directory already includes all the external toolboxes required. If you want to know how to set up SEPIA from scratch for your research purposes, you can refer to :ref:`gettingstart-installation`.
+.. note:: The SEPIA installed at the HPC already includes all the external toolboxes required. If you want don't have access to it and have to set up SEPIA from scratch in your setup, you can refer to :ref:`gettingstart-installation`.
 
 Now, go the data directory in the Matlab command window and start sepia:
 
@@ -49,7 +49,7 @@ A graphical user interface (GUI) should be pop up.
 
 The first tab in SEPIA provides a one-step application to process QSM from the raw phase data to a magnetic susceptibility map. 
 
-Alternatively, we could break down the processing pipeline into several steps to optimise each of those steps. 
+Alternatively, we could break down the processing pipeline into several seperate steps (Phase unwrapping, Background field remocal and QSM) to optimise each of those steps. You can also use SEPIA to create synthetic images derived from the mult-iecho data (SWI & SMWI), compute R2* maps (the transverse relaxation rate) or perform more advanced ROI analysis. Before any of that is done, there is one important step. 
 
 Create a SEPIA header
 ^^^^^^^^^^^^^^^^^^^^^
@@ -64,11 +64,10 @@ With all the NifTI images and JSON files stored in the same place, we can use 'O
 
    .. image :: images/get_header_open.png
 
-#. Click **Save header** to save the file. 
+#. Click **Save header** to save the file. The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
 
-   The process is done when you see the message '*SEPIA header is saved!*' in the command window. You should see a new file is generated in the input directory. 
 
-#. On the Matlab window , using your mouse, you can Click on **echo-1_GRE.json** and on **sepia_header.mat** files in the "Current Folder" window.
+#. On the Matlab window, using your mouse, you can Click on **echo-1_GRE.json** and on **sepia_header.mat** files in the "Current Folder" sub-panel.
 This will open the json file in a Matlab editor and the variables stored on the Workspace window and allow you to learn more about the dataset:
 static field strength, orientation of the volume in respect to the static field, as well as resosolution and echo time.
 
@@ -95,15 +94,19 @@ Press on the **start** button. On the command window some text will appear refle
 Wait until:  '*Processing pipeline is completed!*'. 
 
 If you navigate to the specified output directory, you will find two text files: 
+
 #. **sepia_config.m** -  a configuration file that would allow you to rerun the same code, or create a scrip to apply it to more subjects
+
 #. **run_sepia.logyymmddhhmmss** -  a log file with the information that had been outputed to the Command window
 
    .. image :: images/SEPIALogConfigfiles.PNG
 
-you will also find 3 output niftis
-#. **Sepia_R2starmap.nii.gz** -  your computed apparent transverse relaxation rate map
-#. **Sepia_T2starmap.nii.gz** -  your computed apparent transverse relaxation time map
-#. **Sepia_S0map.nii.gz** -  magnitude signal at time TE = 0 ms
+
+You will also find 3 output niftis:
+
+  #. **Sepia_R2starmap.nii.gz** -  your computed apparent transverse relaxation rate map
+  #. **Sepia_T2starmap.nii.gz** -  your computed apparent transverse relaxation time map
+  #. **Sepia_S0map.nii.gz** -  magnitude signal at time TE = 0 ms
 
 To see some of thes images you can return to terminal and type
 
@@ -118,7 +121,9 @@ This is because the signal in those regions decays at a faster rate. As very dar
    .. image :: images/FSLviewR2starmap.PNG
 
 You can switch between the R2* map and the S0 map by, on the overlay list, clicking on the yee next to **Sepia_R2starmap**.
-One aspect that you might notice is that the intensity of white matter in the R2* map has only fiber plausible variations while the S0 map contains intensity variations related to the RF coil used. This is one of the big advantages of quantitative imaging.
+If you visualize again the timeline, you will see that larger R2* values are indeed obtained when the signal decays faster.
+
+Another aspect you should notice is that the intensity of white matter in the R2* map has only fiber plausible variations while the S0 map contains intensity variations related to the RF coil used. This is one of the big advantages of quantitative imaging.
 
 Proceed to :ref:`fmritoolkit2023-exercise3`.
 

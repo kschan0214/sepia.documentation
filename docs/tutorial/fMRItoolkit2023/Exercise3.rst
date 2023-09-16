@@ -28,20 +28,22 @@ Data Required
 Performing a full QSM reconstruction  
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-While Sepia allows to do perfrom the three steps of the QSM pocessing seperatily (using the 2nd, 3rd and 4th tab respectively) here for the interest of time we will to it in one go. 
+While Sepia allows to do perform the three steps of the QSM pocessing separatily (using the 2nd, 3rd and 4th tab respectively) here, for the interest of time, we will to it in one go. 
 
    .. image:: images/FullSepiaConfiguration_IO.PNG
       :align: center
 
-You will see four panels under the **SEPIA** tab: 
-- the **I/O** panel is for specifying data input and output 
-- the **Total field recovery and phase unwrapping** panel is for selecting phase unwrapping and true phase estimation algorithms
-- the **Background Field Removal (BFR)** panel is for selecting the BFR algorithms that will deliver the tissue specific field variations
-- the **QSM** panel allows you to choose the QSM algorithms and respective parameters
+You can see four sub-panels under the **SEPIA** tab: 
+
+  - the **I/O** panel is for specifying data input and output;   
+  - the **Total field recovery and phase unwrapping** panel is for selecting phase unwrapping and total field estimation algorithms
+  - the **Background Field Removal (BFR)** panel is for selecting the BFR algorithms that will deliver the tissue specific field variations
+  - the **QSM** panel allows you to choose the QSM algorithms and respective parameters
 
 .. tip:: SEPIA supports two types of data input. If your data follows the SEPIA naming structure, you can select the directory containing all the input data as your input in the first row of **I/O** panel. Alternatively, you can specify the input files separately by following the instruction of the second row of the **I/O** panel. 
 
 Here, for educational purposes, we will explicitely introduce the input data
+
 In the **I/O** panel:
 
 #. Select the **Input Phase**: *~/QuantitativeTutorial/data/phase.nii.gz*
@@ -66,7 +68,7 @@ In the **Total field recovery and phase unwrapping** panel:
    .. image:: images/FullSepiaConfiguration_TF.PNG
       :align: center
 
-.. note::  Alternatively, **Optimum weights** and **MEDI nonlinear fit** echo phase combination combined with either **SEGUE** or **ROMEO** phase unwrapping can perform comparably at high SNR.
+.. note::  Alternatively, **Optimum weights** and **MEDI nonlinear fit** echo phase combination combined with either **SEGUE** or **ROMEO** phase unwrapping can perform comparably but can be more time consuming.
 
 
 In the **Background field removal** panel, the 'LBV' method is shown by default. While this would be an acceptable option. In this tutorial we will choose the more robust to noise option **VSHARP**
@@ -104,14 +106,14 @@ The thrid class, while simplistic, is very time and memory efficient. In this tu
 Press on the **start** button. On the command window some text will appear reflecting the progress of your pipeline as well as some of the choices you have made.  
 Wait until:  '*Processing pipeline is completed!*'. 
 
-.. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again with a new set of parameters you might want to try!
+.. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again with a new set of parameters you might want to try! You can in the mean while also open the 'Sepia_config.m' in the 'outputQSM' directory. You will see that all the parameters you chose are present in that file: great for reproducible science and for future scripting!
 
 Check the output (should be in *~/QuantitativeTutorial/outputQSM/*), in the terminal, once on the desired output directory: 
 
 ``cd ~/QuantitativeTutorial/outputQSM``
 ``fsleyes data/phase.nii.gz output/Sepia_fieldmap.nii.gz -dr -200 200 output/Sepia_localfield.nii.gz -dr -200 200``
 
-You should see the following viewer with three layers and the different images will already have a predefined color display range
+You should see the following viewer with three layers and the different images will already have the predefined color display ranges.
 
    .. image:: images/fsleyes_phase2fields.PNG
       :align: center
@@ -120,15 +122,12 @@ You should see the following viewer with three layers and the different images w
 The first dataset is the standard phase images (units in radians). 
 You can make the different layers visible by clicking on the eye next to the dataset name at the bottom left of the fsl window. 
 If you have selected the phase dataset you can use the volume counter to see the different  echo times
-In the second map (already in fequency units, Hz) you have the computed total field which has no phase wraps. 
-
-The second dataset corresponds to the frequency (Hz) map which was computed using the unwrapped phase images at the different echo times using the knowlege that  :eq:`fpt`:
+In the second map (already in fequency units, Hz) you have the computed total field. This has no phase wraps and contains all the information present across all the echo times. This was computed using the unwrapped phase images at the different echo times using the knowlege and taking into account of the SNR of each echo:
 
 .. math::
-   phase_{TE} = frequency x TE + constant 
-   :label: fpt
+   phase_{TE} = frequency . TE + constant 
 
-Finally, as you click and unclick the third layer, you will see the that the local field only conserves high-spatial frequnecy features with very low amplitude values 
+Finally, as you click and unclick the third layer, you will see the that the local field only conserves high-spatial frequency features and has very low amplitude values 
 
   i. Adjust the display window to 'Min -10' and 'Max 10' for the localfield and you will see a lot of relevant anatomical information that was hidden bellow the background field 
   
@@ -149,11 +148,6 @@ Therefore, we have to remove the non-tissue field, or background field, contribu
    :maxdepth: 1
 
    Theory_backgroundfieldremoval
-
-.. figure:: images/total_field_explain.png
-   :align: center
-   
-   Figure 1: The total field we obtained from the last exercise is the summation of tissue and background magnetic fields. In order to compute the magnetic susceptibility of the brain tissue correctly, the background field contributions have to be removed before mapping the tissue susceptibilities.
 
 You can close all the FSLView window(s) now.
 

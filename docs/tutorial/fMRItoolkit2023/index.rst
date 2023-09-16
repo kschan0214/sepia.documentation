@@ -24,7 +24,7 @@ About 1 hour
 Introduction  
 ------------
 
-In this tutorial, we will discuss the datarequired to obtain R2* and quantitative susceptibility mapping (QSM). This are two qunatitative methods that give insight to the tissue magnetic properties. 
+In this tutorial, we will discuss the data required to obtain R2* and quantitative susceptibility mapping (QSM). This are two qunatitative methods that give insight to the tissue magnetic properties. 
 
 .. toctree::
    :maxdepth: 1
