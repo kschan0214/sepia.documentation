@@ -69,7 +69,7 @@ In the **QSM** panel you will now choose the STAR method (Wei et al, NMR in Biom
 
 Press **start** on the SEPIA window and continue the exercise.
 
-In the Exercise 2 you already had a chance to see many iron rich strucures throught out the brain.
+In  Exercise 2, you already had a chance to see many iron rich strucures throught out the brain.
 
    .. image:: images/DeepGM_rois.jpg
       :align: center
@@ -78,10 +78,11 @@ In the Exercise 2 you already had a chance to see many iron rich strucures throu
    Figure from Chai et al, Front. Neurosci., 2022
 
 
-Return to the terminal and type
+Return to the terminal and type:
+
+``cd ~/QuantitativeTutorial``
 
 ``fsleyes outputR2star/Sepia_R2starmap.nii.gz -dr 0 50 outputQSM/SepiaSTAR_Chimap.nii.gz -dr -0.15 0.2 outputQSM/Sepia_Chimap.nii.gz -dr -0.15 0.2 outputQSM/Sepia_localfield.nii.gz -dr -5 5 ``
-
 
 As the top layer you will have the local field map that you have already seen on the previous exercise.
 
@@ -97,7 +98,7 @@ If you now vary between the visibility of the two QSM reconstructions you will n
       :align: center
 
    
-.. note::  3: The level of paramagnetism (brightness of the different deep gray matter structures) is also not exactly the same in the two maps... While this gets more stable as more advanced methods are used, one should avoid comparing QSM values obtained from different recosntruction pipelines! 
+.. note::  3: The level of paramagnetism (brightness of the different deep gray matter structures) is also not exactly the same in the two maps... While this gets more stable as more advanced methods are used, one should avoid comparing QSM values obtained from different reconstruction pipelines! 
 
 Finally you can appreciate the difference between the R2* and Star QSM recosntruction.
 Points to note:
@@ -112,7 +113,6 @@ Points to note:
 **Congratulations! You have finished all the exercises in this tutorial.** 
 
 If you still have time left, experiment with different `QSM methods/parameters` or move to the next exercise that will show you how to get Synthetic images out of some of these images and maps. 
-
 
 Advanced Exercise, open the **config** files of the exercises 3 and 4 in the editor and create a new matlab script file `MyQSMrecon.m`. In this file you can create a script that generates a **truncated k-space division** QSM map with a threshold of 0.0001. 
 
