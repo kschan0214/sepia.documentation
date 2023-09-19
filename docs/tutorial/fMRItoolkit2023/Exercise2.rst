@@ -110,7 +110,7 @@ You will also find 3 output niftis:
 
 To see some of thes images you can return to terminal and type
 
-``cd ~/QuantitativeTutorial/data`` 
+``cd ~/QuantitativeTutorial`` 
 
 ``fsleyes data/mag.nii.gz outputR2star/Sepia_S0map.nii.gz -dr 0 500000 outputR2star/Sepia_R2starmap.nii.gz -dr 0 50``
 

@@ -109,10 +109,17 @@ Wait until:  '*Processing pipeline is completed!*'.
 
 .. tip:: All the output messages of SEPIA will be displayed on the Matlab command window. Make sure you check the command window before clicking the **Start** button again with a new set of parameters you might want to try! You can in the mean while also open the 'Sepia_config.m' in the 'outputQSM' directory. You will see that all the parameters you chose are present in that file: great for reproducible science and for future scripting!
 
-Check the output (should be in *~/QuantitativeTutorial/outputQSM/*), in the terminal, once on the desired output directory: 
+Check the output (should be in *~/QuantitativeTutorial/outputQSM/*).
+In the terminal you can do this by typing
+
+``ls -alt ~/QuantitativeTutorial/outputQSM``
+
+which will give a list of the files on your output directory ordered by creation time. You should recognise here the order of the the full QSM pipeline. 
+
+You will now visualise the main outputs of the total field calculation, background field removal and compare them to the original phase data. Type on the terminal: 
 
 ``cd ~/QuantitativeTutorial/outputQSM``
-``fsleyes data/phase.nii.gz output/Sepia_fieldmap.nii.gz -dr -200 200 output/Sepia_localfield.nii.gz -dr -200 200``
+``fsleyes data/phase.nii.gz outputQSM/Sepia_fieldmap.nii.gz -dr -200 200 outputQSM/Sepia_localfield.nii.gz -dr -200 200``
 
 You should see the following viewer with three layers and the different images will already have the predefined color display ranges.
 
