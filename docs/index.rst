@@ -18,7 +18,7 @@ Welcome to the SEPIA documentation! Here you can find all the documents related 
 The purpose of SEPIA is to provide a platform for easy access to different QSM processing methods in the field. For **SEPIA** v1.1.1, it provides interfaces to use the following toolboxes freely available online for academic purposes, i.e.  
 
 1. `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
-2. `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
+2. `STI Suite (v3.0) <https://chunleiliulab.github.io/software.html>`_  
 3. `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
 4. `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
 5. `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
