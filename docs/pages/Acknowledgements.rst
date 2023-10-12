@@ -18,7 +18,7 @@ Weill Cornell MRI lab
 - Morphology enabled dipole inversion QSM  
 - Lateral ventricle masking  
 
-`STI Suite <https://people.eecs.berkeley.edu/~chunlei.liu/software.html>`_ developed by  
+`STI Suite <https://chunleiliulab.github.io/software.html>`_ developed by  
 
 Hongjiang Wei, PhD - University of California Berkeley, CA, USA  
 
