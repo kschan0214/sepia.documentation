@@ -9,7 +9,7 @@ Prerequisite
 To support the fully functionality of **SEPIA**, the following external libraries, which are freely available for academic purposes, are required. You can download these toolboxes/libraries using the following links:
 
 - `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
-- `STI Suite (v3.0) <https://people.eecs.berkeley.edu/%7Echunlei.liu/software.html>`_  
+- `STI Suite (v3.0) <https://chunleiliulab.github.io/software.html>`_  
 - `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
 - `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
 - `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
