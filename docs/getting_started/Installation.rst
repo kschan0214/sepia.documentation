@@ -1,5 +1,12 @@
 .. _gettingstart-installation:
 
+Download 
+========
+
+The latest version of SEPIA can be downloaded from GitHub:
+
+https://github.com/kschan0214/sepia/releases
+
 Installation/Setp up
 ====================
 
