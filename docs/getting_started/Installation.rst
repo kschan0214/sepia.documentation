@@ -20,7 +20,7 @@ To support the fully functionality of **SEPIA**, the following external librarie
 - `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
 - `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
 - `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
-- `mritools (v3.5.5) <https://github.com/korbinian90/CompileMRI.jl/releases/tag/v3.5.5>`_
+- `mritools (v4.6.1) <https://github.com/korbinian90/CompileMRI.jl/releases/tag/v4.6.1>`_
 
 If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.  
 
