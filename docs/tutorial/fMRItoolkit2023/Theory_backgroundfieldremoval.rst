@@ -1,4 +1,4 @@
-.. _fmritoolkit2023-theory-background-removal:
+.. _fmritoolkit2025-theory-background-removal:
 
 One more step before computing QSM but why?
 ===========================================
@@ -19,4 +19,4 @@ Luckily, the background fields have different mathematical properties (it is not
    Figure 1: The total field we obtained from the first sub-panel is the summation of tissue and background magnetic fields.
 
 
-Back to :ref:`fmritoolkit2023-exercise3`.
+Back to :ref:`fmritoolkit2025-exercise3`.
