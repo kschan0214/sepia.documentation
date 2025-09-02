@@ -1,4 +1,4 @@
-.. _fmritoolkit2023-exercise1:
+.. _fmritoolkit2025-exercise1:
 .. role::  raw-html(raw)
     :format: html
 
@@ -31,7 +31,7 @@ Understanding multi-echo GRE data
 
 If using the Donders HPC, start an interactive session with increased memory by typing in the command in a terminal (you will use this terminal both to visualize data using fsleyes and to run MATLAB/SEPIA)
 
-``qsub -I -l 'walltime=20:00:00,mem=20gb'``
+``srun --x11  --time=21:00:00 --mem=20gb --pty bash -i``
 
 Go to the exercise directory which is located in ~/QuantitativeTutorial/.
 
