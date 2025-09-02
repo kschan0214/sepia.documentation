@@ -87,7 +87,7 @@ Table of Contents
    tutorial/integration_new_method/part_1/index
    tutorial/integration_new_method/part_2/index
    tutorial/fMRItoolkit2019/index
-   tutorial/fMRItoolkit2023/index
+   tutorial/fMRItoolkit2025/index
 
 .. toctree::
    :maxdepth: 1
