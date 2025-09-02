@@ -1,4 +1,4 @@
-.. _fmritoolkit2023-exercise3:
+.. _fmritoolkit2025-exercise3:
 .. role::  raw-html(raw)
     :format: html
 
@@ -159,9 +159,9 @@ Therefore, we have to remove the non-tissue field, or background field, contribu
 
 You can close all the FSLView window(s) now.
 
-Proceed to :ref:`fmritoolkit2023-exercise4`.
+Proceed to :ref:`fmritoolkit2025-exercise4`.
 
-Back to :ref:`fmritoolkit2023-exercise2`.
+Back to :ref:`fmritoolkit2025-exercise2`.
 
 
      
