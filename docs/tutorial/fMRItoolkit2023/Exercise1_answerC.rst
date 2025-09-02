@@ -11,4 +11,4 @@ Yes, this is the correct answer! There is nothing wrong about the signal phase g
 
 .. note:: Think of an analogue clock with one hand  representing the hour. Every 12 hours the hand starts a new cycle again. If you look at the clock 13 hours after the first watch, it apparently advanced 1 hour only but the actual time difference between the two observations is 13 hours.
 
-Back to :ref:`fmritoolkit2023-exercise1`.
+Back to :ref:`fmritoolkit2025-exercise1`.
