@@ -1,4 +1,4 @@
-.. _fmritoolkit2023-theory-mrphase:
+.. _fmritoolkit2025-theory-mrphase:
 
 Theory: MR Phase
 ================
@@ -8,4 +8,4 @@ The frequency difference in brain tissues can be detected as the difference in p
 
 It should be noted that the phase can only be measured in the range of [-180, 180] degrees (or [:math:`-\pi, \pi`] radian).
 
-Back to :ref:`fmritoolkit2023-exercise1`.
+Back to :ref:`fmritoolkit2025-exercise1`.
