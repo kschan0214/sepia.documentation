@@ -1,6 +1,6 @@
-.. _fmritoolkit2023-index:
+.. _fmritoolkit2025-index:
 
-(f)MRI Toolkit 2023
+(f)MRI Toolkit 2025
 ===================
 
 Objectives
@@ -48,7 +48,7 @@ Let's begin with the following exercises:
 
 .. toctree::
    :maxdepth: 1
-   :name: toc-tutorial-fmritoolkit2023
+   :name: toc-tutorial-fmritoolkit2025
 
    Exercise1
    Exercise2
