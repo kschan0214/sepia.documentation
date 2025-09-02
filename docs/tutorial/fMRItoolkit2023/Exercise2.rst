@@ -1,4 +1,4 @@
-.. _fmritoolkit2023-exercise2:
+.. _fmritoolkit2025-exercise2:
 
 Exercise 2
 ==========
@@ -125,6 +125,6 @@ If you visualize again the timeline, you will see that larger R2* values are ind
 
 Another aspect you should notice is that the intensity of white matter in the R2* map has only fiber plausible variations while the S0 map contains intensity variations related to the RF coil used. This is one of the big advantages of quantitative imaging.
 
-Proceed to :ref:`fmritoolkit2023-exercise3`.
+Proceed to :ref:`fmritoolkit2025-exercise3`.
 
-Back to :ref:`fmritoolkit2023-exercise1`.
+Back to :ref:`fmritoolkit2025-exercise1`.
