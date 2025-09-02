@@ -87,6 +87,8 @@ In the **I/O** panel:
 #. Select the **Magnitude**: *~/QuantitativeTutorial/data/mag.nii.gz*
 #. Select the **SEPIA header**: *~/QuantitativeTutorial/data/sepia_header.mat*
 #. Change the **Output basename** to: *~/QuantitativeTutorial/outputR2star/Sepia*
+In the **R2 mapping** panel:
+#. Select the **Method**: *ARLO*
 
    .. image :: images/FullSepiaConfiguration_R2star.PNG
 
