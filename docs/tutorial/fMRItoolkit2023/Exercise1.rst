@@ -136,4 +136,4 @@ To unwrap the phase and to map back to the correct values, SEPIA provides severa
 
 You can close all the FSLeyes window(s) now.
 
-Proceed to :ref:`fmritoolkit2023-exercise2`.
+Proceed to :ref:`fmritoolkit2025-exercise2`.
