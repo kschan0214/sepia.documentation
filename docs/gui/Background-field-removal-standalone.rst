@@ -80,7 +80,7 @@ The I/O panel is responsible for data input/output and data processing that is n
 Background field removal panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: images/bfr_panel_anno2.png
+.. image:: images/bfr_panel_anno.png
 
 - Method
 

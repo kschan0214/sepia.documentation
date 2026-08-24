@@ -20,7 +20,7 @@ Your setup_LPCNN_environment.m should look something like this:
 .. image:: ../images/qsm/LPCNN_setup.png
 
 .. warning::
-    The support this method is still in an early stage and only tested on a Linux machine.
+    The support of this method is still in an early stage and only tested on a Linux machine.
 
 LP-CNN panel
 ------------
