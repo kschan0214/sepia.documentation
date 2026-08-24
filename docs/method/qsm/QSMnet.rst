@@ -31,3 +31,13 @@ QSMnet+ panel
 There is no algorithm parameter needed to be adjusted with this tool at the moment.
 
 .. image:: ../images/qsm/QSMnet.png
+
+Algorithm parameters overview
+-----------------------------
+
+There is no adjustable algorithm parameter (`algorParam.qsm.*`) exposed by this method at the moment.
+
+Usage
+-----
+
+Not applicable, no adjustable algorithm parameter is currently exposed by this method.

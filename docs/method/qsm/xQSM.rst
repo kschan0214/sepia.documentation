@@ -27,3 +27,31 @@ xQSM panel
 In the xQSM panel you can select one of the five provided pre-trained networks.
 
 .. image:: ../images/qsm/xQSM.png
+
+Algorithm parameters overview
+-----------------------------
+
++---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| algorParam.qsm.           | Description                                                                                                                        |
++===========================+====================================================================================================================================+
+| solver                    | Pre-trained network used for dipole field inversion. Options: 'xQSM_invivo', 'xQSM_syn', 'xQSM_invivo_withNoiseLayer',             |
+|                           | 'Unet_invivo', 'Unet_syn'                                                                                                          |
++---------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+Usage
+-----
+
+algorParam.qsm.solver
+^^^^^^^^^^^^^^^^^^^^^
+
+Pre-trained network selected for dipole field inversion. Valid options are 'xQSM_invivo', 'xQSM_syn', 'xQSM_invivo_withNoiseLayer', 'Unet_invivo' and 'Unet_syn'
+
+**Default Value: 'xQSM_invivo'**
+
+Examples:
+
+``algorParam.qsm.solver = 'xQSM_invivo';``
+
+``algorParam.qsm.solver = 'xQSM_invivo_withNoiseLayer';``
+
+``algorParam.qsm.solver = 'Unet_invivo';``

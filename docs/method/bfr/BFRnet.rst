@@ -27,3 +27,13 @@ BFRnet panel
 There is no algorithm parameter needed to be adjusted with this tool at the moment.
 
 .. image:: ../images/bfr/BFRnet.png
+
+Algorithm parameters overview
+------------------------------
+
+BFRnet is a deep-learning-based method that runs a pre-trained network on the total field map. It does not expose any adjustable ``algorParam.bfr`` field in the current implementation.
+
+Usage
+-----
+
+Not applicable, BFRnet has no adjustable ``algorParam.bfr`` parameter to set.

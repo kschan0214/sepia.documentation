@@ -24,6 +24,7 @@ The phase we measured in a GRE acquisition is affected by not only the brain tis
    bfr/RESHARP
    bfr/SHARP
    bfr/VSHARP_STISuite
+   bfr/VSHARP_STISuite_2D
    bfr/VSHARP
    bfr/iHARPERELLA
    bfr/BFRnet

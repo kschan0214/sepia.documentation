@@ -13,6 +13,9 @@ Phase wrapping occurs when continuous phase information is sampled in a discrete
 
 The objective of this standalone application is to recover the actual, total phase shift of the acquired data.
 
+.. note::
+  Since v1.3.0, the GUI's default phase unwrapping method is toolbox-availability-aware: it follows a consensus-informed priority chain and automatically selects the highest-priority method whose required toolbox is actually installed, rather than always defaulting to the same method.
+
 Structure of the application
 ----------------------------
 
@@ -62,21 +65,53 @@ The I/O panel is responsible for data input/output and data processing that is n
   .. note::
     Make sure the 'Output prefix' field contains a full path of the output directory and a filename prefix.
   
-- Brain mask  
+- Brain mask
 
-  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with the MEDI toolbox to compute the brain mask.
+  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically compute a brain mask using the method selected in 'Brain extraction' below.
 
-- FSL brain extraction (bet)
+- Brain extraction
 
-  Brain mask can be computed using the Matlab implementation of FSL's BET provided with MEDI toolbox, with options including fractional intensity threshold (-f) and vertical in fractional intensity threshold (-g). More information regarding the options can be found in `BET/UserGuide <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.
+  Since v1.3.0, brain mask computation is no longer limited to FSL's BET. A method dropdown lets you choose between:
 
-- Refine brain mask using R2* (Multi-echo data only)
-  
-  If enable, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask.
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | Method                   | Description                                                                                |
+  +==========================+============================================================================================+
+  | FSL bet (MEDI)           | Matlab implementation of FSL's BET provided with the MEDI toolbox, with fractional         |
+  |                          | intensity threshold (-f) and vertical gradient in fractional intensity threshold (-g)      |
+  |                          | options. More information can be found in `BET/UserGuide                                   |
+  |                          | <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.                                  |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | Otsu thresholding        | Multilevel Otsu's-method thresholding of the magnitude image.                              |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | SynthStrip               | Runs FreeSurfer's ``mri_synthstrip`` on the magnitude image.                               |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | SynthStrip (no CSF)      | Same as above, with the ``--no-csf`` flag.                                                 |
+  +--------------------------+--------------------------------------------------------------------------------------------+
 
-- Invert phase data   
+  .. note::
+    The two SynthStrip options are only shown in the dropdown if the ``mri_synthstrip`` command is found on the system, i.e. FreeSurfer's SynthStrip must already be installed and available in the ``PATH`` environment variable.
+
+- Refine mask (Multi-echo data only)
+
+  If enabled, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask. Since v1.3.0 this is handled by a generalised mask refinement pipeline.
+
+- Invert phase data
 
   Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
+
+- T-MPPCA denoise, kernel (mm)
+
+  .. note::
+    New in v1.3.0.
+
+  If enabled, the magnitude and phase data are denoised using Tensor-MP-PCA prior to any other processing, using the specified isotropic sliding-window kernel size (in mm; default 5 mm). The required external toolbox is downloaded automatically on first use. Denoising can take a noticeable amount of time and its runtime depends on the data size and kernel size chosen.
+
+- Upsampling target (mm)
+
+  .. note::
+    New in v1.3.0.
+
+  If enabled, the magnitude and phase data are upsampled to the specified isotropic target resolution (in mm) using k-space zero-filling prior to processing. All subsequent outputs, including the unwrapped field map, will be at the upsampled resolution.
 
 Total field recovery and phase unwrapping panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,15 +125,15 @@ Total field recovery and phase unwrapping panel
   .. note::
     If the number of echoes is less than 3. 'Optimum weights' method will be automatically used.
 
-  .. warning::
-    The 'MEDI nonlinear fit (Bipolar, testing)' method is not fully supported yet.
+- Phase unwrapping
 
-- Phase unwrapping  
-
-  Select a method for spatial phase unwrapping. 
+  Select a method for spatial phase unwrapping.
 
   .. warning::
     The '3D best path' method might not work in most operating systems.
+
+  .. note::
+    New in v1.3.0: a 'None' option is available for when only field mapping (and not phase unwrapping) is required, e.g. for functional QSM.
 		
 - Bipolar readout correction
 

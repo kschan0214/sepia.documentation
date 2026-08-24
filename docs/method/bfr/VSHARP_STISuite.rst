@@ -10,3 +10,30 @@ Reference:
 `Li, W., Wu, B., Liu, C., 2011. Quantitative susceptibility mapping of human brain reflects spatial variation in tissue composition. Neuroimage 55, 1645–1656. <https://doi.org/10.1016/j.neuroimage.2010.11.088>`_ 
 
 .. image:: ../images/bfr/VSHARP_STISuite.png
+
+Algorithm parameters overview
+------------------------------
+
++-----------------+-----------------------------------------------+
+| algorParam.bfr. | Description                                   |
++=================+===============================================+
+| radius          | Spherical mean value (SMV) kernel size, in mm |
++-----------------+-----------------------------------------------+
+
+Usage
+-----
+
+algorParam.bfr.radius
+^^^^^^^^^^^^^^^^^^^^^
+
+Spherical mean value (SMV) kernel size, in mm
+
+**Default Value: 12**
+
+Examples:
+
+``algorParam.bfr.radius = 8;``
+
+``algorParam.bfr.radius = 12;``
+
+``algorParam.bfr.radius = 16;``

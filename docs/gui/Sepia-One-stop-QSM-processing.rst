@@ -9,7 +9,10 @@ SEPIA (One-stop QSM processing)
 What is SEPIA?
 --------------
 
-SEPIA is a quantitative susceptibility mapping (QSM) pipeline analysis tool for (but not limited to) neuroimaging application. It provides all the essential functions to compute a susceptibility map from a 3D multi-echo GRE phase data, including phase unwrapping, background field contribution removal and dipole inversion. Incorporating with different toolboxes in SEPIA gives users the advantages of having a variety of options to build a pipeline that works the best for their data. When you use the SEPIA graphical user interface to process the data, a configuration (config) file will be generated that contains all the settings and commands that you've specified in the pipeline. This config file will be particularly useful for batch processing. 
+SEPIA is a quantitative susceptibility mapping (QSM) pipeline analysis tool for (but not limited to) neuroimaging application. It provides all the essential functions to compute a susceptibility map from a 3D multi-echo GRE phase data, including phase unwrapping, background field contribution removal and dipole inversion. Incorporating with different toolboxes in SEPIA gives users the advantages of having a variety of options to build a pipeline that works the best for their data. When you use the SEPIA graphical user interface to process the data, a configuration (config) file will be generated that contains all the settings and commands that you've specified in the pipeline. This config file will be particularly useful for batch processing.
+
+.. note::
+  Since v1.3.0, the GUI's default method for each of the total field/phase unwrapping, background field removal, and QSM dipole inversion steps is toolbox-availability-aware: it follows a consensus-informed priority chain (e.g. for QSM, FANSI → MEDI → LSQR+HEIDI → TKD) and automatically selects the highest-priority method whose required toolbox is actually installed, rather than always defaulting to the same method.
 
 Structure of the application
 ----------------------------
@@ -67,21 +70,53 @@ The I/O panel is responsible for data input/output and data processing that is n
   .. note::
     Make sure the 'Output prefix' field contains a full path of the output directory and a filename prefix.
   
-- Brain mask  
+- Brain mask
 
-  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically run the FSL's brain extraction tool (bet) provided with the MEDI toolbox to compute the brain mask.
+  You can optionally specify a signal (brain) mask NIfTI file. If this input is empty and no mask is found in the input directory, SEPIA will automatically compute a brain mask using the method selected in 'Brain extraction' below.
 
-- FSL brain extraction (bet)
+- Brain extraction
 
-  Brain mask can be computed using the Matlab implementation of FSL's BET provided with MEDI toolbox, with options including fractional intensity threshold (-f) and vertical in fractional intensity threshold (-g). More information regarding the options can be found in `BET/UserGuide <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.
+  Since v1.3.0, brain mask computation is no longer limited to FSL's BET. A method dropdown lets you choose between:
 
-- Refine brain mask using R2* (Multi-echo data only)
-  
-  If enable, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask.
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | Method                   | Description                                                                                |
+  +==========================+============================================================================================+
+  | FSL bet (MEDI)           | Matlab implementation of FSL's BET provided with the MEDI toolbox, with fractional         |
+  |                          | intensity threshold (-f) and vertical gradient in fractional intensity threshold (-g)      |
+  |                          | options. More information can be found in `BET/UserGuide                                   |
+  |                          | <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/BET/UserGuide>`_.                                  |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | Otsu thresholding        | Multilevel Otsu's-method thresholding of the magnitude image.                              |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | SynthStrip               | Runs FreeSurfer's ``mri_synthstrip`` on the magnitude image.                               |
+  +--------------------------+--------------------------------------------------------------------------------------------+
+  | SynthStrip (no CSF)      | Same as above, with the ``--no-csf`` flag.                                                 |
+  +--------------------------+--------------------------------------------------------------------------------------------+
 
-- Invert phase data   
+  .. note::
+    The two SynthStrip options are only shown in the dropdown if the ``mri_synthstrip`` command is found on the system, i.e. FreeSurfer's SynthStrip must already be installed and available in the ``PATH`` environment variable.
+
+- Refine mask (Multi-echo data only)
+
+  If enabled, a R2* map will be computed and used to threshold out high R2* voxels on the edges of the brain mask. Since v1.3.0 this is handled by a generalised mask refinement pipeline shared with the QSM panel's '2-pass masking' feature (see below).
+
+- Invert phase data
 
   Checking this option will invert the contrast of the SEPIA output frequency and QSM maps. Mathematically it inverse the signal phase by computing the signal conjugate. It is useful if you want to have specific colour scheme for QSM (e.g. dark colour for paramagnetic susceptibility).
+
+- T-MPPCA denoise, kernel (mm)
+
+  .. note::
+    New in v1.3.0.
+
+  If enabled, the magnitude and phase data are denoised using Tensor-MP-PCA prior to any other processing, using the specified isotropic sliding-window kernel size (in mm; default 5 mm). The required external toolbox is downloaded automatically on first use. Denoising can take a noticeable amount of time and its runtime depends on the data size and kernel size chosen.
+
+- Upsampling target (mm)
+
+  .. note::
+    New in v1.3.0.
+
+  If enabled, the magnitude and phase data are upsampled to the specified isotropic target resolution (in mm) using k-space zero-filling prior to processing. All subsequent SEPIA outputs, including the final QSM map, will be at the upsampled resolution.
 
 Total field recovery and phase unwrapping panel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -95,15 +130,15 @@ Total field recovery and phase unwrapping panel
   .. note::
     If the number of echoes is less than 3 and 'MEDI nonlinear fit' is chosen, 'Optimum weights' method will be automatically used.
 
-  .. warning::
-    The 'MEDI nonlinear fit (Bipolar, testing)' method is not fully supported yet.
+- Phase unwrapping
 
-- Phase unwrapping  
-
-  Select a method for spatial phase unwrapping. 
+  Select a method for spatial phase unwrapping.
 
   .. warning::
     The '3D best path' method might not work in most operating systems.
+
+  .. note::
+    New in v1.3.0: a 'None' option is available for when only field mapping (and not phase unwrapping) is required, e.g. for functional QSM.
 		
 - Bipolar readout correction
 
@@ -131,9 +166,15 @@ Background field removal panel
 
   Select a background field removal method. The method parameters will be displayed on the method panel.
 
+  .. note::
+    New in v1.3.0: STI Suite's V-SHARP 2D is available as an additional method, intended for multi-slice/2D EPI acquisitions.
+
 - Remove residual B1 field by
 
   Option to remove potential field contributions originated from B1 by polynomial fitting or spherical harmonic fit.
+
+  .. note::
+    Since v1.3.0, this default (3D Polynomial / None) automatically follows whichever background field removal method is selected above, rather than always defaulting to the same option.
 
 - Erode edge voxel(s) before BFR 
 
@@ -151,7 +192,24 @@ QSM panel
 - Method:
 
   Select a QSM dipole inversion method. The method parameters will be displayed on the method panel.
-  
+
+  .. note::
+    New in v1.3.0: :ref:`HEIDI (as LSQR+HEIDI) <method-qsm-heidi>` and :ref:`Chi-separation <method-qsm-chi-separation>` are available as additional methods (subject to their own external toolbox setup requirements).
+
+- 2-pass masking
+
+  .. note::
+    New in v1.3.0.
+
+  Select a mask refinement strategy to run a second masking pass before the final QSM dipole inversion: 'None', 'Monoexponential decay model' (same R2*-based edge refinement as the I/O panel's 'Refine mask' option), 'Magnitude Gradient Field' (uses the local field map), or 'Noise map'. The 'λ' field/slider sets the thresholding value used by the selected strategy (default 0.7) and is only enabled when a strategy other than 'None' is selected.
+
+- Streaking reduction by HEIDI
+
+  .. note::
+    New in v1.3.0.
+
+  If enabled, HEIDI is used to reduce streaking artefacts in the QSM map produced by the method selected above. Adjust HEIDI's own parameters in the 'LSQR+HEIDI' method panel, then switch the 'Method' dropdown back to your target dipole inversion method.
+
 - Reference tissue
 
   Select a tissue for QSM value referencing.

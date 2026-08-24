@@ -13,6 +13,9 @@ The phase we measured in a GRE acquisition is affected by not only the brain tis
 
 **Caution**: It is crucial that the background field contribution is removed accurately in this stage. Otherwise, the remaining field due to background sources will be treated as part of the local field, degrading the quality of QSM result.
 
+.. note::
+  Since v1.3.0, the GUI's default background field removal method is toolbox-availability-aware: it follows a consensus-informed priority chain and automatically selects the highest-priority method whose required toolbox is actually installed, rather than always defaulting to the same method.
+
 Structure of the application
 ----------------------------
 
@@ -83,9 +86,15 @@ Background field removal panel
 
   Select a background field removal method. The method parameters will be displayed on the method panel.
 
+  .. note::
+    New in v1.3.0: STI Suite's V-SHARP 2D is available as an additional method, intended for multi-slice/2D EPI acquisitions.
+
 - Remove residual B1 field by
 
   Option to remove potential field contributions originated from B1 by polynomial fitting or spherical harmonic fit.
+
+  .. note::
+    Since v1.3.0, this default (3D Polynomial / None) automatically follows whichever background field removal method is selected above, rather than always defaulting to the same option.
 
 - Erode edge voxel(s) before BFR 
 
