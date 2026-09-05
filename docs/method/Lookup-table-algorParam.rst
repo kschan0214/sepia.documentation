@@ -34,7 +34,7 @@ Mask refinement algorithm parameters
 -------------------------------------
 
 .. note::
-    New in v1.3.0. Used by the I/O panel's 'Refine mask' option and the QSM panel's '2-pass masking' option (see below), both of which are backed by a common mask refinement pipeline (``MaskRefinementWrapper``).
+    New in v1.3.0. Used by the I/O panel's 'Refine mask' option and the QSM panel's '2-pass masking' option (see below), both of which are backed by a common mask refinement pipeline (``MaskRefinementIOWrapper``/``MaskRefinementMacro``).
 
 +---------------------------+--------------------------------------------------------------------------------------------------------------+
 | algorParam.msk.           | Description                                                                                                  |

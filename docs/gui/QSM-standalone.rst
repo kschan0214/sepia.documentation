@@ -93,7 +93,7 @@ QSM panel
   .. note::
     New in v1.3.0.
 
-  Select a mask refinement strategy to run a second masking pass before the final QSM dipole inversion: 'None', 'Monoexponential decay model' (R2*-based edge refinement), 'Magnitude Gradient Field' (uses the local field map), or 'Noise map'. The 'λ' field/slider sets the thresholding value used by the selected strategy (default 0.7) and is only enabled when a strategy other than 'None' is selected.
+  Select a mask refinement strategy to run a second masking pass before the final QSM dipole inversion: 'None', 'Monoexponential decay model' (R2*-based edge refinement), 'Magnitude Gradient Field' (uses the local field map), or 'Noise map'. The 'λ' field/slider sets the thresholding value used by the selected strategy (default 0.7) and is only enabled when the 'Magnitude Gradient Field' strategy is selected. See :ref:`method-qsm-two-pass-masking` for a detailed description of each strategy.
 
 - Streaking reduction by HEIDI
 
