@@ -162,7 +162,25 @@ Karsa, A et al. (2019). High Repeatability of Quantitative Susceptibility Mappin
 `Kuo-Wei Lai, Manisha Aggarwal, Peter van Zijl, Xu Li & Jeremias Sulam, 2020. Learned Proximal Networks for Quantitative Susceptibility Mapping <https://link.springer.com/chapter/10.1007/978-3-030-59713-9_13>`_ 
 
 **xQSM**
-`Yang Gao, Xuanyu Zhu, Bradford A. Moffat, Rebecca Glarin, Alan H. Wilman, G. Bruce Pike, Stuart Crozier, Feng Liu, Hongfu Sun, 2020. xQSM: quantitative susceptibility mapping with octave convolutional and noise-regularized neural networks. <https://doi.org/10.1002/nbm.4461>`_ 
+`Yang Gao, Xuanyu Zhu, Bradford A. Moffat, Rebecca Glarin, Alan H. Wilman, G. Bruce Pike, Stuart Crozier, Feng Liu, Hongfu Sun, 2020. xQSM: quantitative susceptibility mapping with octave convolutional and noise-regularized neural networks. <https://doi.org/10.1002/nbm.4461>`_
+
+**HEIDI**
+Schweser F, Deistung A, Sommer K, Reichenbach JR. HEIDI: a new algorithm for MR phase to susceptibility conversion. Proc Intl Soc Mag Reson Med 2010; 18:4646 (conference abstract).
+
+**Chi-separation (χ-separation)**
+`Shin, H.G., Lee, J., Yun, Y.H., Yoo, S.H., Jang, J., Oh, S.H., Nam, Y., Jung, S., Kim, S., Fukunaga, M., Kim, W., Choi, H.J., Lee, J., 2021. χ-separation: Magnetic susceptibility source separation toward iron and myelin mapping in the brain. NeuroImage 240, 118371. <https://doi.org/10.1016/j.neuroimage.2021.118371>`_
+
+Mask refinement / 2-pass masking
+---------------------------------
+
+**Magnitude Gradient Field**
+Please cite `<https://archive.ismrm.org/2024/3674.html>`_ if you use this masking strategy.
+
+R2* mapping
+-----------
+
+**ARLO / Trapezoidal approximation**
+`Pei, M., Nguyen, T.D., Thimmappa, N.D., Salustri, C., Dong, F., Cooper, M.A., Li, J., Prince, M.R., Wang, Y., 2014. Algorithm for fast monoexponential fitting based on Auto-Regression on Linear Operations (ARLO) of data. Magnetic resonance in medicine 73, 843–850. <https://doi.org/10.1002/mrm.25137>`_
 
 SWI/SMWI
 --------

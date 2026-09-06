@@ -14,19 +14,15 @@ Objectives
 Data Required
 ^^^^^^^^^^^^^
 
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+
-| Data               | Description                                                                                                           |
-+====================+=======================================================================================================================+
-| *mag.nii.gz*       | magnitude of complex-valued multi-echo GRE data with 4 dimenions, [spatial_x,spatial_y,num_of_slices,num_of_echoes]   |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+
-| *phase.nii.gz*     | phase of complex-valued multi-echo GRE data with 4 dimenions, [spatial_x,spatial_y,num_of_slices,num_of_echoes]       |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-| *mask.nii.gz*      | 3D signal mask                                                                                                        |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
-| *sepia_header.mat* | contains important information such as the echo times (TE) and magnetic field strength (in Tesla), and orientation of |
-|                    | the acquisition regarding the physical coordinates of the scanner. These are important to compute the magnetic        |
-|                    | susceptibility with the correct units and ensure the physical model is correct.                                       |
-+--------------------+-----------------------------------------------------------------------------------------------------------------------+ 
++-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| Data                                                      | Description                                                                                                         |
++===========================================================+=====================================================================================================================+
+| *sub-001_ses-SIEMENS_acq-Monopolar_part-mag_GRE.nii.gz*   | magnitude of complex-valued multi-echo GRE data with 4 dimenions, [spatial_x,spatial_y,num_of_slices,num_of_echoes] |
++-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| *sub-001_ses-SIEMENS_acq-Monopolar_part-phase_GRE.nii.gz* | phase of complex-valued multi-echo GRE data with 4 dimenions, [spatial_x,spatial_y,num_of_slices,num_of_echoes]     |
++-----------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+.. note:: A signal mask (*mask.nii.gz*) and a SEPIA header (*sepia_header.mat*) are also needed further into the tutorial, but they are not provided upfront here - SEPIA will generate both of them automatically for you in :ref:`sepia101-exercise2`.
 
 Estimated time
 ^^^^^^^^^^^^^^
@@ -43,13 +39,24 @@ To compute a magnetic susceptibility map, multi-echo gradient-echo (mGRE) images
 
    Theory_mrphase
 
-Go to the data directory ``~/sepia_tutorial/sepia101_data/`` and have a look. 
+Downloading the tutorial data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You should be able to see three compressed NIfTI images (.nii.gz) and a SEPIA header file (.mat) in the directory. The NIFTI data is generated from a phantom dataset used in QSM Challenegs 2.0. It simulates data acquired with a 3D mGRE sequence at 7T. Both magnitude and phase images are 4D, with the first 3 dimensions containing spatial information (i.e. image of a brain) and **echo time in the 4th dimension**. 
+The data used in this tutorial comes from the **QSM Consensus Paper Example Data** (Chan, Marques, Spincemaille and Wang), publicly available on Zenodo at `<https://doi.org/10.5281/zenodo.7795492>`_ under a `CC-BY-4.0 <https://creativecommons.org/licenses/by/4.0/>`_ license. If you use this data (e.g. in a publication or teaching material), please cite the dataset via its DOI above.
+
+1. Download ``QSM_Consensus_Paper_example_Data_Result_Code.zip`` from the Zenodo record and extract it.
+2. Inside the extracted folder, go to ``derivatives/SEPIA/SIEMENS/Monopolar/GRE/`` - you will find the two files there:
+
+   - ``sub-001_ses-SIEMENS_acq-Monopolar_part-mag_GRE.nii.gz``
+   - ``sub-001_ses-SIEMENS_acq-Monopolar_part-phase_GRE.nii.gz``
+
+Go to that data directory (``<extracted_folder>/derivatives/SEPIA/SIEMENS/Monopolar/GRE/``) and have a look.
+
+You should be able to see the two compressed NIfTI images (.nii.gz) in the directory. The data is a real (in-vivo) brain acquisition from the QSM Consensus dataset: a 5-echo monopolar 3D GRE sequence ("AXL QSM FC 1x1x1 PFKZ 0.875 MONOPOLAR 5TE") acquired at **3T** on a Siemens Prisma_fit scanner, with a matrix size of 176 x 256 x 144 and 1 x 1 x 1 mm isotropic voxels. Both magnitude and phase images are 4D, with the first 3 dimensions containing spatial information (i.e. image of a brain) and **echo time in the 4th dimension**.
 
 .. note:: You can check :ref:`gettingstart-installation` to see what information is needed in the SEPIA header file and how to generate this file from standard DICOM/NIfTI conversion tools.
 
-SEPIA is a QSM porcessing pipeline tool developed in Matlab. To use SEPIA, please first start a Matlab session. Once Matlab is open, go to the tutorial data directory (``~/sepia_tutorial/sepia101_data/``) in Matlab environment.
+SEPIA is a QSM porcessing pipeline tool developed in Matlab. To use SEPIA, please first start a Matlab session. Once Matlab is open, go to the tutorial data directory (``<extracted_folder>/derivatives/SEPIA/SIEMENS/Monopolar/GRE/``) in Matlab environment.
 
 We will first give a brief explaination about our tutorial data:
 
@@ -61,18 +68,18 @@ Magnitude images
 
    ``sepia_addpath``, and then
 
-   ``view_nii(load_nii('mag.nii.gz'))``
+   ``view_nii(load_nii('sub-001_ses-SIEMENS_acq-Monopolar_part-mag_GRE.nii.gz'))``
 
    The first command will load all non-external functions in SEPIA, including the `NIfTI support for Matlab <https://nl.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image>`_ from Jimmy Shen. 
 
-   The second command will call a NIfTi viewer to display the magnitude image. The display contrast is automatically adjusted in the viewer. 
+   The second command will call a NIfTi viewer to display the magnitude image. The display contrast is automatically adjusted in the viewer. You may use the brightness slider to adjust the display.
 
    .. image:: images/exercise1_viewnii.png
       :align: center
 
-   .. tip:: You can also do this with your favourite NIfTI viewer that allows visualising 4D data (e.g. ``FSLeyes``). If you use ``FSLeyes`` then adjust the display window to 'Min 0' and 'Max 150'. 
+   .. tip:: You can also do this with your favourite NIfTI viewer that allows visualising 4D data (e.g. ``FSLeyes``). If you use ``FSLeyes`` then adjust the display window to 'Min 0' and 'Max 1000'.
 
-#. By default, the 1st echo data is displayed in the viewer. Use the slider in 'Scan ID' to see how the images change in time (time between echoes = 8 ms).
+#. By default, the 1st echo data is displayed in the viewer. Use the slider in 'Scan ID' to see how the images change in time (time between echoes ~ 5.83 ms).
 
    .. image:: images/exercise1_scanid_slider.png
       :align: center
@@ -84,7 +91,7 @@ Magnitude images
    .. |movie| image:: images/exercise1_fsleyes_movie.png
       :scale: 70 %
 
-#. Signals change in time on three locations on slice #103 (A, B, C) were plotted randomly representing 3 different types of tissue (deep grey matter, corical gray matter and white matter) as shown below. 
+#. Signals change in time on three locations on slice #65 (A, B, C) were plotted randomly representing 3 different types of tissue (deep grey matter, corical gray matter and white matter) as shown below.
 
    **Question 1: Can you identify the locations A, B and C to the corresponding type of tissue? Observe the change of intensity differences of the tissues over time in the image viewer**
 
@@ -102,14 +109,16 @@ Phase images
 
 1. Now close the viewer. Open the phase images and change the colormap to 'Gray':
 
-   ``view_nii(load_nii('phase.nii.gz'))``
+   ``view_nii(load_nii('sub-001_ses-SIEMENS_acq-Monopolar_part-phase_GRE.nii.gz'))``
 
-   The phase images look quite different from the magnitude images. 
+   The phase images look quite different from the magnitude images.
 
    .. image:: images/exercise1_viewnii_phase.png
       :align: center
 
-   Even in the 1st echo phase, it is still possible to (vaguely) identify some such as globus pallidus, putamen, head of caudate nucleus and corticospinal tracts on slice #103. The structures also become clearer in later echoes (you can use the slider in 'Scan ID' as in the magnitude image exercise above).
+   Note that the phase data here is stored in the DICOM integer value range [-4096,4095], rather than the actual radian range [-π,π) of the underlying phase. Before any actual phase processing (e.g. phase unwrapping) can be performed, this DICOM value range has to be converted to [-π,π) - SEPIA does this conversion for you automatically, but it is important to keep this in mind if you inspect the raw phase values yourself.
+
+   Even in the 1st echo phase, it is still possible to (vaguely) identify some such as globus pallidus, putamen, head of caudate nucleus and corticospinal tracts on slice #65. The structures also become clearer in later echoes (you can use the slider in 'Scan ID' as in the magnitude image exercise above).
 
    .. image:: images/exercise1_phase_dgm.png
       :align: center
@@ -127,7 +136,7 @@ Phase images
    .. image:: images/exercise1_q2.png
       :align: center
 
-   In the figure, you can see the phase development over time of the globus pallidus, putamen and corticospinal tracts are roughly linear but it is not the case with the head of caudate nucleus from which you can see the phase value first dropped from first echo to the second echo and then increased from the second echo to the last echo. The decrease of the phase value at the 2nd echo can be seen as the growing zebra-line pattern coming from the inferior frontal lobe toward the centre of the brain (location [75,128,103]). The pattern, if we watch it closely, is spreading not only from the edge to the centre of the brain but also as with the increase of echo time. 
+   In the figure, you can see the phase development over time of the globus pallidus, putamen and corticospinal tracts are roughly linear but it is not the case with the head of caudate nucleus from which you can see the phase value first dropped from first echo to the second echo and then increased from the second echo to the last echo. The decrease of the phase value at the 3rd echo can be seen as the growing zebra-line pattern coming from the inferior frontal lobe toward the centre of the brain. The pattern, if we watch it closely, is spreading not only from the edge to the centre of the brain but also as with the increase of echo time.
 
    **Question 2: Which of the following is the cause of the problem?**
 

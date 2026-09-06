@@ -14,18 +14,18 @@ Objectives
 Data Required
 ^^^^^^^^^^^^^
 
-+-----------------------------------+--------------------------------------------------------------------------------------------------------+
-| Data                              | Description                                                                                            |
-+===================================+========================================================================================================+
-| *Sepia_total-field.nii.gz*        | Unwrapped total frequency shift in Hz, in *~/sepia_tutorial/sepia_data/output_unwrap/*                 |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------+  
-| *mask.nii.gz*                     | 3D signal mask, in *~/sepia_tutorial/sepia_data/*                                                      |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------+ 
-| *sepia_header.mat*                | contains important information such as the echo times (TE) and magnetic field strength (in Tesla), and |
-|                                   | orientation of the acquisition regarding the physical coordinates of the scanner. These are important  |
-|                                   | to compute the magnetic susceptibility with the correct units and ensure the physical model is correct |
-|                                   | , in *~/sepia_tutorial/sepia_data/*                                                                    |
-+-----------------------------------+--------------------------------------------------------------------------------------------------------+ 
++---------------------------+---------------------------------------------------------------------------------------------------------------+
+| Data                      | Description                                                                                                   |
++===========================+===============================================================================================================+
+| *Sepia_fieldmap.nii.gz*   | Unwrapped total frequency shift in Hz, in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/* |
++---------------------------+---------------------------------------------------------------------------------------------------------------+
+| *Sepia_mask_brain.nii.gz* | 3D signal mask, in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/*                        |
++---------------------------+---------------------------------------------------------------------------------------------------------------+
+| *Sepia_header.mat*        | contains important information such as the echo times (TE) and magnetic field strength (in Tesla), and        |
+|                           | orientation of the acquisition regarding the physical coordinates of the scanner. These are important         |
+|                           | to compute the magnetic susceptibility with the correct units and ensure the physical model is correct        |
+|                           | , in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/*                                      |
++---------------------------+---------------------------------------------------------------------------------------------------------------+
 
 Estimated time
 ^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@ The total frequency map we obtained from the last exercise contains magnetic fie
    
    Figure 1: The total field we obtained from the last exercise is the summation of tissue and background magnetic fields. In order to compute the magnetic susceptibility of the brain tissue correctly, the background field contributions have to be removed before mapping the tissue susceptibilities.
 
-SEPIA provides 7 methods to remove the background magnetic fields. Today we will use the so-called Sophisticated Harmonic Artifact Reduction for Phase (SHARP) algorithm to do this job. 
+SEPIA provides 7 methods to remove the background magnetic fields. Today we will use the so-called Variable-kernel Sophisticated Harmonic Artifact Reduction for Phase (V-SHARP) algorithm to do this job.
 
 Exercise 3.1
 ^^^^^^^^^^^^
@@ -59,18 +59,19 @@ In the **I/O** panel, specify the required files by using the |open| buttons:
 .. |open| image:: images/folder@0,3x.jpg 
    :scale: 5 %
 
-#. **or Total field**: *Sepia_total-field.nii.gz* (in *~/sepia_tutorial/sepia_data/output_unwrap/*),
-#. **SEPIA Header**: *Sepia_header.mat* (in *~/sepia_tutorial/sepia_data/*),
-#. **Brain mask** *mask.nii.gz* (in *~/sepia_tutorial/sepia_data/*), 
-#. Change the **Output prefix** to: *~/sepia_tutorial/sepia101_data/output_unwrap/output_localfield/Sepia_smv-4*
+#. **or Total field**: *Sepia_fieldmap.nii.gz* (in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/*),
+#. **SEPIA Header**: *Sepia_header.mat* (in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/*),
+#. **Brain mask** *Sepia_mask_brain.nii.gz* (in *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/*),
+#. Change the **Output prefix** to: *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/output_localfield/Sepia_default*
 
 .. image:: images/exercise3_io.png
    :align: center
 
-Second, in the **Background field removal** panel, change the **Method** to 'SHARP'. You can have two parameters to adjust. 
+Second, in the **Background field removal** panel, change the **Method** to 'VSHARP'. You can have three parameters to adjust. 
 
-- 'SMV radius (voxel)': radius of a spherical mean value (SMV) kernel, in number of voxels
-- 'Threshold': threshold used in Truncated SVD. 
+- 'Max. radius (mm)': the largest radius of the spherical mean value (SMV) kernel used, in mm
+- 'Min. radius (mm)': the smallest radius of the SMV kernel used, in mm - VSHARP progressively shrinks the kernel radius from Max. down to Min. (voxel by voxel) so that fewer edge voxels need to be discarded than with a single fixed-radius SMV kernel
+- 'Threshold': threshold used in the k-space deconvolution (Truncated SVD)
 
 .. image:: images/exercise3_bfr.png
    :align: center   
@@ -80,19 +81,19 @@ Second, in the **Background field removal** panel, change the **Method** to 'SHA
    Again, when the process is finished, you will see the message:
    '*Processing pipeline is completed!*'. 
 
-2. Once the process is finished, you should be able to see the following output in the output directory (*~/sepia_tutorial/sepia101_data/output_unwrap/output_localfield/*)
+2. Once the process is finished, you should be able to see the following output in the output directory (*<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/output_localfield/*)
 
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------+
-   | Output data                       | Description                                                                                            |
-   +===================================+========================================================================================================+
-   | *sepia_config.m*                  | Automatic generated script by the GUI of SEPIA containing all user specified parameters                |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------+
-   | *run_sepia.log*                   | Event log file of the Matlab's command window output                                                   |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------+ 
-   | *Sepia_smv-4_local-field.nii.gz*  | Local (tissue) field map in Hz                                                                         |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------+ 
-   | *Sepia_smv-4_mask-qsm.nii.gz*     | Signal mask for QSM step                                                                               |
-   +-----------------------------------+--------------------------------------------------------------------------------------------------------+ 
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | Output data                       | Description                                                                               |
+   +===================================+===========================================================================================+
+   | *sepia_config.m*                  | Automatic generated script by the GUI of SEPIA containing all user specified parameters   |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | *run_sepia.log*                   | Event log file of the Matlab's command window output                                      |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | *Sepia_default_localfield.nii.gz* | Local (tissue) field map in Hz                                                            |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+
+   | *Sepia_default_mask_QSM.nii.gz*   | Signal mask for QSM step                                                                  |
+   +-----------------------------------+-------------------------------------------------------------------------------------------+ 
    
    Open the local field map with any NIfTI image view (e.g. ``FSLeyes`` or ``mricron``). Adjust the display window to 'Min -7' and 'Max 7'.
 
@@ -101,7 +102,7 @@ Second, in the **Background field removal** panel, change the **Method** to 'SHA
    .. image:: images/exercise3_localfield.png
       :align: center
 
-3. The figure below shows the last echo of magnitude data,  where the globus pallidus is circled by red line, based on the image intensity, and the corresponding local field map. It is known that globus pallidus has a high iron content which can generate a strong induced magnetic field. 
+3. The figure below shows the last echo of magnitude data,  where the globus pallidus is circled by red line, based on the image intensity, and the corresponding local field map. It is known that globus pallidus has a high iron content which can generate a strong induced magnetic field.
 
    **Can you guess the shape and sign of the magnetic properties of the globus palllidus?**
 
@@ -117,19 +118,19 @@ Exercise 3.2 (Advanced)
 
 .. note:: If you still have enough time, follow the exercise below.
 
-In this exercise, we will focus on the effect of using a different 'SMV radius (voxel)' value. 
+In this exercise, we will focus on the effect of using a different 'Min. radius (mm)' value.
 
-#. Change the **Output prefix** to: *~/sepia_tutorial/sepia101_data/output_unwrap/output_localfield/Sepia_smv-2*
+#. Change the **Output prefix** to: *<extracted_folder>/converted/SIEMENS/Monopolar/GRE/output_unwrap/output_localfield/Sepia_rmin-3*
 
-#. Set **SMV radius (voxel)** in the **Background field removal** panel to: 2
+#. Change the **Min. radius (mm)** in the **Background field removal** panel to: 3
 
-   .. image:: images/exercise3_smv2.png
+   .. image:: images/exercise3_rmin3.png
       :align: center
 
 #. Press the **Start** button. Again, when the process is finished, you will see the message:
    '*Processing pipeline is completed!*'. 
 
-#. Try open *Sepia_smv-2_local-field.nii.gz* and *Sepia_smv-4_local-field.nii.gz* at the same time. Adjust the display window to 'Min -7' and 'Max 7' for both images. What differences can you see between the two results?
+#. Try open *Sepia_rmin-3_localfield.nii.gz* and *Sepia_default_localfield.nii.gz* at the same time. Adjust the display window to 'Min -7' and 'Max 7' for both images. What differences can you see between the two results?
 
 Proceed to :ref:`sepia101-exercise4`.
 

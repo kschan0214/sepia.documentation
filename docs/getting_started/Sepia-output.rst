@@ -110,13 +110,47 @@ Output files of Background field removal
 | <Prefix>mask_QSM.nii.gz                        | Signal mask for QSM step.                                          | Yes      |
 +------------------------------------------------+--------------------------------------------------------------------+----------+
 
+Output files of two-pass masking
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+    Since v1.3.0. These files are only generated when a strategy other than 'None' is selected for
+    the QSM panel's '2-pass masking' option (see :ref:`method-qsm-two-pass-masking`). The dipole
+    inversion is run twice, once with the original mask and once with the refined mask, and the two
+    results are then combined into the final susceptibility map.
+
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| Data                                           | Description                                                        | JSON     |
++================================================+====================================================================+==========+
+| <Prefix>mask_QSM-2pass.nii.gz                  | Refined signal mask used for the second dipole inversion pass,     | Yes      |
+|                                                | excluding voxels deemed unreliable by the selected strategy.       |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| <Prefix>R2starmap.nii.gz                       | R2* map used by the 'Monoexponential decay model' strategy (reused | Yes      |
+|                                                | if already computed by an earlier step).                          |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| <Prefix>relativeresidual.nii.gz                | Relative residual between measured and modelled magnitude decay,   | Yes      |
+|                                                | used by the 'Monoexponential decay model' strategy.                |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| <Prefix>relativeresidualweights.nii.gz         | Weights [0,1] derived from the relative residual ('Monoexponential | Yes      |
+|                                                | decay model' strategy only).                                       |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| <Prefix>desc-firstpass_Chimap.nii.gz           | Susceptibility map from the first dipole inversion pass, using the | Yes      |
+|                                                | original (unrefined) mask.                                        |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+| <Prefix>desc-secondpass_Chimap.nii.gz          | Susceptibility map from the second dipole inversion pass, using    | Yes      |
+|                                                | the refined mask.                                                  |          |
++------------------------------------------------+--------------------------------------------------------------------+----------+
+
 Output files of QSM dipole inversion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 +------------------------------------------------+--------------------------------------------------------------------+----------+
 | Data                                           | Description                                                        | JSON     |
 +================================================+====================================================================+==========+
-| <Prefix>Chimap.nii.gz                          | Magnetic susceptibility map in ppm.                                | Yes      |
+| <Prefix>Chimap.nii.gz                          | Magnetic susceptibility map in ppm. When two-pass masking is       | Yes      |
+|                                                | selected, this is the combination of the first- and second-pass    |          |
+|                                                | maps above (second-pass values within the refined mask, first-pass |          |
+|                                                | values elsewhere).                                                 |          |
 +------------------------------------------------+--------------------------------------------------------------------+----------+
 | <Prefix>desc-paramagnetic_Chimap.nii.gz        | Paramagnetic susceptibility component map in ppm (Chi-separation   | Yes      |
 |                                                | methods only).                                                     |          |

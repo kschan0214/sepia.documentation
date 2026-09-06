@@ -1,7 +1,116 @@
 Release note
 ============
 
-1.2.1 (commit 190dd44) 
+1.3.0 (in development, dev1.3.0 branch)
+----------------------------------------
+
+New QSM methods & toolboxes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Added support for the χ-separation (Chi-separation) toolbox as a new QSM add-on (paramagnetic/diamagnetic susceptibility separation via Chi-sepnet, chi_sep_MEDI and chi_sep_iLSQR; requires ONNX checkpoint files and the Deep Learning Toolbox Converter for ONNX Model Format support package)
+* Added HEIDI as a dipole inversion method, selectable across all applicable QSM add-ons
+* New ``setup_FANSI_toolbox.m`` script to automatically download a pinned FANSI-toolbox commit and register it in ``SpecifyToolboxesDirectory.m``
+
+Preprocessing
+^^^^^^^^^^^^^
+* New Tensor-MPPCA denoising option (automatically downloads the required external toolbox on first use)
+* New upsampling option for the phase/magnitude data prior to processing
+* Added STI-Suite's V-SHARP 2D as a background field removal method for multi-slice/2D EPI acquisitions
+* New "no unwrapping" option when only field mapping is required (e.g. for functional QSM)
+
+Masking
+^^^^^^^
+* New two-pass masking option (see :ref:`method-qsm-two-pass-masking`), and a new mask refinement pipeline, including Otsu's-method-based masking
+* Built-in V-SHARP: fixed a bug where the k-space deconvolution step was missing, causing incomplete background field removal; kernel radius is now specified in mm instead of voxels (and supports anisotropic voxel sizes)
+
+R2* handling
+^^^^^^^^^^^^
+* The R2* map is now computed once per pipeline run and reused across the mask refinement, unreliable-voxel exclusion, and QSM CSF-masking steps (previously recomputed redundantly); it is only recomputed automatically if the data is subsequently denoised or upsampled
+
+Configuration & GUI
+^^^^^^^^^^^^^^^^^^^
+* SEPIA can now parse ``sepia_config*.m`` pipeline configuration files and extract the algorithm parameters directly, storing them in the GUI figure handle
+* Various GUI bug fixes for loading saved configuration files (e.g. NDI's GPU option, VSHARP/FANSI parameters)
+* GUI default method selection is now toolbox-availability-aware for the total field/phase unwrapping, background field removal, and QSM dipole inversion steps, following a consensus-informed priority chain per step (e.g. QSM defaults to FANSI → MEDI → LSQR+HEIDI → TKD, whichever is actually installed); the background field removal "remove residual B1 field" default (3D Polynomial / None) now automatically follows whichever BFR method is selected
+
+BIDS / I/O
+^^^^^^^^^^
+* Added support for reading multiple volumes per echo in BIDS-formatted data (e.g. functional QSM)
+* Fixed echo-tag (``_echo-##_``) parsing to work regardless of zero-padding used in the echo number
+* Pipeline outputs now include BIDS-Derivatives-style JSON sidecars (units, source files, algorithm parameters) alongside the NIfTI files, plus a ``dataset_description.json`` at the output root
+* Output NIfTI extension (``.nii`` vs ``.nii.gz``) is now detected from the input data instead of always being forced to ``.nii.gz``
+* Fixed output filenames ending up with two ``desc-`` BIDS entities when the output prefix already contained one (e.g. from a previous processing stage); it is now merged with SEPIA's own output-type label instead, chained in actual processing order (e.g. denoised → upsampled)
+* Renamed the paramagnetic/diamagnetic susceptibility map outputs from the non-standard ``ChiParamap``/``ChiDiamap`` suffixes to the BIDS-valid ``desc-paramagnetic_Chimap``/``desc-diamagnetic_Chimap``
+
+Segmentation & analysis
+^^^^^^^^^^^^^^^^^^^^^^^^
+* Automatic contrast matching, quick nonlinear registration using a dilated subcortical mask, label-based registration, and CSV statistics export added to the MuSus-100/CIT168/AHEAD atlas-based segmentation tools
+* Chimap values can now be exported to a CSF file after segmentation
+
+Bug fix
+^^^^^^^
+* Fixed ``get_set_qsm_ndi.m`` erroring when loading a saved configuration file
+* Fixed a bug in R2* NLLS mapping
+* Fixed direct file loads (e.g. user-supplied R2*/R2 maps in the Chi-separation wrapper) bypassing the odd-matrix-size zero-padding step
+
+Housekeeping
+^^^^^^^^^^^^
+* ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (now machine-specific and gitignored; see ``SpecifyToolboxesDirectory.template.m``)
+* Removed a large set of unused/deprecated legacy wrapper and parser files
+
+1.2.2.6 (commit 1790ac6)
+------------------------
+Release date: 3 December 2023
+
+* Support read Input/Output information from sepia_config.m
+* Phase DICOM values are rescaled using the max/min values in the data instead of rescale slope/intercept of the NIFTI
+
+1.2.2.5 (commit 8630efe)
+------------------------
+Release date: 12 October 2023
+
+* Fix the mismatch between SEPIA defined B0 direction and LPCNN when it is not along the z-direction
+* Fix the shared library issue when using ROMEO with latest versions of Matlab on Linux (see `here <https://github.com/korbinian90/ROMEO>`_)
+* Allow user to define atlases' directory paths
+
+1.2.2.4 (commit 9083249)
+------------------------
+Release date: 3 April 2023
+
+* Fix bug when importing SEPIA pipeline configuration files (sepia_config.m) to the GUI for using VSHARP and FANSI
+
+1.2.2.3 (commit efde35b)
+------------------------
+Release date: 7 March 2023
+
+* Fix bug when using BIDS compatible directory input where magnitude images did not utilise the rescale slope and intercept to obtain the true values for R2* mapping
+
+1.2.2.2 (commit e53fd99)
+------------------------
+Release date: 9 February 2023
+
+* Fix bug when using BIDS compatible directory input where magnitude images did not utilise the rescale slope and intercept to obtain the true values for QSM
+
+1.2.2.1 (commit 1f04298)
+------------------------
+Release date: 2 February 2023
+
+* Fix bug when using optimum weight total field computation with odd matrix size data
+
+1.2.2 (commit d6bb60e)
+----------------------
+Release date: 27 January 2023
+
+* Fix bug for non-double type input for MATLAB's strel function
+* Make sure all holes inside the ROI mask are filled after the background field removal step
+* ROI (brain) mask is applied on the fieldmap regardless of what method is chosen
+
+1.2.1.1 (commit 941cd5b) Patch update
+--------------------------------------
+Release date: 12 December 2022
+
+* Enable option of GPU processing for FANSI and NDI
+
+1.2.1 (commit 190dd44)
 ----------------------------------
 Release date: 7 December 2022
 
