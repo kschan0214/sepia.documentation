@@ -121,9 +121,12 @@ Manage Dependency
 
 Lets you view and update the local paths to SEPIA's optional external toolboxes, i.e. the same information stored in ``SpecifyToolboxesDirectory.m``.
 
-- FANSI Home / MEDI Home / STI Suite Home / SEGUE Home / MRITOOLS Home / MRI susc. calc. Home / ANTs Home
+- FANSI Home / MEDI Home / STI Suite Home / SEGUE Home / MRITOOLS Home / MRI susc. calc. Home / ANTs Home / HEIDI Home / Chi-separation Home
 
   The local installation directory of each corresponding toolbox. Leave a field empty if you don't have that toolbox installed - methods requiring it will simply be unavailable in the GUI.
+
+  .. note::
+    Some other add-ons (LPCNN, QSMnet, xQSM, BFRnet) are configured separately, in their own ``setup_*_environment.m`` file under ``addons/``, rather than here.
 
 - Save
 

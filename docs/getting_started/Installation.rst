@@ -15,14 +15,34 @@ Prerequisite
 
 To support the fully functionality of **SEPIA**, the following external libraries, which are freely available for academic purposes, are required. You can download these toolboxes/libraries using the following links:
 
-- `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_  
-- `STI Suite (v3.0) <https://chunleiliulab.github.io/software.html>`_  
-- `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_  
+- `MEDI toolbox (updated Jan 15, 2020) <http://pre.weill.cornell.edu/mri/pages/qsm.html>`_
+- `STI Suite (v3.0) <https://chunleiliulab.github.io/software.html>`_
+- `FANSI toolbox (v3.0, released on 2021.10.15, i.e., commit b6ac1c9e) <https://gitlab.com/cmilovic/FANSI-toolbox/-/tree/b6ac1c9ea03380722ebe25a6dbef33fff4ea3700>`_ (or use the auto-download script, see below)
 - `SEGUE (accessed 12 September 2019) <https://xip.uclb.com/i/software/SEGUE.html>`_
 - `MRI susceptibility calculation methods (accessed 12 September 2019) <https://xip.uclb.com/product/mri_qsm_tkd>`_
 - `mritools (v4.6.1) <https://github.com/korbinian90/CompileMRI.jl/releases/tag/v4.6.1>`_
+- HEIDI (auto-download script, see below - see :ref:`method-qsm-heidi`)
+- `Chi-separation toolbox <https://github.com/SNU-LIST/chi-separation>`_ (see :ref:`method-qsm-chi-separation`)
 
-If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.  
+If you encounter any difficulty to download these toolboxes please let us know by opening a new issue in the `GitHub page <https://github.com/kschan0214/sepia/issues>`_.
+
+Auto-downloading toolboxes
+---------------------------
+
+Some of the toolboxes above (and the optional Tensor-MP-PCA denoising add-on, which isn't in the list above since it's not required unless you enable denoising) have a public, scriptable download instead of a manual one. From SEPIA HOME, run:
+
+.. code-block:: matlab
+
+   setup_sepia_downloads
+
+This checks **FANSI**, **HEIDI** and **Tensor-MP-PCA** in turn and downloads whichever ones are missing, registering their path in ``SpecifyToolboxesDirectory.m`` for you. It's safe to run more than once - anything already installed is left alone - and a failure on one toolbox (e.g. no network connection) doesn't stop the others from being checked.
+
+If you only want one of them, you can instead call its own individual setup script directly: ``setup_FANSI_toolbox``, ``setup_HEIDI_toolbox``, or ``setup_tMPPCA_toolbox``.
+
+.. note::
+    Tensor-MP-PCA is also fetched automatically the first time you actually run denoising from the GUI/config file, so calling ``setup_tMPPCA_toolbox`` (or ``setup_sepia_downloads``) beforehand is a convenience, not a requirement, for that one.
+
+MEDI toolbox, STI Suite, SEGUE, MRI susceptibility calculation methods, and mritools still need to be downloaded manually from the links above (their licenses don't permit SEPIA to redistribute/auto-fetch them). The Chi-separation toolbox is likewise still manual for now (no auto-download script exists for it yet), even though it's publicly hosted on GitHub.
 
 Installation of SEPIA
 ---------------------
@@ -65,13 +85,16 @@ Alternatively, the traditional way of manging dependency in `SpecifyToolboxesDir
 
 .. code-block:: matlab
 
-   MEDI_HOME = '/path/to/MEDI/toolbox/';  
-   STISuite_HOME = '/path/to/STISuite/toolbox/';   
-   FANSI_HOME = '/path/to/FANSI/toolbox/'; 
+   MEDI_HOME = '/path/to/MEDI/toolbox/';
+   STISuite_HOME = '/path/to/STISuite/toolbox/';
+   FANSI_HOME = '/path/to/FANSI/toolbox/';
    SEGUE_HOME = '/path/to/SEGUE/library/;'
    MRISC_HOME = '/path/to/MRI_susceptibility_calculation/library/;'
    MRITOOLS_HOME = '/path/to/MRITOOLS/library/;'
- 
+   ANTS_HOME = '/path/to/ANTs/bin/;'
+   HEIDI_HOME = '/path/to/HEIDI_SEPIAready/;'
+   ChiSepNet_HOME = '/path/to/Chisep_Toolbox/;'
+
 .. warning::
     The variable names of the toolboxes' paths are changed from '_dir' to '_HOME' from v0.8. Please update your ``SpecifyToolboxesDirectory.m`` file accordingly to avoid error.
 
@@ -93,6 +116,8 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     SEGUE_version       = 'SEGUE_28012021';
     MRISC_version       = 'MRI_susceptibility_calculation_20190912';
     MRITOOLS_version    = 'v3.5.5';
+    HEIDI_version       = 'HEIDI_SEPIAready';
+    ChiSepNet_version   = 'Chisep_Toolbox_v1.2';
 
     % 2. get the Sepia HOME directory from this script
     fullName        = mfilename('fullpath');
@@ -108,6 +133,8 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     SEGUE_dir      = [external_dir 'SEGUE' filesep];
     MRISC_dir      = [external_dir 'MRI_susceptibility_calculation' filesep];
     MRITOOLS_dir   = [external_dir 'MRITOOLS' filesep];
+    HEIDI_dir      = [external_dir 'HEIDI' filesep];
+    ChiSepNet_dir  = [external_dir 'Chi-separation' filesep];
 
     % 5. sepcify the final destination of each toolbox you want to run in Sepia
     MEDI_HOME        = [MEDI_dir        MEDI_version        filesep];
@@ -116,6 +143,9 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
     SEGUE_HOME       = [SEGUE_dir       SEGUE_version       filesep];
     MRISC_HOME       = [MRISC_dir       MRISC_version       filesep];
     MRITOOLS_HOME    = [MRITOOLS_dir    MRITOOLS_version    filesep];
+    ANTS_HOME        = '/path/to/ANTs/bin/';
+    HEIDI_HOME       = [HEIDI_dir       HEIDI_version       filesep];
+    ChiSepNet_HOME   = [ChiSepNet_dir   ChiSepNet_version   filesep];
 
 
 **IMPORTANT: Please do not modify the original structure of these toolboxes, SEPIA searches the path of the related functions based on the original folder structure.**   

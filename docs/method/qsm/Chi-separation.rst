@@ -17,7 +17,7 @@ Reference
 Setup Chi-separation for SEPIA
 -------------------------------
 1. Obtain the ONNX model checkpoint files (e.g. ``240531_R2PRIMEnet.onnx``, ``240904_QSMnet.onnx``, ``240904_xsepnet.onnx``, ``R2PNET_7T.onnx``) and their associated normalisation-factor files (e.g. ``norm_factor.mat``, ``xsepnet_train_patch_norm_factor_inplane_largedegree_romeo_arlo.mat``) and place them in the ``models/`` folder of the Chi-separation toolbox distribution.
-2. Open ``setup_Chi_sepnet_environment.m`` in ``SEPIA_HOME/addons/qsm/Chi-separation/`` and update the ``home_directory`` variable to point to the actual location of the Chi-separation toolbox on your system.
+2. Set ``ChiSepNet_HOME`` to the actual location of the Chi-separation toolbox on your system, either in ``SpecifyToolboxesDirectory.m`` or via the Utility tab's Manage Dependency panel (see :ref:`Utility-standalone`).
 3. Install the **Deep Learning Toolbox Converter for ONNX Model Format** support package via MATLAB's Add-On Explorer (search for "Deep Learning Toolbox Converter for ONNX Model Format").
 
 .. warning::

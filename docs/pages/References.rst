@@ -170,6 +170,12 @@ Schweser F, Deistung A, Sommer K, Reichenbach JR. HEIDI: a new algorithm for MR 
 **Chi-separation (χ-separation)**
 `Shin, H.G., Lee, J., Yun, Y.H., Yoo, S.H., Jang, J., Oh, S.H., Nam, Y., Jung, S., Kim, S., Fukunaga, M., Kim, W., Choi, H.J., Lee, J., 2021. χ-separation: Magnetic susceptibility source separation toward iron and myelin mapping in the brain. NeuroImage 240, 118371. <https://doi.org/10.1016/j.neuroimage.2021.118371>`_
 
+Denoising
+---------
+
+**T-MPPCA (Tensor-MP-PCA)**
+`Olesen, J.L., Ianus, A., Østergaard, L., Shemesh, N., Jespersen, S.N., 2022. Tensor denoising of multidimensional MRI data. Magnetic Resonance in Medicine, 1-13. <https://doi.org/10.1002/mrm.29478>`_
+
 Mask refinement / 2-pass masking
 ---------------------------------
 
