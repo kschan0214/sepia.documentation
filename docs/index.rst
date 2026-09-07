@@ -56,6 +56,10 @@ Table of Contents
    gui/Phase-unwrapping-standalone
    gui/Background-field-removal-standalone
    gui/QSM-standalone
+   gui/SWI-SMWI-standalone
+   gui/R2star-mapping-standalone
+   gui/Analysis-standalone
+   gui/Utility-standalone
 
 .. toctree::
    :maxdepth: 1
