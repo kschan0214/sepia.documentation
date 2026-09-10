@@ -7,8 +7,13 @@ Release note
 New QSM methods & toolboxes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Added support for the χ-separation (Chi-separation) toolbox as a new QSM add-on (paramagnetic/diamagnetic susceptibility separation via Chi-sepnet, chi_sep_MEDI and chi_sep_iLSQR; requires ONNX checkpoint files and the Deep Learning Toolbox Converter for ONNX Model Format support package)
-* Added HEIDI as a dipole inversion method, selectable across all applicable QSM add-ons
+* Added HEIDI as a dipole inversion method, available both as the two-stage "LSQR+HEIDI" pipeline and as a "Streaking reduction by HEIDI" post-processing option that can be applied on top of any other QSM dipole-inversion method's output
+* Updated the ``mu2`` parameter handling for FANSI
 * New ``setup_FANSI_toolbox.m`` script to automatically download a pinned FANSI-toolbox commit and register it in ``SpecifyToolboxesDirectory.m``
+* ``HEIDI_HOME`` and ``ChiSepNet_HOME`` are now configured centrally in ``SpecifyToolboxesDirectory.m`` (editable via the Utility tab's Manage Dependency panel - see :ref:`Utility-standalone`), instead of hand-editing ``setup_Chi_sepnet_environment.m`` or a hardcoded path
+* New ``setup_HEIDI_toolbox.m`` script to automatically download the HEIDI package and register it in ``SpecifyToolboxesDirectory.m``
+* New ``setup_sepia_downloads.m`` script to check/download FANSI, HEIDI and Tensor-MPPCA in one go, instead of running each toolbox's own setup script separately
+* New ``setup_sepia.m`` script that auto-creates a machine-local ``SpecifyToolboxesDirectory.m`` from ``SpecifyToolboxesDirectory.template.m`` the first time it's missing
 
 Preprocessing
 ^^^^^^^^^^^^^
@@ -19,8 +24,10 @@ Preprocessing
 
 Masking
 ^^^^^^^
-* New two-pass masking option (see :ref:`method-qsm-two-pass-masking`), and a new mask refinement pipeline, including Otsu's-method-based masking
+* New two-pass masking option (see :ref:`method-qsm-two-pass-masking`), and a new, generalised mask refinement pipeline (shared between the I/O panel's "Refine mask" option and the QSM panel's two-pass masking)
+* Brain extraction is no longer limited to FSL's BET: a new method dropdown adds Otsu's-method thresholding and (when FreeSurfer's ``mri_synthstrip`` is available) SynthStrip and SynthStrip (no CSF)
 * Built-in V-SHARP: fixed a bug where the k-space deconvolution step was missing, causing incomplete background field removal; kernel radius is now specified in mm instead of voxels (and supports anisotropic voxel sizes)
+* Fixed several compatibility issues between two-pass masking and the mask refinement pipeline (BIDS directory input, QSM/mask-refinement wrapper argument handling)
 
 R2* handling
 ^^^^^^^^^^^^
@@ -29,17 +36,22 @@ R2* handling
 Configuration & GUI
 ^^^^^^^^^^^^^^^^^^^
 * SEPIA can now parse ``sepia_config*.m`` pipeline configuration files and extract the algorithm parameters directly, storing them in the GUI figure handle
+* Updated config-file parsing to keep up with newer pipeline configuration files (e.g. the HEIDI-related fields added this release)
 * Various GUI bug fixes for loading saved configuration files (e.g. NDI's GPU option, VSHARP/FANSI parameters)
 * GUI default method selection is now toolbox-availability-aware for the total field/phase unwrapping, background field removal, and QSM dipole inversion steps, following a consensus-informed priority chain per step (e.g. QSM defaults to FANSI → MEDI → LSQR+HEIDI → TKD, whichever is actually installed); the background field removal "remove residual B1 field" default (3D Polynomial / None) now automatically follows whichever BFR method is selected
+* Added a dark theme for the GUI
 
 BIDS / I/O
 ^^^^^^^^^^
 * Added support for reading multiple volumes per echo in BIDS-formatted data (e.g. functional QSM)
 * Fixed echo-tag (``_echo-##_``) parsing to work regardless of zero-padding used in the echo number
+* Fixed an undefined input-filename-cell error when auto-detecting a BIDS directory containing single-volume-per-echo data
 * Pipeline outputs now include BIDS-Derivatives-style JSON sidecars (units, source files, algorithm parameters) alongside the NIfTI files, plus a ``dataset_description.json`` at the output root
 * Output NIfTI extension (``.nii`` vs ``.nii.gz``) is now detected from the input data instead of always being forced to ``.nii.gz``
 * Fixed output filenames ending up with two ``desc-`` BIDS entities when the output prefix already contained one (e.g. from a previous processing stage); it is now merged with SEPIA's own output-type label instead, chained in actual processing order (e.g. denoised → upsampled)
 * Renamed the paramagnetic/diamagnetic susceptibility map outputs from the non-standard ``ChiParamap``/``ChiDiamap`` suffixes to the BIDS-valid ``desc-paramagnetic_Chimap``/``desc-diamagnetic_Chimap``
+* Fixed ``sepiaIO`` not resolving relative input/mask/output paths against the working directory before processing (could break since SEPIA changes its current directory internally mid-run)
+* ``sepiaIO`` now always generates a fresh ``sepia_config`` file for a run, instead of reusing one already present in the output directory
 
 Segmentation & analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -50,12 +62,13 @@ Bug fix
 ^^^^^^^
 * Fixed ``get_set_qsm_ndi.m`` erroring when loading a saved configuration file
 * Fixed a bug in R2* NLLS mapping
-* Fixed direct file loads (e.g. user-supplied R2*/R2 maps in the Chi-separation wrapper) bypassing the odd-matrix-size zero-padding step
+* Fixed direct file loads (e.g. user-supplied R2*/R2 maps in the Chi-separation wrapper) bypassing the odd-matrix-size zero-padding step - they now go through the same loading path as other auxiliary data
 
 Housekeeping
 ^^^^^^^^^^^^
-* ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (now machine-specific and gitignored; see ``SpecifyToolboxesDirectory.template.m``)
-* Removed a large set of unused/deprecated legacy wrapper and parser files
+* ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (now machine-specific and gitignored; see ``SpecifyToolboxesDirectory.template.m`` and the new ``setup_sepia.m``)
+* Removed a large set of unused/deprecated legacy wrapper and parser files (e.g. the deprecated ``parse_varargin_*`` argument parsers, the GPU-prototype ``cuBackgroundRemovalMacro.m``/``cuQSMMacro.m`` wrappers, and a deprecated GUI callback)
+* Renamed/reorganised a few internal analysis and R2* utility functions to avoid name clashes with other repositories
 
 1.2.2.6 (commit 1790ac6)
 ------------------------

@@ -20,6 +20,9 @@ Two-pass masking addresses this by running a **second masking pass** before the 
 2. **Mask refinement** — the map required by the selected refinement strategy is analysed, and unreliable voxels are excluded from the original mask to create a refined ("reliable") mask.
 3. **Pass 2** — the same QSM dipole inversion method is run a second time, this time using the refined mask, to produce the final QSM map.
 
+.. warning::
+    How much difference two-pass masking actually makes to the final QSM map is **method-dependent** — it depends on how (and whether) the selected QSM dipole inversion method uses the mask, and on that method's own regularisation, if it supports one. Methods that only apply the mask as a final step after a closed-form/direct k-space inversion (e.g. TKD, Direct Tikhonov) will show little to no difference between pass 1 and pass 2, because the mask never influences the inversion itself. Methods where the mask enters the inversion's data-fidelity term directly — e.g. iterative/regularised methods such as Iterative Tikhonov, FANSI, or MEDI — are where refining the mask can meaningfully change the reconstructed susceptibility values, not just which voxels are zeroed out. When evaluating whether two-pass masking is helping, take the QSM method (and its regularisation) into account, not just the refinement strategy and *λ*.
+
 Available refinement strategies
 --------------------------------
 
@@ -73,6 +76,9 @@ Voxels with a gradient magnitude above this threshold are removed from the mask.
 
 .. note::
     This is currently the only strategy for which the *λ* field/slider is enabled in the GUI; for the other strategies *λ* is fixed at its default value.
+
+.. warning::
+    The value of *λ* should be chosen carefully. A smaller *λ* produces a more aggressive second-pass mask, which can reduce streaking artefacts more effectively — but it can also mask out important anatomical structures that have strong susceptibility, which in turn affects the accuracy of the final QSM map. To check how a given *λ* actually behaved on your data, inspect the exported gradient-magnitude NIfTI output together with the ``GradientStatistics`` field (mean, std, λ, threshold) recorded in the refined mask's JSON sidecar — this shows exactly how the mask was derived without needing to re-run or re-derive it.
 
 Noise map
 ^^^^^^^^^^
