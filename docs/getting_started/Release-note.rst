@@ -11,7 +11,7 @@ New QSM methods & toolboxes
 * Updated the ``mu2`` parameter handling for FANSI
 * New ``download_FANSI_toolbox.m`` script to automatically download a pinned FANSI-toolbox commit and register it in ``SpecifyToolboxesDirectory.m``
 * ``HEIDI_HOME`` and ``ChiSepNet_HOME`` are now configured centrally in ``SpecifyToolboxesDirectory.m`` (editable via the Utility tab's Manage Dependency panel - see :ref:`Utility-standalone`), instead of hand-editing ``setup_Chi_sepnet_environment.m`` or a hardcoded path
-* New ``download_HEIDI_toolbox.m`` script to automatically download the HEIDI package and register it in ``SpecifyToolboxesDirectory.m``
+* New ``download_HEIDI_toolbox.m`` script to automatically download the HEIDI package and register it in ``SpecifyToolboxesDirectory.m``; the package itself is hosted as a GitHub Release asset on the SEPIA repo (tag ``heidi-sepiaready-v1``, kept separate from SEPIA's own version tags)
 * New ``download_toolboxes.m`` script to check/download FANSI, HEIDI and Tensor-MPPCA in one go, instead of running each toolbox's own setup script separately
 * New ``setup_sepia.m`` script that auto-creates a machine-local ``SpecifyToolboxesDirectory.m`` from ``SpecifyToolboxesDirectory.template.m`` the first time it's missing
 
