@@ -1,8 +1,8 @@
 Release note
 ============
 
-1.3.0 (in development, dev1.3.0 branch)
-----------------------------------------
+1.3.0 (commit 1918072)
+-----------------------
 
 .. warning::
     **Upgrade notes / breaking changes**
