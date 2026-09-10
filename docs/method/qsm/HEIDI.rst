@@ -15,7 +15,7 @@ Setup HEIDI for SEPIA
 ----------------------
 1. Obtain the ``HEIDI_SEPIAready`` package. You can either:
 
-   - run ``setup_HEIDI_toolbox.m`` (in ``SEPIA_HOME``) to download and install it automatically, or
+   - run ``download_HEIDI_toolbox.m`` (in ``SEPIA_HOME``) to download and install it automatically, or
    - obtain it yourself and set ``HEIDI_HOME`` to its location, either in ``SpecifyToolboxesDirectory.m`` or via the Utility tab's Manage Dependency panel (see :ref:`Utility-standalone`). If ``HEIDI_HOME`` is left unconfigured, SEPIA falls back to looking for it at ``SEPIA_HOME/../external/HEIDI_SEPIAready`` (i.e. in an ``external`` folder that sits alongside, not inside, the SEPIA installation directory) for backward compatibility.
 
 2. The package is expected to contain, at minimum, a ``LSQR`` subfolder and a ``HEIDI`` subfolder (i.e. ``HEIDI_SEPIAready/LSQR`` and ``HEIDI_SEPIAready/HEIDI``), the latter of which should contain the ``GradientAnisotropicDiffusionImageFilter`` executable used internally by the method.

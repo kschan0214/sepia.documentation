@@ -9,10 +9,10 @@ New QSM methods & toolboxes
 * Added support for the χ-separation (Chi-separation) toolbox as a new QSM add-on (paramagnetic/diamagnetic susceptibility separation via Chi-sepnet, chi_sep_MEDI and chi_sep_iLSQR; requires ONNX checkpoint files and the Deep Learning Toolbox Converter for ONNX Model Format support package)
 * Added HEIDI as a dipole inversion method, available both as the two-stage "LSQR+HEIDI" pipeline and as a "Streaking reduction by HEIDI" post-processing option that can be applied on top of any other QSM dipole-inversion method's output
 * Updated the ``mu2`` parameter handling for FANSI
-* New ``setup_FANSI_toolbox.m`` script to automatically download a pinned FANSI-toolbox commit and register it in ``SpecifyToolboxesDirectory.m``
+* New ``download_FANSI_toolbox.m`` script to automatically download a pinned FANSI-toolbox commit and register it in ``SpecifyToolboxesDirectory.m``
 * ``HEIDI_HOME`` and ``ChiSepNet_HOME`` are now configured centrally in ``SpecifyToolboxesDirectory.m`` (editable via the Utility tab's Manage Dependency panel - see :ref:`Utility-standalone`), instead of hand-editing ``setup_Chi_sepnet_environment.m`` or a hardcoded path
-* New ``setup_HEIDI_toolbox.m`` script to automatically download the HEIDI package and register it in ``SpecifyToolboxesDirectory.m``
-* New ``setup_sepia_downloads.m`` script to check/download FANSI, HEIDI and Tensor-MPPCA in one go, instead of running each toolbox's own setup script separately
+* New ``download_HEIDI_toolbox.m`` script to automatically download the HEIDI package and register it in ``SpecifyToolboxesDirectory.m``
+* New ``download_toolboxes.m`` script to check/download FANSI, HEIDI and Tensor-MPPCA in one go, instead of running each toolbox's own setup script separately
 * New ``setup_sepia.m`` script that auto-creates a machine-local ``SpecifyToolboxesDirectory.m`` from ``SpecifyToolboxesDirectory.template.m`` the first time it's missing
 
 Preprocessing

@@ -33,14 +33,14 @@ Some of the toolboxes above (and the optional Tensor-MP-PCA denoising add-on, wh
 
 .. code-block:: matlab
 
-   setup_sepia_downloads
+   download_toolboxes
 
 This checks **FANSI**, **HEIDI** and **Tensor-MP-PCA** in turn and downloads whichever ones are missing, registering their path in ``SpecifyToolboxesDirectory.m`` for you. It's safe to run more than once - anything already installed is left alone - and a failure on one toolbox (e.g. no network connection) doesn't stop the others from being checked.
 
-If you only want one of them, you can instead call its own individual setup script directly: ``setup_FANSI_toolbox``, ``setup_HEIDI_toolbox``, or ``setup_tMPPCA_toolbox``.
+If you only want one of them, you can instead call its own individual setup script directly: ``download_FANSI_toolbox``, ``download_HEIDI_toolbox``, or ``download_tMPPCA_toolbox``.
 
 .. note::
-    Tensor-MP-PCA is also fetched automatically the first time you actually run denoising from the GUI/config file, so calling ``setup_tMPPCA_toolbox`` (or ``setup_sepia_downloads``) beforehand is a convenience, not a requirement, for that one.
+    Tensor-MP-PCA is also fetched automatically the first time you actually run denoising from the GUI/config file, so calling ``download_tMPPCA_toolbox`` (or ``download_toolboxes``) beforehand is a convenience, not a requirement, for that one.
 
 MEDI toolbox, STI Suite, SEGUE, MRI susceptibility calculation methods, and mritools still need to be downloaded manually from the links above (their licenses don't permit SEPIA to redistribute/auto-fetch them). The Chi-separation toolbox is likewise still manual for now (no auto-download script exists for it yet), even though it's publicly hosted on GitHub.
 
