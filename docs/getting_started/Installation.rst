@@ -111,11 +111,11 @@ and here is an example of how is my SpecifyToolboxesDirectory.m defined:
 
     % 1. sepcify the toolbox version you want to run
     MEDI_version        = 'MEDI_toolbox_20200115';
-    FANSI_version       = 'FANSI-toolbox-77023b65';
+    FANSI_version       = 'FANSI-toolbox-b6ac1c9e';
     STISuite_version    = 'STISuite_V3.0';
     SEGUE_version       = 'SEGUE_28012021';
     MRISC_version       = 'MRI_susceptibility_calculation_20190912';
-    MRITOOLS_version    = 'v3.5.5';
+    MRITOOLS_version    = 'v4.6.1';
     HEIDI_version       = 'HEIDI_SEPIAready';
     ChiSepNet_version   = 'Chisep_Toolbox_v1.2';
 
