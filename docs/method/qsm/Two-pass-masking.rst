@@ -90,6 +90,13 @@ This strategy uses the standard deviation (noise) map of the local field, or the
 .. note::
     This strategy does not use the *λ* threshold; the threshold is derived automatically from the noise map.
 
+Quality assurance
+-------------------
+
+The combined QSM map is built by stitching together two *separate* dipole-inversion solutions — the pass-1 map everywhere, overwritten by the pass-2 map inside the refined mask (``chi_combined(mask_twopass > 0) = chi_pass_2(mask_twopass > 0)``). When the refinement is strong (e.g. a small *λ* for Magnitude Gradient Field, or an aggressive threshold for the other strategies), the two solutions can disagree noticeably right at that boundary — whether from a streaking artefact present in only one of the two passes, or a susceptibility source only fully captured on one side of the boundary — producing a visible **edge or seam in the combined map at the border between the pass-1 and pass-2 regions**.
+
+As a general QA check: inspect the combined map for a sharp discontinuity tracing the refined mask's boundary. If you see one, treat it as a sign the refinement was too aggressive for this data, and reduce it (e.g. increase *λ* for Magnitude Gradient Field) rather than assuming the seam itself is a genuine anatomical feature.
+
 Legacy R2\*-based refinement
 ------------------------------
 
