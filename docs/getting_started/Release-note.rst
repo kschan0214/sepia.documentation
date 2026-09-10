@@ -4,6 +4,20 @@ Release note
 1.3.0 (in development, dev1.3.0 branch)
 ----------------------------------------
 
+.. warning::
+    **Upgrade notes / breaking changes**
+
+    * The paramagnetic/diamagnetic susceptibility map output filenames changed
+      from the non-standard ``ChiParamap``/``ChiDiamap`` suffixes to the
+      BIDS-valid ``desc-paramagnetic_Chimap``/``desc-diamagnetic_Chimap``. If
+      you have downstream scripts or pipelines that look for the old
+      filenames (chi-separation outputs only - the core ``Chimap`` output is
+      unaffected), update them to the new names.
+    * ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (see
+      "Housekeeping" below). No action needed - your existing local copy is
+      untouched - but ``git status`` will now show it as untracked instead
+      of unmodified.
+
 New QSM methods & toolboxes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Added support for the χ-separation (Chi-separation) toolbox as a new QSM add-on (paramagnetic/diamagnetic susceptibility separation via Chi-sepnet, chi_sep_MEDI and chi_sep_iLSQR; requires ONNX checkpoint files and the Deep Learning Toolbox Converter for ONNX Model Format support package)
