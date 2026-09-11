@@ -4,19 +4,13 @@ Release note
 1.3.0 (commit 1918072)
 -----------------------
 
-.. warning::
-    **Upgrade notes / breaking changes**
+.. note::
+    **Upgrade notes**
 
-    * The paramagnetic/diamagnetic susceptibility map output filenames changed
-      from the non-standard ``ChiParamap``/``ChiDiamap`` suffixes to the
-      BIDS-valid ``desc-paramagnetic_Chimap``/``desc-diamagnetic_Chimap``. If
-      you have downstream scripts or pipelines that look for the old
-      filenames (chi-separation outputs only - the core ``Chimap`` output is
-      unaffected), update them to the new names.
-    * ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (see
-      "Housekeeping" below). No action needed - your existing local copy is
-      untouched - but ``git status`` will now show it as untracked instead
-      of unmodified.
+    ``SpecifyToolboxesDirectory.m`` and ``SpecifyAtlasDirectory.m`` are no
+    longer tracked in git (see "Housekeeping" below). No action needed -
+    your existing local copies are untouched - but ``git status`` will now
+    show them as untracked instead of unmodified.
 
 New QSM methods & toolboxes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -80,7 +74,7 @@ Bug fix
 
 Housekeeping
 ^^^^^^^^^^^^
-* ``SpecifyToolboxesDirectory.m`` is no longer tracked in git (now machine-specific and gitignored; see ``SpecifyToolboxesDirectory.template.m`` and the new ``setup_sepia.m``)
+* ``SpecifyToolboxesDirectory.m`` and ``SpecifyAtlasDirectory.m`` are no longer tracked in git (now machine-specific and gitignored; see their ``.template.m`` files and the new ``setup_sepia.m``)
 * Removed a large set of unused/deprecated legacy wrapper and parser files (e.g. the deprecated ``parse_varargin_*`` argument parsers, the GPU-prototype ``cuBackgroundRemovalMacro.m``/``cuQSMMacro.m`` wrappers, and a deprecated GUI callback)
 * Renamed/reorganised a few internal analysis and R2* utility functions to avoid name clashes with other repositories
 
