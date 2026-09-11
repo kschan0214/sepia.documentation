@@ -1,7 +1,7 @@
 Release note
 ============
 
-1.3.0 (commit 08b3d77)
+1.3.0 (commit 3ad47fd)
 -----------------------
 
 .. note::
